@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderDaysTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateOrderDaysTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_days', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->unsignedBigInteger('order_id'); 
-
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
+            $table->string('name'); 
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateOrderDaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_days');
+        Schema::dropIfExists('roles');
     }
 }

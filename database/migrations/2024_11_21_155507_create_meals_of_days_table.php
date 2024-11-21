@@ -15,8 +15,7 @@ class CreateMealsOfDaysTable extends Migration
     {
         Schema::create('meals_of_days', function (Blueprint $table) {
             $table->unsignedBigInteger('order_day_id');
-            $table->unsignedBigInteger('meal_id');
-            $table->primary(['order_day_id', 'meal_id']); 
+            $table->unsignedBigInteger('meal_id'); 
     
             $table->foreign('order_day_id')->references('id')->on('order_days')->onDelete('cascade');
             $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
