@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps();
+            
             $table->string('phone')->nullable();       // Adds phone column
             $table->string('address')->nullable();     // Adds address column
             
@@ -33,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->foreign('goal_id')->references('id')->on('goals')->onDelete('set null');
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('set null');
             $table->foreign('restriction_id')->references('id')->on('restrictions')->onDelete('set null');
+            $table->timestamps();
         });
     }
 

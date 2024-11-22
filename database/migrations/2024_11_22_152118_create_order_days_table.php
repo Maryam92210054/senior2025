@@ -13,7 +13,7 @@ class CreateOrderDaysTable extends Migration
      */
     public function up()
     {
-       Schema::create('order_days', function (Blueprint $table) {
+        Schema::create('order_days', function (Blueprint $table) {
             $table->id();
             $table->smallInteger('day_number');
             $table->date('date');

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMealRestrictionsTable extends Migration
+class CreateMealsOfDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMealRestrictionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('meal_restrictions', function (Blueprint $table) {
+        Schema::create('meals_of_days', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('meal_id');
-            $table->unsignedBigInteger('meal_restriction_id');
-
+            $table->unsignedBigInteger('order_day_id');
+            $table->unsignedBigInteger('meal_id'); 
+    
+            $table->foreign('order_day_id')->references('id')->on('order_days')->onDelete('cascade');
             $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
-            $table->foreign('meal_restriction_id')->references('id')->on('restrictions')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateMealRestrictionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meal_restrictions');
+        Schema::dropIfExists('meals_of_days');
     }
 }

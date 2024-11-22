@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMealTypeLinksTable extends Migration
+class CreateMealRestrictionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateMealTypeLinksTable extends Migration
      */
     public function up()
     {
-        Schema::create('meal_type_links', function (Blueprint $table) {
+        Schema::create('meal_restrictions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('meal_id');
-            $table->unsignedBigInteger('meal_type_id');
+            $table->unsignedBigInteger('restriction_id');
 
             $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
-            $table->foreign('meal_type_id')->references('id')->on('meal_types')->onDelete('cascade');
+            $table->foreign('restriction_id')->references('id')->on('restrictions')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateMealTypeLinksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('meal_type_links');
+        Schema::dropIfExists('meal_restrictions');
     }
 }

@@ -19,6 +19,11 @@ class CreateMealsTable extends Migration
             $table->text('description');
             $table->text('health_info')->nullable();
             $table->string('meal_image')->nullable();
+            $table->unsignedBigInteger('goal_id');
+            $table->unsignedBigInteger('meal_type_id');
+           
+            $table->foreign('goal_id')->references('id')->on('goals')->onDelete('cascade');
+            $table->foreign('meal_type_id')->references('id')->on('meal_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

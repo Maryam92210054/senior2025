@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlansTable extends Migration
+class CreatePlanTypeMealsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreatePlansTable extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('plan_type_meals', function (Blueprint $table) {
             $table->id();
-            $table->text('description');
-            $table->tinyInteger('daysPerWeek')->unsigned();
-            $table->decimal('price', 8, 2);
-            $table->unsignedBigInteger('goal_id'); 
-            $table->unsignedBigInteger('plan_type_id');
+            $table->unsignedBigInteger('plan_type_id'); // Foreign key for plans
+            $table->unsignedBigInteger('meal_id'); // Foreign key for meals
+            $table->boolean('is_included'); // To indicate inclusion
 
-            $table->foreign('goal_id')->references('id')->on('goals')->onDelete('cascade');
+            // Foreign key constraints
             $table->foreign('plan_type_id')->references('id')->on('plan_types')->onDelete('cascade');
-            
+            $table->foreign('meal_id')->references('id')->on('meals')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +33,6 @@ class CreatePlansTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('plan_type_meals');
     }
 }
