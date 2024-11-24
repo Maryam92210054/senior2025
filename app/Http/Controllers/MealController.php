@@ -11,7 +11,9 @@ class MealController extends Controller
     public function index()
     {
         $meals = Meal::all();
-        return view('meals.index', compact('meals'));
+
+        return view('index', compact('meals'));
+
     }
 }
 
