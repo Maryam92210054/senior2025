@@ -18,7 +18,7 @@ body, ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #fff, #bddb8f); 
+  background: linear-gradient(90deg, #fff, #bddb8f,#809c56); 
   padding: 10px 40px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -44,7 +44,7 @@ body, ul {
 
 .nav-links a:hover {
   background-color: white;
-  color: #90ee90;
+  color: #bddb8f;
 }
 
     </style>
