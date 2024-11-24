@@ -1,0 +1,122 @@
+/* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #bddb8f;
+      color: #333;
+    }
+
+    /* Registration Form Container */
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .container .title {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Flexbox for two inputs side by side */
+    .input-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .input-box {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-box span {
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .input-box input,
+    .input-box select {
+      height: 40px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+
+    .input-box input:focus,
+    .input-box select:focus {
+      border-color: #809c56;
+    }
+
+    .container .button {
+      text-align: center;
+    }
+
+    /* Make the button wider */
+    .container .button input {
+      background: linear-gradient(135deg, #bddb8f, #809c56);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%; /* Makes the button full width */
+      transition: background-color 0.3s ease;
+    }
+
+    .container .button input:hover {
+      background: linear-gradient(135deg, #809c56, #bddb8f);
+    }
+
+    /* Link for "Already have an account?" */
+    .container .login-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .container .login-link a {
+      color: #809c56; /* Change the color of the "Log in" link */
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .container .login-link a:hover {
+      color: #4e7f3f;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .container {
+        max-width: 90%;
+        padding: 15px;
+      }
+
+      .input-row {
+        flex-direction: column; /* Stack inputs vertically on smaller screens */
+      }
+    }

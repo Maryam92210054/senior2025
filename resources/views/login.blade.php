@@ -1,18 +1,51 @@
 @extends('layouts.app')
-@section('title','login')
+@section('title', 'Login')
 @section('content')
-<div class="container">
-<form class="ms-auto me-auto mt-5" style="width:500px">
-  <div class="mb-3">
-    <label  class="form-label">Email address</label>
-    <input type="email" class="form-control" name="name">
-    <div id="emailHelp" class="form-text"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <<link href="{{ asset('css/login.css') }}" rel="stylesheet">
+
+</head>
+<body>
+
+  <!-- Login Form -->
+  <div class="container">
+    <div class="title">Login</div>
+    <form action="{{route('login.post')}}" method="POST">
+      @csrf
+      @if(Session()->has('success'))
+        <div class="alert alert-success">{{ Session::get('success') }}</div>
+      @endif
+      @if(Session()->has('fail'))
+        <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+      @endif
+
+      <div class="input-box">
+        <span>Email</span>
+        <input type="email" placeholder="Enter your email" name="email" value="{{ old('email') }}">
+        <span class="text-danger">@error('email'){{ $message }} @enderror</span>
+      </div>
+
+      <div class="input-box">
+        <span>Password</span>
+        <input type="password" placeholder="Enter your password" name="password">
+        <span class="text-danger">@error('password'){{ $message }} @enderror</span>
+      </div>
+
+      <div class="button">
+        <input type="submit" value="Login">
+      </div>
+
+      <div class="signup-link">
+        <span>Don't have an account? </span><a href="{{ route('registration') }}">Sign up</a>
+      </div>
+    </form>
   </div>
-  <div class="mb-3">
-    <label class="form-label">Password</label>
-    <input type="password" class="form-control" name="password">
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-</div>
+
+</body>
+</html>
 @endsection

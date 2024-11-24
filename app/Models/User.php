@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'address',
+        'phone',
+        'goal_id',
+        'restriction_id',
     ];
 
     /**
@@ -41,4 +45,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Define the relationship with the Goal model.
+     */
+    public function goal()
+    {
+        return $this->belongsTo(Goal::class);
+    }
+
+    /**
+     * Define the relationship with the Restriction model.
+     */
+    public function restriction()
+    {
+        return $this->belongsTo(Restriction::class);
+    }
 }
