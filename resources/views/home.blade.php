@@ -50,7 +50,7 @@
 </head>
 <body>
   <nav class="navbar">
-  <img src="/senior pics/SENIOR-LOGO.png" alt="Logo">
+  <img src="/mealsImages/SENIOR-LOGO.png" alt="Logo">
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about-us">About Us</a></li>
