@@ -21,8 +21,8 @@
 <img src="{{ asset('mealsImages/' . $meal->meal_image) }}" class="card-img-top" alt="{{ $meal->name }}" style="height: 200px; object-fit: cover;">
                     
 <div class="card-body">
-<h5 class="card-title">{{ $meal->mealName }}</h5>
-<p class="card-text">{{ $meal->description }}</p>
+<h5 class="card-title">{{ $meal->name }}</h5>
+
 </div>
 </div>
 </div>
