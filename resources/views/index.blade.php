@@ -48,7 +48,7 @@
     @endforeach
 </div>
 <div class="full-width-banner text-center my-5">
-    <h1 class="big-heading" style="font-family: 'Italiana', serif; color: #bddb8f;">FRESH. ORGANIC. SATISFYING</h1>
+    <h1 class="big-heading" style="font-family: 'Italiana', serif; color: #bddb8f;"> " FRESH. ORGANIC. SATISFYING "</h1>
 </div>
 
 
