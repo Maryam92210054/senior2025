@@ -3,17 +3,20 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Meal;
-use Illuminate\Http\Request;
+use App\Models\Goal;
 
 class MealController extends Controller
 {
     public function index()
     {
-        $meals = Meal::all();
+        // Fetch all goals with their associated meals
+        $goals = Goal::with('meals')->get();
 
-        return view('index', compact('meals'));
-
+        // Pass the goals and their meals to the view
+        return view('index', compact('goals'));
     }
 }
+
 

@@ -15,4 +15,10 @@ class Goal extends Model
 
     // Fillable attributes (columns that can be mass-assigned)
     protected $fillable = ['name'];
+
+    public function meals()
+    {
+        return $this->hasMany(Meal::class, 'goal_id');
+    }
 }
+

@@ -11,7 +11,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meal extends Model
 {
-    protected $fillable = ['mealName', 'description', 'image'];
+    protected $fillable = ['name', 'description', 'meal_image'];
 
-    
+    public function goal()
+    {
+        return $this->belongsTo(Goal::class, 'goal_id');
+    }
 }
