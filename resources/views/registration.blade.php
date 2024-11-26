@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.nav1')
 @section('title', 'register')
 @section('content')
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
       <div class="input-row">
         <div class="input-box">
           <span>Full Name</span>
-          <input type="text" placeholder="Enter your name"  name="name" value="{{old('name')}}">
+          <input type="text" placeholder="Enter your first and last name"  name="name" value="{{old('name')}}">
           <span class="text-danger">@error('name'){{$message}} @enderror </span>
         </div>
         <div class="input-box">
@@ -47,7 +47,7 @@
         </div>
         <div class="input-box">
           <span>Phone Number</span>
-          <input type="text" placeholder="Enter your number"  name="phone" value="{{old('phone')}}">
+          <input type="text" placeholder="00/000000"  name="phone" value="{{old('phone')}}">
           <span class="text-danger">@error('phone'){{$message}} @enderror </span>
         </div>
       </div>

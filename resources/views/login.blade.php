@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.nav1')
 @section('title', 'Login')
 @section('content')
 <!DOCTYPE html>

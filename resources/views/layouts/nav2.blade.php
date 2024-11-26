@@ -60,9 +60,10 @@ body, ul {
   <nav class="navbar">
   <img src="logo.jpeg" alt="Logo">
   <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about-us">About Us</a></li>
-    <li><a href="#login">Login</a></li>
+      <li><a href="{{ route('meals') }}">Meals</a></li>
+      <li><a href="">Build plan</a></li>
+      <li><a href="">View plan</a></li>
+      
   </ul>
 </nav>
 @yield('content')

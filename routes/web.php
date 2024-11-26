@@ -31,5 +31,5 @@ Route::post('/login', [AuthenticationController::class, 'loginPost'])->name('log
 
 Route::get('/registration',[AuthenticationController::class,'registration'])->name('registration');
 Route::post('/registration', [AuthenticationController::class, 'registrationPost'])->name('registration.post');
-Route::get('/meals', [MealController::class, 'index'])->name('meals.index');
+Route::get('/meals', [MealController::class, 'meals'])->name('meals');
 
