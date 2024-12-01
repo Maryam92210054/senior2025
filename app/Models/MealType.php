@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Restriction extends Model
+class MealType extends Model
 {
     use HasFactory;
 
-    protected $table = 'restrictions';
+    protected $table = 'meal_types';
     protected $fillable = ['name'];
-    public function restrictions()
-{
-    return $this->belongsToMany(Restriction::class, 'meal_restrictions');
-}
+
+    public function meals()
+    {
+        return $this->hasMany(Meal::class, 'meal_type_id');
+    }
 }

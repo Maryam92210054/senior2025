@@ -11,11 +11,23 @@ class MealController extends Controller
 {
     public function meals()
     {
-        // Fetch all goals with their associated meals
         $goals = Goal::with('meals')->get();
+        
+        return view('viewMeals', compact('goals'));
+    }
+    public function index() {
+        $meals=Meal:: paginate(10);
 
-        // Pass the goals and their meals to the view
-        return view('meals', compact('goals'));
+        return view('meals.index',['meals'=>$meals]); 
+    }
+    public function show($mealId) {
+        //select * from meals where id=$
+        $singleMealFromDb= Meal::find($mealId);
+        if (is_null( $singleMealFromDb)){
+            return redirect()->route('meals.index');
+        }
+        return view('meals.show',['meal'=>$singleMealFromDb]);
+    
     }
 }
 

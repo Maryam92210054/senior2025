@@ -4,18 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\MealController;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -31,5 +19,9 @@ Route::post('/login', [AuthenticationController::class, 'loginPost'])->name('log
 
 Route::get('/registration',[AuthenticationController::class,'registration'])->name('registration');
 Route::post('/registration', [AuthenticationController::class, 'registrationPost'])->name('registration.post');
-Route::get('/meals', [MealController::class, 'meals'])->name('meals');
+Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
+
+Route::get('/meals', [MealController::class , 'index' ])->name('meals.index');
+Route::get('/meals/{meal}', [MealController::class , 'show' ])->name('meals.show');
+
 

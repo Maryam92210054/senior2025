@@ -20,9 +20,9 @@
   <nav class="navbar">
   <img src="logo.jpeg" alt="Logo">
   <ul class="nav-links">
-      <li><a href="{{ route('home') }}">Home</a></li>
-      <li><a href="">About Us</a></li>
-      <li><a href="{{ route('login') }}">Login</a></li>
+      <li><a href="{{ route('meals.index') }}">Manage meals</a></li>
+      <li><a href="">Manage plans</a></li>
+      <li><a href="">Manage orders</a></li>
   </ul>
 </nav>
 @yield('content')

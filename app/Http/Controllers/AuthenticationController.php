@@ -32,7 +32,14 @@ class AuthenticationController extends Controller
          if($user){
             if (Hash::check($request->password ,$user->password)){
                 $request->session()->put('loginId',$user->id);
-                return redirect('/meals');
+                if ($user->role_id == 1) {
+                    // Role 1: Redirect to viewMeals (for regular users)
+                    return redirect()->route('viewMeals');
+                } else {
+                    // Role 2: Redirect to meals management (for admin)
+                    return redirect()->route('meals.index');
+                }
+                return redirect('/viewMeals');
             }
             else{
                 return back()->with('fail','Password does not match'); 
