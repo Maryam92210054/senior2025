@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #bddb8f;
+  color: #333;
+}
+
+/* Create Meal Form Container */
+.container {
+  width: 80%; /* Make the container take up 80% of the page width */
+  margin: 50px auto;
+  background-color: #fff;
+  padding: 40px; /* Increase padding for more space inside the form */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.container .title {
+  font-size: 30px; /* Increase font size for the title */
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px; /* Increase margin bottom for more space between title and form */
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Increase gap between form fields */
+}
+
+/* Flexbox for two inputs side by side */
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px; /* Increase gap between the two columns */
+}
+
+.input-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box span {
+  font-weight: 500;
+  margin-bottom: 10px; /* Increase space between label and input */
+  font-size: 20px;
+}
+
+.input-box input,
+.input-box textarea,
+.input-box select {
+  height: 45px; /* Slightly increase height for input fields */
+  padding: 8px 12px; /* Increase padding inside the fields */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px; /* Increase font size for better readability */
+  transition: border-color 0.3s ease;
+}
+
+.input-box textarea {
+  height: 100px; /* Make textarea larger */
+  resize: vertical;
+}
+
+.input-box input:focus,
+.input-box select:focus,
+.input-box textarea:focus {
+  border-color: #809c56;
+}
+
+/* Create Button */
+.container .button {
+  text-align: center;
+}
+
+/* Make the button wider */
+.container .button input {
+  background: linear-gradient(135deg, #bddb8f, #809c56);
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Increase padding for the button */
+  font-size: 18px; /* Increase font size for the button */
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%; /* Makes the button full width */
+  transition: background-color 0.3s ease;
+}
+
+.container .button input:hover {
+  background: linear-gradient(135deg, #809c56, #bddb8f);
+}
+
+/* Restrictions Section */
+.restrictions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Add space between checkboxes */
+}
+
+.restriction-label {
+  display: flex;
+  align-items: center; /* Ensure checkbox and text align on the same line */
+  font-size: 16px;
+}
+
+.restriction-label input[type="checkbox"] {
+  margin-right: 5px; /* Space between checkbox and label */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      width: 90%; /* Make the container take up 90% on smaller screens */
+      padding: 20px;
+  }
+
+  .input-row {
+      flex-direction: column; /* Stack inputs vertically on smaller screens */
+  }
+}

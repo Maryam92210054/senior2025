@@ -22,27 +22,7 @@ body {
     font-size: 22px;
     color:#809c56
 }
-.search-box {
-    position: relative;        
-    float: right;
-}
-.search-box input {
-    height: 34px;
-    border-radius: 20px;
-    padding-left: 35px;
-    border-color: #ddd;
-    box-shadow: none;
-}
-.search-box input:focus {
-    border-color: #3FBAE4;
-}
-.search-box i {
-    color: #a0a5b1;
-    position: absolute;
-    font-size: 19px;
-    top: 8px;
-    left: 10px;
-}
+
 table.table tr th, table.table tr td {
     border-color: #e9e9e9;
 }
@@ -135,3 +115,76 @@ table.table td i {
     margin-top: 6px;
     font-size: 95%;
 }    
+/* Change button color */
+.btn-success {
+    background: linear-gradient(135deg, #bddb8f, #809c56);
+  color: white;
+  border: none;
+  padding: 15px 30px; /* Increase padding for the button */
+  font-size: 18px; /* Increase font size for the button */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #809c56, #bddb8f);
+
+}
+
+/* Change the font size of the button text */
+.btn span {
+    font-size: 18px; /* Adjust the font size of the text */
+}
+
+/* Change the size of the icon */
+.btn .material-icons {
+    font-size: 22px; /* Adjust the size of the icon */
+}
+
+/* Optional: Adjust button padding to change its overall size */
+.btn-success {
+    padding: 12px 25px; /* Adjust padding for a larger button */
+}
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+.modal-title {
+    color: #495057;
+    font-weight: bold;
+}
+.modal-body {
+    font-size: 1rem;
+    color: #495057;
+}
+.modal-footer {
+    border-top: 2px solid #dee2e6;
+}
+.btn-danger {
+    background-color: #e74c3c;
+    border-color: #e74c3c;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.btn-danger:hover {
+    background-color: #c0392b;
+    border-color: #c0392b;
+}
+.btn-secondary {
+    background-color: #f8f9fa;
+    border-color: #f8f9fa;
+    color: #495057;
+}
+.btn-secondary:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+/* Smaller Modal */
+.modal-dialog {
+    max-width: 400px;  /* Set a smaller width */
+}
