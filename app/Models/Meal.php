@@ -25,4 +25,10 @@ class Meal extends Model
     {
     return $this->belongsToMany(Restriction::class, 'meal_restrictions');
     } 
+    public function mealRestrictions()
+    {
+        return $this->hasMany(MealRestriction::class, 'meal_id');
+    }
+    
+    
 }
