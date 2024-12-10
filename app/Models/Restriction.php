@@ -15,4 +15,14 @@ class Restriction extends Model
 {
     return $this->belongsToMany(Restriction::class, 'meal_restrictions');
 }
+public function meal()
+{
+    return $this->belongsTo(Meal::class, 'meal_id');
+}
+
+public function restriction()
+{
+    return $this->belongsTo(Restriction::class, 'restriction_id');
+}
+
 }

@@ -24,7 +24,7 @@ class User extends Authenticatable
         'address',
         'phone',
         'goal_id',
-        'restriction_id',
+        'restriction_id', 'goal_id', 'restriction_id'
     ];
 
     /**
@@ -61,4 +61,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Restriction::class);
     }
+    
+    
 }
