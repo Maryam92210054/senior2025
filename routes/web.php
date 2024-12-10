@@ -19,7 +19,7 @@ Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
 
 Route::get('/meals', [MealController::class , 'index' ])->name('meals.index');
 Route::get('/meals/{meal}', [MealController::class , 'show' ])->name('meals.show');
-<<<<<<< HEAD
+
 Route::get('/build-plan', [BuildPlanController::class, 'index'])->middleware('auth')->name('build_plan');
 Route::get('/choose-days/{plan}', [BuildPlanController::class, 'chooseDays'])->name('chooseDays');
 Route::post('/process-plan-selection', [BuildPlanController::class, 'processPlanSelection'])->name('processPlanSelection');
@@ -33,13 +33,13 @@ Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMeal
 Route::post('/store-days', [BuildPlanController::class, 'storeDays'])->name('storeDays');
 Route::get('/choose-meals/{planId}', [BuildPlanController::class, 'chooseMeals'])->name('chooseMeals');
 Route::post('/submit-plan', [BuildPlanController::class, 'submitPlan'])->name('submitPlan');
-=======
+
 Route::get('/mealscreate', [MealController::class , 'create' ])->name('meals.create');
 Route::post('/meals',[MealController::class , 'store' ])->name('meals.store');
 Route::get('/meals/{meal}/edit', [MealController::class , 'edit' ])->name('meals.edit');
 Route::put('/meals/{meal}', [MealController::class , 'update' ])->name('meals.update');
 Route::delete('/meals/{meal}', [MealController::class , 'destroy' ])->name('meals.destroy');
->>>>>>> e50599e5593e9b7897eb206dad6bb0f370bb52bc
+
 
 
 
