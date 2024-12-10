@@ -52,31 +52,24 @@ body {
     border-radius: 10px;
 }
 
+
 .meal-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 30px;
+    margin-top: 20px; /* Adds space above the buttons */
+    margin-bottom: 20px; /* Adds space below the buttons */
+    display: flex; /* Use flexbox to arrange buttons side by side */
+    justify-content: center; /* Centers the buttons horizontally */
+    gap: 15px; /* Adds space between buttons */
 }
 
 .meal-actions .btn {
-    width: 120px;
+    padding: 10px 20px; /* Adjust padding to fit your design */
+    font-size: 16px; /* Adjust font size */
 }
 
-/* Button Styles */
-.btn-primary {
-    background-color: #007bff;
-    border: 1px solid #007bff;
+.meal-actions .btn-lg {
+    width: auto; /* Allows buttons to resize based on content */
 }
-.btn-primary:hover {
-    background-color: #0056b3;
-    border: 1px solid #0056b3;
-}
-.btn-danger {
-    background-color: #dc3545;
-    border: 1px solid #dc3545;
-}
-.btn-danger:hover {
-    background-color: #c82333;
-    border: 1px solid #c82333;
+
+.meal-actions .btn:hover {
+    opacity: 0.9; /* Adds hover effect for buttons */
 }
