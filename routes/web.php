@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\MealController;
-
+use App\Http\Controllers\PlanController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
@@ -24,5 +24,5 @@ Route::get('/meals/{meal}/edit', [MealController::class , 'edit' ])->name('meals
 Route::put('/meals/{meal}', [MealController::class , 'update' ])->name('meals.update');
 Route::delete('/meals/{meal}', [MealController::class , 'destroy' ])->name('meals.destroy');
 
-
+Route::get('/plans', [PlanController::class , 'index' ])->name('plans.index');
 
