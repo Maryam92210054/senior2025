@@ -21,7 +21,7 @@
   <img src="logo.jpeg" alt="Logo">
   <ul class="nav-links">
       <li><a href="{{ route('meals.index') }}">Manage meals</a></li>
-      <li><a href="">Manage plans</a></li>
+      <li><a href="{{ route('plans.index') }}">Manage plans</a></li>
       <li><a href="">Manage orders</a></li>
   </ul>
 </nav>

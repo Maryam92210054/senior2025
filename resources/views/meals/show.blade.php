@@ -31,8 +31,8 @@
                        {{ $meal->restrictions->pluck('name')->implode(', ') }}
                     @endif
                 </p>
-                <p><strong>Created At:</strong> {{ $meal->created_at->format('M d, Y H:i') }}</p>
-                <p><strong>Updated At:</strong> {{ $meal->updated_at->format('M d, Y H:i') }}</p>
+                <p><strong>Created At:</strong> {{ $meal->created_at->format('M d, Y H:i A') }}</p>
+                <p><strong>Updated At:</strong> {{ $meal->updated_at->format('M d, Y H:i A') }}</p>
             </div>
 
             <!-- Meal Image (Right) -->
