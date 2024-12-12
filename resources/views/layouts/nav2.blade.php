@@ -23,6 +23,15 @@
       <li><a href="{{ route('viewMeals') }}">Meals</a></li>
       <li><a href="{{ route('build_plan') }}">Build plan</a></li>
       <li><a href="">View plan</a></li>
+      @auth
+    <li>
+      <a href="{{ route('logout') }}" class="logout-btn" 
+         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+      </form>
+    </li>
+    @endauth
   </ul>
 </nav>
 @yield('content')

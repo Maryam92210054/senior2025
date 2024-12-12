@@ -1,65 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Navigation Bar</title>
-  <style>
-    body, ul {
-      margin: 0;
-      padding: 0;
-    }
+  <head>
 
-    .navbar {
-      display: flex;
-      justify-content: space-between;
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title','custom')</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="{{ asset('css/nav.css') }}" rel="stylesheet">
+
+  </head>
   
-      background-color: #90ee90;
-      padding: 0 40px;
-      height: 60px;
-    }
-
-    .navbar img {
-      height: 60px;
-    }
-
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
-      margin: 0;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: white;
-      font-size: 16px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      background-color: white;
-      color: #90ee90;
-      box-shadow: 0 0 0 2px white inset; /* Adds a border effect */
-    }
-  </style>
-</head>
-<body>
+  <body>
   <nav class="navbar">
-  <img src="/mealsImages/SENIOR-LOGO.png" alt="Logo">
-    <ul class="nav-links">
+  <img src="logo.jpeg" alt="Logo">
+  <ul class="nav-links">
       <li><a href="{{ route('home') }}">Home</a></li>
       <li><a href="">About Us</a></li>
       <li><a href="{{ route('login') }}">Login</a></li>
-    </ul>
-  </nav>
-  
-</body>
+  </ul>
+</nav>
+@yield('content')
+  </body>
 </html>
-
-
-

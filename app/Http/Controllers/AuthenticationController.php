@@ -86,4 +86,12 @@ class AuthenticationController extends Controller
             return back()->with('fail', 'Something went wrong. Please try again.');
         }
     }
+    public function destroy(Request $request)
+    {
+        auth()->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/'); 
+    }
 }

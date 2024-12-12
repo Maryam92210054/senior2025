@@ -1,41 +1,52 @@
- /* Reset Styles */
- body, ul {
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Navbar Styles */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #fff, #bddb8f,#809c56); 
-    padding: 10px 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .navbar img {
-    height: 50px;
-  }
-  
-  .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .nav-links a:hover {
-    background-color: white;
-    color: #bddb8f;
-  }
-  
-  
+/* Reset Styles */
+body, ul {
+  margin: 0;
+  padding: 0;
+}
+
+
+.navbar img {
+  height: 50px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #fff, #bddb8f, #809c56);
+  padding: 0 40px; /* Remove vertical padding to avoid height inconsistencies */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 60px; /* Set a fixed height for the navbar */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensures it spans the navbar's height */
+}
+
+.nav-links li {
+  margin: 0; /* No extra space */
+  height: 100%; /* Makes li span the navbar height */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 0 20px; /* Horizontal padding only */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Makes the a tag span the full navbar height */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: white;
+  color: #bddb8f;
+  font-size: 19px;
+}
+
