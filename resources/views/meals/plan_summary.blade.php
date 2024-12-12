@@ -12,16 +12,18 @@
             <thead class="thead-light" style="background-color: #bddb8f; color: white;">
                 <tr>
                     <th>Day</th>
+                    <th>Date</th>
                     <th>Meal Type</th>
                     <th>Meal Name</th>
                     <th>Description</th>
-                    <th>Meal Image</th> 
+                    <th>Meal Image</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($mealDetails as $detail)
                     <tr>
                         <td>Day {{ $detail['day'] }}</td>
+                        <td>{{ $detail['date'] }}</td>
                         <td>{{ $detail['meal_type'] }}</td>
                         <td>{{ $detail['meal']->name }}</td>
                         <td>{{ $detail['meal']->description }}</td>
@@ -33,16 +35,37 @@
             </tbody>
         </table>
 
-   
-       
+        <!-- Confirm Order Form -->
+        <form action="{{ route('confirmOrder') }}" method="POST" class="mt-4">
+            @csrf
+            <div class="form-group">
+                <label for="delivery_time" class="font-weight-bold">Choose Delivery Time:</label>
+                <input type="time" name="delivery_time" id="delivery_time" class="form-control" required>
+            </div>
+
+            <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> <!-- Auth user -->
+
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-success btn-lg">Confirm Order</button>
+            </div>
+        </form>
 
     </div>
-    <div class="text-center mt-4">
-    <a href="{{ route('chooseMeals', ['planId' => $plan->id]) }}" class="btn btn-success btn-lg">Go to Choose Meals</a>
-</div>
 </div>
 
 @endsection
+
+@section('styles')
+<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+<style>
+    .italiana-font { font-family: 'Italiana', serif; }
+    .custom-background { background-color: #bddb8f; min-height: 100vh; }
+    .white-container { background-color: white; padding: 30px; border-radius: 10px; }
+    .meal-table-image { height: 100px; width: 100px; object-fit: cover; border-radius: 5px; }
+</style>
+@endsection
+
 
 @section('styles')
 

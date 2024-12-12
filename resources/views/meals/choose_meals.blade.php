@@ -6,65 +6,72 @@
     <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
         <h1 class="text-center italiana-font font-weight-bold">Choose Meals for {{ $days }} Day{{ $days > 1 ? 's' : '' }}</h1>
 
-        <form action="{{ route('storeUserMealPlan') }}" method="POST">
-            @csrf
-            <input type="hidden" name="plan_id" value="{{ $plan->id }}">
+        @if (Auth::check())
+            <form action="{{ route('storeUserMealPlan') }}" method="POST">
+                @csrf
+                <input type="hidden" name="plan_id" value="{{ $plan->id }}">
 
-            @foreach ($mealsByType as $mealTypeId => $meals)
-                <h3 class="mt-4 text-center italiana-font font-weight-bold">{{ \App\Models\MealType::find($mealTypeId)->name }}</h3>
+                @foreach ($mealsByType as $mealTypeId => $meals)
+                    <h3 class="mt-4 text-center italiana-font font-weight-bold">{{ \App\Models\MealType::find($mealTypeId)->name }}</h3>
 
-                @for ($day = 1; $day <= $days; $day++)
-                    <div class="my-4">
-                        <h5 class="mb-3 text-center italiana-font font-weight-bold">Day {{ $day }}</h5>
+                    @for ($day = 1; $day <= $days; $day++)
+                        <div class="my-4">
+                            <h5 class="mb-3 text-center italiana-font font-weight-bold">Day {{ $day }}</h5>
 
-                        <div id="mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" class="carousel slide" data-ride="carousel">
-                            <div class="carousel-inner">
-                                @foreach ($meals->chunk(3) as $index => $mealChunk)
-                                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                        <div class="row">
-                                            @foreach ($mealChunk as $meal)
-                                                <div class="col-md-4 mb-3">
-                                                    <div class="card shadow-sm">
-                                                        <img src="{{ asset('mealsImages/' . $meal->meal_image) }}" class="card-img-top" alt="{{ $meal->name }}" style="height: 200px; object-fit: cover;">
-                                                        <div class="card-body">
-                                                            <h5 class="card-title">{{ $meal->name }}</h5>
-                                                            <p class="card-text">{{ $meal->description }}</p>
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="radio" name="meals[{{ $mealTypeId }}][{{ $day }}]" id="meal_{{ $meal->id }}_day_{{ $day }}" value="{{ $meal->id }}" required>
-                                                                <label class="form-check-label" for="meal_{{ $meal->id }}_day_{{ $day }}">Select this meal</label>
+                            @if ($loop->first)
+                                <div class="form-group text-center">
+                                    <label for="date-day-{{ $day }}" class="italiana-font font-weight-bold">Select Date for Day {{ $day }}</label>
+                                    <input type="date" id="date-day-{{ $day }}" name="dates[{{ $day }}]" class="form-control" required>
+                                </div>
+                            @endif
+
+                            <div id="mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach ($meals->chunk(3) as $index => $mealChunk)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <div class="row">
+                                                @foreach ($mealChunk as $meal)
+                                                    <div class="col-md-4 mb-3">
+                                                        <div class="card shadow-sm">
+                                                            <img src="{{ asset('mealsImages/' . $meal->meal_image) }}" class="card-img-top" alt="{{ $meal->name }}" style="height: 200px; object-fit: cover;">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">{{ $meal->name }}</h5>
+                                                                <p class="card-text">{{ $meal->description }}</p>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio" name="meals[{{ $mealTypeId }}][{{ $day }}]" id="meal_{{ $meal->id }}_day_{{ $day }}" value="{{ $meal->id }}" required>
+                                                                    <label class="form-check-label" for="meal_{{ $meal->id }}_day_{{ $day }}">Select this meal</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
+                                                @endforeach
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                                    @endforeach
+                                </div>
 
-                            <div class="d-flex justify-content-center mt-10">
-                                @foreach ($meals->chunk(3) as $index => $mealChunk)
-                                    <button type="button" data-target="#mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" data-slide-to="{{ $index }}" class="carousel-indicator {{ $index == 0 ? 'active' : '' }}">{{ $index + 1 }}</button>
-                                @endforeach
+                                <div class="d-flex justify-content-center mt-10">
+                                    @foreach ($meals->chunk(3) as $index => $mealChunk)
+                                        <button type="button" data-target="#mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" data-slide-to="{{ $index }}" class="carousel-indicator {{ $index == 0 ? 'active' : '' }}">{{ $index + 1 }}</button>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endfor
-            @endforeach
+                    @endfor
+                @endforeach
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-success mt-3">Submit Plan</button>
-            </div>
-        </form>
-
-      
-       
-
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success mt-3">Submit Plan</button>
+                </div>
+            </form>
+        @else
+            <p class="text-center">You need to be logged in to see your meal plan.</p>
+        @endif
     </div>
+
     <div class="text-center mt-4">
         <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}" class="btn btn-success btn-lg">Go to Choose Days</a>
-
-        </div>
+    </div>
 </div>
 
 @endsection

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\BuildPlanController;
+use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     return view('home');
@@ -39,6 +40,11 @@ Route::post('/meals',[MealController::class , 'store' ])->name('meals.store');
 Route::get('/meals/{meal}/edit', [MealController::class , 'edit' ])->name('meals.edit');
 Route::put('/meals/{meal}', [MealController::class , 'update' ])->name('meals.update');
 Route::delete('/meals/{meal}', [MealController::class , 'destroy' ])->name('meals.destroy');
+Route::post('/confirm-order', [OrderController::class, 'store'])->name('confirmOrder');
+Route::get('/order-confirmation/{id}', [OrderController::class, 'confirmation'])->name('orderConfirmation');
+
+
+
 
 
 
