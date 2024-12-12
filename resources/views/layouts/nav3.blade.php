@@ -23,6 +23,15 @@
       <li><a href="{{ route('meals.index') }}">Manage meals</a></li>
       <li><a href="{{ route('plans.index') }}">Manage plans</a></li>
       <li><a href="">Manage orders</a></li>
+      @auth
+        <li>
+        <a href="{{ route('logout') }}" class="logout-btn" 
+          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          @csrf
+        </form>
+      </li>
+      @endauth
   </ul>
 </nav>
 @yield('content')
