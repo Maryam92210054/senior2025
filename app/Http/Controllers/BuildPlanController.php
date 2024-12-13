@@ -88,8 +88,6 @@ class BuildPlanController extends Controller
         ]);
     }
     
-    
-    
     public function storeUserMealPlan(Request $request)
     {
         $request->validate([
