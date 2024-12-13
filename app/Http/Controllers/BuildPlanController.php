@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Plan;
 use App\Models\Order;
 use App\Models\Meal;
+use App\Models\MealType;
 use App\Models\UserMeal;
 use Illuminate\Support\Facades\DB;
 
@@ -59,79 +60,69 @@ class BuildPlanController extends Controller
         return redirect()->route('chooseMeals', ['planId' => $planId, 'days' => $days]);
     }
     
-        public function chooseMeals($planId, $days)
+    public function chooseMeals($planId, $days)
     {
-        // Find the plan and ensure it exists
         $plan = Plan::findOrFail($planId);
-
+    
         // Retrieve meal types associated with the plan's type
         $types = DB::table('plan_type_meals')
             ->where('plan_type_id', $plan->plan_type_id)
             ->pluck('meal_type_id');
+    
         // Filter meals by meal_type_id and the logged-in user's goal_id
         $mealsByType = Meal::whereIn('meal_type_id', $types)
             ->where('goal_id', Auth::user()->goal_id) // Ensure meals are filtered by the user's goal_id
             ->get()
             ->groupBy('meal_type_id');
-
-       $meals = Meal::where('goal_id', $plan->goal_id)->get();
-       return view('meals.choose_meals', compact('plan', 'mealsByType','days'));
+    
+        // Create an array for days (1, 2, 3, ...)
+        $daysArray = range(1, $days); 
+        
+    
+        // Pass the daysArray, plan, and user_id to the view
+        return view('meals.choose_meals', [
+            'plan' => $plan,
+            'mealsByType' => $mealsByType,
+            'daysArray' => $daysArray,
+           
+        ]);
     }
-
-
-
-
+    
+    
+    
     public function storeUserMealPlan(Request $request)
     {
-        $validated = $request->validate([
-            'plan_id' => 'required|exists:plans,id',
+        $request->validate([
+            'plan_id' => 'required|integer',
+            'dates' => 'required|array',
             'meals' => 'required|array',
-            'dates' => 'required|array', // Validate the dates array
+            'meals.*' => 'array',
+            'meals.*.*' => 'integer',
         ]);
-
-        $plan = Plan::findOrFail($validated['plan_id']);
-        $meals = $validated['meals'];
-        $dates = $validated['dates']; // Retrieve the dates
-
-        $mealDetails = [];
-        foreach ($meals as $mealTypeId => $days) {
-            foreach ($days as $day => $mealId) {
-                $mealDetails[] = [
-                    'meal_type' => \App\Models\MealType::find($mealTypeId)->name,
-                    'day' => $day,
-                    'date' => $dates[$day], // Include the selected date
-                    'meal' => Meal::find($mealId),
-                ];
-            }
-    }
-
-    return view('meals.plan_summary', compact('plan', 'mealDetails'));
-}
-
-
-
-public function processPlanSelection(Request $request)
-{
-    $planId = $request->input('plan_id');
-    $days = $request->input('days');
-    $selectedMeals = $request->input('meals');
-    $selectedDates = $request->input('dates'); 
-
-    $mealsSummary = [];
-    foreach ($selectedMeals as $mealTypeId => $mealIds) {
-        foreach ($mealIds as $day => $mealId) {
-            $meal = Meal::find($mealId);
-            $mealsSummary[] = [
-                'meal_type' => MealType::find($mealTypeId)->name,
-                'meal_name' => $meal->name,
-                'meal_description' => $meal->description,
+    
+        // Retrieve form data
+        $dates = $request->input('dates');
+        $meals = $request->input('meals');
+        $plan_id = $request->input('plan_id');  // Retrieve the plan_id from the request
+    
+        // Prepare an array to hold the plan data
+        $planData = [];
+    
+        // Loop over dates and associate meals with each day
+        foreach ($dates as $day => $date) {
+            $planData[] = [
                 'day' => $day,
-                'date' => $selectedDates[$day], // Store the selected date
+                'date' => $date,
+                'meals' => isset($meals[$day]) ? $meals[$day] : [],
             ];
         }
+    
+        // Pass the plan_id, planData, and user_id to the view
+        return view('meals.plan_summary', [
+            'planData' => $planData,
+            'user_id' => Auth::user()->id,
+            'plan_id' => $plan_id,  // Pass plan_id to the view
+        ]);
     }
-
-    return view('meals.plan_summary', compact('planId', 'days', 'mealsSummary'));
-}
-
+    
 }
