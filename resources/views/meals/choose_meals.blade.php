@@ -11,20 +11,20 @@
                 @csrf
                 <input type="hidden" name="plan_id" value="{{ $plan->id }}">
 
-                @foreach ($mealsByType as $mealTypeId => $meals)
-                    <h3 class="mt-4 text-center italiana-font font-weight-bold">{{ \App\Models\MealType::find($mealTypeId)->name }}</h3>
+                @for ($day = 1; $day <= $days; $day++)
+                    <div class="my-4">
+                        <h5 class="mb-3 text-center italiana-font font-weight-bold">Day {{ $day }}</h5>
 
-                    @for ($day = 1; $day <= $days; $day++)
-                        <div class="my-4">
-                            <h5 class="mb-3 text-center italiana-font font-weight-bold">Day {{ $day }}</h5>
+                        <!-- Date selector for each day -->
+                        <div class="form-group text-center">
+                            <label for="date-day-{{ $day }}" class="italiana-font font-weight-bold">Select Date for Day {{ $day }}</label>
+                            <input type="date" id="date-day-{{ $day }}" name="dates[{{ $day }}]" class="form-control" required>
+                        </div>
 
-                            @if ($loop->first)
-                                <div class="form-group text-center">
-                                    <label for="date-day-{{ $day }}" class="italiana-font font-weight-bold">Select Date for Day {{ $day }}</label>
-                                    <input type="date" id="date-day-{{ $day }}" name="dates[{{ $day }}]" class="form-control" required>
-                                </div>
-                            @endif
+                        @foreach ($mealsByType as $mealTypeId => $meals)
+                            <h3 class="mt-4 text-center italiana-font font-weight-bold">{{ \App\Models\MealType::find($mealTypeId)->name }}</h3>
 
+                            <!-- Meal carousel for each meal type -->
                             <div id="mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     @foreach ($meals->chunk(3) as $index => $mealChunk)
@@ -50,15 +50,16 @@
                                     @endforeach
                                 </div>
 
+                                <!-- Carousel indicators -->
                                 <div class="d-flex justify-content-center mt-10">
                                     @foreach ($meals->chunk(3) as $index => $mealChunk)
                                         <button type="button" data-target="#mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" data-slide-to="{{ $index }}" class="carousel-indicator {{ $index == 0 ? 'active' : '' }}">{{ $index + 1 }}</button>
                                     @endforeach
                                 </div>
                             </div>
-                        </div>
-                    @endfor
-                @endforeach
+                        @endforeach
+                    </div>
+                @endfor
 
                 <div class="text-center">
                     <button type="submit" class="btn btn-success mt-3">Submit Plan</button>

@@ -25,7 +25,7 @@
                                 <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}">{{ $plan->planType->description }}</a>
                             </h5>
                             <p class="card-text text-center">{{ $plan->description }}</p>
-                            <p class="card-text text-center">Price: ${{ $plan->price }}</p>
+                            <p class="card-text text-center">Price Per Day: ${{ $plan->price }}</p>
                         </div>
                     </div>
                 </div>

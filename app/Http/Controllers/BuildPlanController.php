@@ -48,87 +48,68 @@ class BuildPlanController extends Controller
 
         return view('meals.choose_days', compact('plan', 'mealsByType'));
     }
-
-    public function processPlanDays(Request $request)
+    public function storeDays(Request $request)
     {
-        $validated = $request->validate([
-            'plan_id' => 'required|exists:plans,id',
-            'days' => 'required|integer|min:1|max:7',
-        ]);
+        $planId = $request->input('plan_id'); 
+        $days = $request->input('days');
 
-        $plan = Plan::findOrFail($request->input('plan_id'));
-        $days = $validated['days'];
+        // Store the selected days in session 
+        session(['selected_days' => $days]);
 
-        // Filter meals by logged-in user's goal_id
-        $mealsByType = Meal::where('goal_id', Auth::user()->goal_id)
+        return redirect()->route('chooseMeals', ['planId' => $planId, 'days' => $days]);
+    }
+    
+        public function chooseMeals($planId, $days)
+    {
+        // Find the plan and ensure it exists
+        $plan = Plan::findOrFail($planId);
+
+        // Retrieve meal types associated with the plan's type
+        $types = DB::table('plan_type_meals')
+            ->where('plan_type_id', $plan->plan_type_id)
+            ->pluck('meal_type_id');
+        // Filter meals by meal_type_id and the logged-in user's goal_id
+        $mealsByType = Meal::whereIn('meal_type_id', $types)
+            ->where('goal_id', Auth::user()->goal_id) // Ensure meals are filtered by the user's goal_id
             ->get()
             ->groupBy('meal_type_id');
 
-        return view('meals.choose_meals', compact('plan', 'mealsByType', 'days'));
+       $meals = Meal::where('goal_id', $plan->goal_id)->get();
+       return view('meals.choose_meals', compact('plan', 'mealsByType','days'));
     }
 
+
+
+
     public function storeUserMealPlan(Request $request)
-{
-    $validated = $request->validate([
-        'plan_id' => 'required|exists:plans,id',
-        'meals' => 'required|array',
-        'dates' => 'required|array', // Validate the dates array
-    ]);
+    {
+        $validated = $request->validate([
+            'plan_id' => 'required|exists:plans,id',
+            'meals' => 'required|array',
+            'dates' => 'required|array', // Validate the dates array
+        ]);
 
-    $plan = Plan::findOrFail($validated['plan_id']);
-    $meals = $validated['meals'];
-    $dates = $validated['dates']; // Retrieve the dates
+        $plan = Plan::findOrFail($validated['plan_id']);
+        $meals = $validated['meals'];
+        $dates = $validated['dates']; // Retrieve the dates
 
-    $mealDetails = [];
-    foreach ($meals as $mealTypeId => $days) {
-        foreach ($days as $day => $mealId) {
-            $mealDetails[] = [
-                'meal_type' => \App\Models\MealType::find($mealTypeId)->name,
-                'day' => $day,
-                'date' => $dates[$day], // Include the selected date
-                'meal' => Meal::find($mealId),
-            ];
-        }
+        $mealDetails = [];
+        foreach ($meals as $mealTypeId => $days) {
+            foreach ($days as $day => $mealId) {
+                $mealDetails[] = [
+                    'meal_type' => \App\Models\MealType::find($mealTypeId)->name,
+                    'day' => $day,
+                    'date' => $dates[$day], // Include the selected date
+                    'meal' => Meal::find($mealId),
+                ];
+            }
     }
 
     return view('meals.plan_summary', compact('plan', 'mealDetails'));
 }
 
 
-    public function chooseMeals($planId)
-    {
-        $days = session('selected_days', 0);
-        $plan = Plan::findOrFail($planId);
 
-        // Retrieve meal types linked to the plan
-        $mealTypeIds = DB::table('plan_type_meals')
-            ->where('plan_type_id', $plan->plan_type_id)
-            ->pluck('meal_type_id');
-
-        // Filter meals by meal_type_id and the logged-in user's goal_id
-        $mealsByType = Meal::whereIn('meal_type_id', $mealTypeIds)
-            ->where('goal_id', Auth::user()->goal_id) // Ensure meals are filtered by the user's goal_id
-            ->get()
-            ->groupBy('meal_type_id');
-
-        return view('meals.choose_meals', compact('plan', 'mealsByType', 'days'));
-    }
-    public function storeDays(Request $request)
-{
-    $validated = $request->validate([
-        'plan_id' => 'required|exists:plans,id',
-        'days' => 'required|integer|min:1|max:7', 
-    ]);
-
-  
-    session([
-        'selected_plan_id' => $validated['plan_id'],
-        'selected_days' => $validated['days'],
-    ]);
-
-   
-    return redirect()->route('chooseMeals', ['planId' => $validated['plan_id']]);
-}
 public function processPlanSelection(Request $request)
 {
     $planId = $request->input('plan_id');
