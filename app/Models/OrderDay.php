@@ -15,4 +15,14 @@ class OrderDay extends Model
         'day_number',
         'date',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
+    }
+
+    public function meals()
+    {
+        return $this->belongsToMany(Meal::class, 'order_day_meals', 'order_day_id', 'meal_id');
+    }
 }

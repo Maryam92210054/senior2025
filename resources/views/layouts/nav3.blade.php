@@ -22,7 +22,7 @@
   <ul class="nav-links">
       <li><a href="{{ route('meals.index') }}">Manage meals</a></li>
       <li><a href="{{ route('plans.index') }}">Manage plans</a></li>
-      <li><a href="">Manage orders</a></li>
+      <li><a href="{{ route('orders.index') }}">Manage orders</a></li>
       @auth
           <li>
         <a href="{{ route('logout') }}" class="logout-btn" 

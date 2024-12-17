@@ -10,5 +10,20 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders'; // This ensures it maps to the correct 'orders' table in the DB
-    protected $fillable = ['delivery_time', 'plan_id', 'user_id','status']; // Only allow these fields to be mass assigned
+    protected $fillable = ['delivery_time', 'plan_id', 'user_id','status']; 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class, 'plan_id');
+    }
+    public function orderDays()
+    {
+        return $this->hasMany(OrderDay::class, 'order_id');
+    }
+
+        
 }

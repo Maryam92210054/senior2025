@@ -16,3 +16,5 @@ class PlanType extends Model
 }
 
 }
+
+
