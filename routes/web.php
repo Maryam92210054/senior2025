@@ -24,7 +24,7 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/payment/success', function () {
         return view('meals.success');
     })->name('meals.success');
-   
+    Route::get('/view-plan/{planId}', [BuildPlanController::class, 'viewPlan'])->name('viewPlan');
     Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
     Route::post('/payment/{order_id}', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('/payment', [PaymentController::class, 'create'])->name('payment.create');

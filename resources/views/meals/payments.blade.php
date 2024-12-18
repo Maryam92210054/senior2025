@@ -4,20 +4,32 @@
 
 <div class="custom-background py-5" style="background-color: #bddb8f; min-height: 100vh;">
     <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
-        <h1 class="text-center italiana-font font-weight-bold">Payment</h1>
+      
+        <!-- Payment Method Sections (Half-half navbar) -->
+        <div class="d-flex mb-4">
+            <div id="omt-section" class="flex-fill p-3 text-center" style="background-color: #ffc107; color: black; cursor: pointer;">
+                OMT
+            </div>
+            <div id="whish-section" class="flex-fill p-3 text-center" style="background-color: #dc3545; color: white; cursor: pointer;">
+                Whish
+            </div>
+        </div>
 
-        <!-- Payment Method Options -->
-        <div class="d-flex justify-content-center mb-4">
-            <button type="button" id="omt-btn" class="btn btn-warning mx-2">OMT</button>
-            <button type="button" id="whish-btn" class="btn btn-danger mx-2">Whish</button>
+        <!-- Payment Method Dropdown -->
+        <div class="form-group">
+            <label for="payment_method">Select Payment Method</label>
+            <select id="payment_method" name="payment_method" class="form-control" required>
+                <option value="omt">OMT</option>
+                <option value="whish">Whish</option>
+            </select>
         </div>
 
         <form method="POST" action="{{ route('payment.store', ['order_id' => $orderId]) }}">
             @csrf
-            <!-- Payment Amount (Display the calculated amount) -->
+            <!-- Payment Amount (Display the calculated amount with $) -->
             <div class="form-group">
                 <label for="amount">Payment Amount</label>
-                <input type="text" name="amount" id="amount" class="form-control" value="{{ $calculatedAmount }}" readonly>
+                <input type="text" name="amount" id="amount" class="form-control" value="${{ $calculatedAmount }}" readonly>
             </div>
 
             <!-- Account Code Input (Static, not stored) -->
@@ -30,6 +42,11 @@
             <div class="form-group">
                 <label for="payment_date">Payment Date</label>
                 <input type="date" name="payment_date" id="payment_date" class="form-control" required>
+            </div>
+
+            <!-- Display selected payment method -->
+            <div id="selected-method" class="text-center mt-3">
+                <!-- Selected payment method will appear here -->
             </div>
 
             <!-- Submit Button -->
@@ -48,21 +65,41 @@
     .custom-background { background-color: #bddb8f; min-height: 100vh; }
     .white-container { background-color: white; padding: 30px; border-radius: 10px; }
 
-    /* Button styles for payment methods */
-    #omt-btn { background-color: #ffc107; color: black; }
-    #whish-btn { background-color: #dc3545; color: white; }
+    /* Navbar-like style for OMT and Whish */
+    #omt-section { background-color: #ffc107; color: black; cursor: pointer; }
+    #whish-section { background-color: #dc3545; color: white; cursor: pointer; }
+
+    /* Make the sections span half width each */
+    .d-flex > div {
+        flex: 1;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .d-flex .text-center {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
 </style>
 @endsection
 
 @section('scripts')
 <script>
-    // Change form background color to red for both OMT and Whish button clicks
-    document.getElementById('omt-btn').addEventListener('click', function() {
-        document.querySelector('.white-container').style.backgroundColor = '#f5c6cb'; // Red for OMT
+    // Track selected payment method from the dropdown
+    document.getElementById('payment_method').addEventListener('change', function() {
+        let selectedPaymentMethod = this.value;
+        document.getElementById('selected-method').innerText = "You have selected: " + selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1);
     });
 
-    document.getElementById('whish-btn').addEventListener('click', function() {
-        document.querySelector('.white-container').style.backgroundColor = '#f5c6cb'; // Red for Whish
+    // Event listener for OMT section click
+    document.getElementById('omt-section').addEventListener('click', function() {
+        document.getElementById('selected-method').innerText = "You have selected: OMT";
+    });
+
+    // Event listener for Whish section click
+    document.getElementById('whish-section').addEventListener('click', function() {
+        document.getElementById('selected-method').innerText = "You have selected: Whish";
     });
 </script>
 @endsection
