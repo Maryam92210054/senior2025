@@ -8,6 +8,13 @@
         <p class="text-center">Your order has been placed successfully!</p>
         <p><strong>Order ID:</strong> {{ $order->id }}</p>
         <p><strong>Delivery Time:</strong> {{ $order->delivery_time }}</p>
+        
+        <!-- Button to Proceed to Payment -->
+        <div class="text-center mt-4">
+            <a href="{{ route('payment.create', ['order_id' => $order->id]) }}" class="btn btn-success">
+                Proceed with Payment
+            </a>
+        </div>
     </div>
 </div>
 

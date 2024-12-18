@@ -14,22 +14,21 @@ class OrderController extends Controller
             'delivery_time' => 'required',
         ]);
     
-        // Step 1: Create the order
+        
         $order = new Order();
         $order->delivery_time = $request->delivery_time;
         $order->plan_id = $request->plan_id;
         $order->user_id = $request->user_id;
         $order->save();
     
-        // Step 2: Insert data into order_days
         foreach ($request->input('planData') as $plan) {
             $orderDay = new \App\Models\OrderDay();
             $orderDay->order_id = $order->id;
-            $orderDay->day_number = $plan['day']; // Assuming 'day' is the day number
+            $orderDay->day_number = $plan['day']; 
             $orderDay->date = $plan['date'];
             $orderDay->save();
     
-            // Step 3: Insert data into order_day_meals
+           
             foreach ($plan['meals'] as $mealId) {
                 $orderDayMeal = new \App\Models\OrderDayMeal();
                 $orderDayMeal->order_day_id = $orderDay->id;
@@ -38,7 +37,7 @@ class OrderController extends Controller
             }
         }
     
-        // Redirect to confirmation
+
         return redirect()->route('orderConfirmation', ['id' => $order->id]);
     }
 

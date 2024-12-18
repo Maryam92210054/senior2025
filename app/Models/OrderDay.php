@@ -15,4 +15,14 @@ class OrderDay extends Model
         'day_number',
         'date',
     ];
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
 }
+

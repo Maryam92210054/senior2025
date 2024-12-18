@@ -29,6 +29,11 @@ class Meal extends Model
     {
         return $this->hasMany(MealRestriction::class, 'meal_id');
     }
-    
+
+    public function mealTypes()
+    {
+    return $this->belongsTo(MealType::class, 'meal_type_id');
+    }
+
     
 }

@@ -11,7 +11,7 @@
                 <tr>
                     <th>Day</th>
                     <th>Date</th>
-                    <!-- Dynamically create columns based on unique meal types -->
+               
                     @php
                         // Get unique meal types for the first plan
                         $mealTypes = [];
@@ -25,7 +25,7 @@
                         }
                     @endphp
 
-                    <!-- Create headers for each unique meal type -->
+                  
                     @foreach ($mealTypes as $mealTypeId)
                         @php
                             $mealType = \App\Models\MealType::find($mealTypeId); // Fetch the meal type by ID
@@ -40,7 +40,6 @@
                         <td>{{ $plan['day'] }}</td>
                         <td>{{ $plan['date'] }}</td>
 
-                        <!-- Display corresponding meals under each meal type column -->
                         @foreach ($mealTypes as $mealTypeId)
                             <td>
                                 @foreach ($plan['meals'] as $mealId)
@@ -59,16 +58,16 @@
             </tbody>
         </table>
 
-        <!-- Confirm Order Form -->
+       
         <form action="{{ route('confirmOrder') }}" method="POST" class="mt-4">
             @csrf
-            <!-- Delivery Time Input -->
+    
             <div class="form-group">
                 <label for="delivery_time" class="font-weight-bold">Choose Delivery Time:</label>
                 <input type="time" name="delivery_time" id="delivery_time" class="form-control" required>
             </div>
 
-            <!-- Hidden Fields for Plan and User ID -->
+       
             <input type="hidden" name="plan_id" value="{{ $plan_id }}">
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> 
             
@@ -80,7 +79,7 @@
                 @endforeach
             @endforeach
 
-            <!-- Confirm Order Button -->
+        
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-success btn-lg">Confirm Order</button>
             </div>

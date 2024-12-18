@@ -6,6 +6,7 @@ use App\Http\Controllers\MealController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\BuildPlanController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentController;
 
 
 Route::get('/', function () {
@@ -19,13 +20,23 @@ Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
     Route::post('/registration', [AuthenticationController::class, 'registrationPost'])->name('registration.post');
 
 Route::middleware(['auth', 'role:1'])->group(function () {
+    Route::get('/payment/success', function () {
+        return view('meals.success');
+    })->name('meals.success');
+   
+    Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment/{order_id}', [PaymentController::class, 'store'])->name('payment.store');
+    Route::get('/payment', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
+    Route::post('/payments/store', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
     Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
     Route::get('/build-plan', [BuildPlanController::class, 'index'])->middleware('auth')->name('build_plan');
     Route::get('/choose-days/{plan}', [BuildPlanController::class, 'chooseDays'])->name('chooseDays');
     Route::post('/store-days', [BuildPlanController::class, 'storeDays'])->name('storeDays');
     Route::get('/choose-meals/{planId}/{days}', [BuildPlanController::class, 'chooseMeals'])->name('chooseMeals');
-    
-    Route::post('/submit-plan', [BuildPlanController::class, 'submitPlan'])->name('submitPlan');
+        Route::post('/submit-plan', [BuildPlanController::class, 'submitPlan'])->name('submitPlan');
     Route::get('/order-confirmation/{id}', [OrderController::class, 'show'])->name('orderConfirmation');
     Route::post('/confirm-order', [OrderController::class, 'store'])->name('confirmOrder');
     Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMealPlan'])->name('storeUserMealPlan');

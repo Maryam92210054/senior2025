@@ -21,7 +21,7 @@ class BuildPlanController extends Controller
 
             \Log::info('Logged-in user: ', ['name' => $userName, 'goal_id' => $goal_id]);
 
-            // Fetch plans based on user's goal_id
+          
             $plans = Plan::where('goal_id', $goal_id)
                          ->with('planType')
                          ->get();
@@ -38,7 +38,7 @@ class BuildPlanController extends Controller
         $plan = Plan::with('planType')->findOrFail($planId);
         $user = Auth::user();
 
-        // Ensure meals are filtered by the logged-in user's goal_id
+      
         $mealTypes = $plan->planType->mealTypes;
         $mealsByType = [];
         foreach ($mealTypes as $mealType) {
@@ -54,7 +54,7 @@ class BuildPlanController extends Controller
         $planId = $request->input('plan_id'); 
         $days = $request->input('days');
 
-        // Store the selected days in session 
+       
         session(['selected_days' => $days]);
 
         return redirect()->route('chooseMeals', ['planId' => $planId, 'days' => $days]);
@@ -64,22 +64,22 @@ class BuildPlanController extends Controller
     {
         $plan = Plan::findOrFail($planId);
     
-        // Retrieve meal types associated with the plan's type
+      
         $types = DB::table('plan_type_meals')
             ->where('plan_type_id', $plan->plan_type_id)
             ->pluck('meal_type_id');
     
-        // Filter meals by meal_type_id and the logged-in user's goal_id
+        
         $mealsByType = Meal::whereIn('meal_type_id', $types)
-            ->where('goal_id', Auth::user()->goal_id) // Ensure meals are filtered by the user's goal_id
+            ->where('goal_id', Auth::user()->goal_id)
             ->get()
             ->groupBy('meal_type_id');
     
-        // Create an array for days (1, 2, 3, ...)
+       
         $daysArray = range(1, $days); 
         
     
-        // Pass the daysArray, plan, and user_id to the view
+       
         return view('meals.choose_meals', [
             'plan' => $plan,
             'mealsByType' => $mealsByType,
@@ -98,15 +98,15 @@ class BuildPlanController extends Controller
             'meals.*.*' => 'integer',
         ]);
     
-        // Retrieve form data
+      
         $dates = $request->input('dates');
         $meals = $request->input('meals');
-        $plan_id = $request->input('plan_id');  // Retrieve the plan_id from the request
+        $plan_id = $request->input('plan_id'); 
     
-        // Prepare an array to hold the plan data
+     
         $planData = [];
     
-        // Loop over dates and associate meals with each day
+        
         foreach ($dates as $day => $date) {
             $planData[] = [
                 'day' => $day,
@@ -115,12 +115,18 @@ class BuildPlanController extends Controller
             ];
         }
     
-        // Pass the plan_id, planData, and user_id to the view
+       
         return view('meals.plan_summary', [
             'planData' => $planData,
             'user_id' => Auth::user()->id,
-            'plan_id' => $plan_id,  // Pass plan_id to the view
+            'plan_id' => $plan_id, 
         ]);
     }
-    
+    // BuildPlanController.php
+
+
+
+
+
+
 }

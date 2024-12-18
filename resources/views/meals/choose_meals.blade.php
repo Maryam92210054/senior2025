@@ -51,7 +51,7 @@
                         @endforeach
                     </div>
 
-                    <!-- Carousel indicators -->
+               
                     <div class="d-flex justify-content-center mt-10">
                         @foreach ($meals->chunk(3) as $index => $mealChunk)
                             <button type="button" data-target="#mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" data-slide-to="{{ $index }}" class="carousel-indicator {{ $index == 0 ? 'active' : '' }}">{{ $index + 1 }}</button>

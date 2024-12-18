@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 class Plan extends Model
 {
-    protected $fillable = ['description', 'price','goal_id','plan_type_id'];
+    protected $fillable = ['description', 'price','goal_id','plan_type_id','name',
+    'price',];
     
     public function planType()
     {
@@ -17,5 +18,11 @@ class Plan extends Model
         return $this->belongsTo(Goal::class, 'goal_id');
     }
     
+    
+
+public function meals()
+{
+    return $this->belongsToMany(Meal::class, 'meal_plan', 'plan_id', 'meal_id');
+}
 
 }
