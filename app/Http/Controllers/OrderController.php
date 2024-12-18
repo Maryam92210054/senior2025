@@ -5,9 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order; // Assuming you have an Order model
 use Illuminate\Support\Facades\Auth;
+use App\Models\MealType;
+
 
 class OrderController extends Controller
-{
+{   
+    public function index()
+    {
+        $orders = Order::with('user')->get(); 
+        return view('orders.index', ['orders' => $orders]);
+    }
+
+    public function display($orderId)
+    {
+        $order = Order::find($orderId);
+
+        // Get meal types through the order's plan
+        $mealTypes = $order->plan->planType->mealTypes;
+
+        return view('orders.display', [
+            'order' => $order,
+            'mealTypes' => $mealTypes
+        ]);
+
+    }
+    
     public function store(Request $request)
     {
         $request->validate([

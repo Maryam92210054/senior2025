@@ -7,6 +7,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\BuildPlanController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
@@ -40,6 +41,10 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/order-confirmation/{id}', [OrderController::class, 'show'])->name('orderConfirmation');
     Route::post('/confirm-order', [OrderController::class, 'store'])->name('confirmOrder');
     Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMealPlan'])->name('storeUserMealPlan');
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
+
 });
 
 Route::middleware(['auth', 'role:2'])->group(function () {
@@ -57,6 +62,8 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::get('/plans/{plan}/edit', [PlanController::class , 'edit' ])->name('plans.edit');
     Route::put('/plans/{plan}', [PlanController::class , 'update' ])->name('plans.update');
     Route::delete('/plans/{plan}', [PlanController::class , 'destroy' ])->name('plans.destroy');
+    Route::get('/orders', [OrderController::class , 'index' ])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class , 'display' ])->name('orders.display');
 });
 
 Route::middleware(['auth'])->group(function () {

@@ -30,10 +30,19 @@ class Meal extends Model
         return $this->hasMany(MealRestriction::class, 'meal_id');
     }
 
+
     public function mealTypes()
     {
     return $this->belongsTo(MealType::class, 'meal_type_id');
     }
+
+
+    public function orderDays()
+    {
+        return $this->belongsToMany(OrderDay::class, 'order_day_meals', 'meal_id', 'order_day_id');
+    }
+
+        
 
     
 }

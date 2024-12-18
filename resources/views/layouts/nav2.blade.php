@@ -23,6 +23,7 @@
       <li><a href="{{ route('viewMeals') }}">Meals</a></li>
       <li><a href="{{ route('build_plan') }}">Build plan</a></li>
       <li><a href="">View plan</a></li>
+      <li><a href="{{ route('profile.show') }}">Profile</a></li>
       @auth
     <li>
       <a href="{{ route('logout') }}" class="logout-btn" 

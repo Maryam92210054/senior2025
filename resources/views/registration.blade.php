@@ -61,11 +61,15 @@
         </div>
         <div class="input-box">
              <span>Select your Diet Goal</span>
-            <select name="goal_id">
-             @foreach ($goals as $goal)
-                <option value="{{ $goal->id }}">{{ $goal->name }}</option>
-             @endforeach
-            </select>
+             <select name="goal_id">
+    @foreach ($goals as $goal)
+        <option value="{{ $goal->id }}" 
+            {{ old('goal_id', isset($selectedGoalId) ? $selectedGoalId : null) == $goal->id ? 'selected' : '' }}>
+            {{ $goal->name }}
+        </option>
+    @endforeach
+</select>
+
     <span class="text-danger">@error('goal_id'){{ $message }} @enderror </span>
          
         </div>
@@ -75,7 +79,7 @@
       <div class="input-box">
         <span>Select if you have any food restrictions</span>
         <select name="restriction_id" >
-        <option value="" disabled selected>None</option>
+        <option value=""  selected>None</option>
         @foreach ($restrictions as $restriction)
             <option value="{{ $restriction->id }}">{{ $restriction->name }}</option>
         @endforeach

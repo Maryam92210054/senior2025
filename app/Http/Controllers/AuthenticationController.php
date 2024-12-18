@@ -57,16 +57,22 @@ class AuthenticationController extends Controller
     public function registrationPost(Request $request) {
       
         $request->validate([
-            'name' => 'required',
+            'name' => ['required', 'regex:/^[A-Za-z]+(?:\s[A-Za-z]+)+$/'],
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:12',
             'address' => 'required',
             'phone' => ['required', 'regex:/^\d{2}\/\d{6}$/'],
             'goal_id' => 'required|exists:goals,id',
-            'restriction_id' => 'exists:restrictions,id',
+            
+        ], [
+            'name.regex' => 'Please provide your full name',  // Custom error message for the "name" field
         ]);
 
+
         
+
+       
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

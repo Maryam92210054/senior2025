@@ -9,6 +9,6 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $table = 'orders';
-    protected $fillable = ['delivery_time', 'plan_id', 'user_id','status']; 
+    protected $table = 'orders'; // This ensures it maps to the correct 'orders' table in the DB
+    protected $fillable = ['delivery_time', 'plan_id', 'user_id','status']; // Only allow these fields to be mass assigned
 }
