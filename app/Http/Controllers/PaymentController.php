@@ -28,10 +28,11 @@ class PaymentController extends Controller
     {
       
         $request->validate([
-            'amount' => 'required|numeric|min:1',
+           
             'payment_date' => 'required|date',
         ]);
     
+   
 
         $payment = Payment::create([
             'amount' => $request->amount,

@@ -21,17 +21,11 @@ Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
     Route::post('/registration', [AuthenticationController::class, 'registrationPost'])->name('registration.post');
 
 Route::middleware(['auth', 'role:1'])->group(function () {
-    Route::get('/payment/success', function () {
-        return view('meals.success');
-    })->name('meals.success');
+    Route::get('/payment/success', function () {return view('meals.success');})->name('meals.success');
     Route::get('/view-plan/{planId}', [BuildPlanController::class, 'viewPlan'])->name('viewPlan');
     Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
     Route::post('/payment/{order_id}', [PaymentController::class, 'store'])->name('payment.store');
-    Route::get('/payment', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('/payment', [PaymentController::class, 'store'])->name('payment.store');
-    Route::post('/payments/store', [PaymentController::class, 'store'])->name('payments.store');
-    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('/payment/store', [PaymentController::class, 'store'])->name('payment.store');
+    
     Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
     Route::get('/build-plan', [BuildPlanController::class, 'index'])->middleware('auth')->name('build_plan');
     Route::get('/choose-days/{plan}', [BuildPlanController::class, 'chooseDays'])->name('chooseDays');

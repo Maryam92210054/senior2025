@@ -29,7 +29,7 @@
             <!-- Payment Amount (Display the calculated amount with $) -->
             <div class="form-group">
                 <label for="amount">Payment Amount</label>
-                <input type="text" name="amount" id="amount" class="form-control" value="${{ $calculatedAmount }}" readonly>
+                <input type="text" name="amount" id="amount" class="form-control" value="{{ $calculatedAmount }}" readonly>
             </div>
 
             <!-- Account Code Input (Static, not stored) -->
