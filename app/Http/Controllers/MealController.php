@@ -15,10 +15,14 @@ class MealController extends Controller
         
         return view('viewMeals', compact('goals'));
     }
-    public function index() {
-        $meals=Meal:: paginate(10);
+    public function index(Request $request) {
+        $search = $request->input('search');
 
-        return view('meals.index',['meals'=>$meals]); 
+        $meals = Meal::when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        })->paginate(10); 
+
+        return view('meals.index', compact('meals', 'search'));
     }
     public function show($mealId) {
        

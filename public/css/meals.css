@@ -76,21 +76,22 @@ table.table td i {
     padding: 8px 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    color: #a0a5b1; /* Default link color */
+    color: #809c56; /* Default link color */
     font-weight: bold;
     text-decoration: none;
 }
 
 /* Change link color on hover */
 .pagination .page-link:hover {
-    background-color: #bddb8f;
+    background-color: #809c56;
+    color:#fff;
 
 }
 
 /* Highlight the active page */
 .pagination .active .page-link {
-    background-color: #bddb8f;
-    color: #a0a5b1;
+    background-color: #809c56;
+    color: #fff;
     border-color: #bddb8f;
 }
 
@@ -187,4 +188,29 @@ table.table td i {
 /* Smaller Modal */
 .modal-dialog {
     max-width: 400px;  /* Set a smaller width */
+}
+.search-box {
+    position: relative;        
+    float: right;
+}
+.search-box input {
+    height: 34px;
+    border-radius: 20px;
+    padding-left: 35px;
+    border-color: #ddd;
+    box-shadow: none;
+}
+.search-box input:focus {
+    border-color: #3FBAE4;
+}
+.search-box i {
+    color: #a0a5b1;
+    position: absolute;
+    font-size: 19px;
+    top: 8px;
+    left: 10px;
+}
+.button-div{
+    margin-top: 20px;
+    
 }

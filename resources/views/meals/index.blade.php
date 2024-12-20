@@ -21,12 +21,30 @@
                         <div class="col-sm-8">
                             <h2>Meal <b>Details</b></h2>
                         </div>
+
+                        
+                        
                         <div class="col-sm-4 text-right">
+                        <form method="GET" action="{{ route('meals.index') }}">
+                            <div class="search-box">
+                                <i class="material-icons">&#xE8B6;</i>
+                                <input
+                                    type="text"
+                                    name="search"
+                                    class="form-control"
+                                    placeholder="Search&hellip;"
+                                    value="{{ request('search') }}"
+                                />
+                            </div>
+                        </form>
+                        </div>
+                        <div class='button-div'>
                             <!-- Create Meal Button -->
                             <a href="{{ route('meals.create') }}" class="btn btn-success d-flex align-items-center justify-content-center" title="Create Meal">
                                 <i class="material-icons mr-2">&#xE145;</i> <span>Create New Meal</span>
                             </a>
                         </div>
+                    
                     </div>
                 </div>
                 <table class="table table-striped table-hover table-bordered">
@@ -42,8 +60,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($meals as $meal)
-                            <tr>
+                            @forelse ($meals as $meal)                            <tr>
                                 <td>{{ $meal->id }}</td>
                                 <td>{{ $meal->name }} </td>
                                 <td>{{ Str::limit($meal->description, 50, '...') }}</td>
@@ -97,12 +114,18 @@
                                     <!-- End Modal -->
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+            <tr>
+                <td colspan="3">No meals found</td>
+            </tr>
+        @endforelse
                     </tbody>
                 </table>
+                
                 <div class="pagination">
                     {{ $meals->links() }}
                 </div>
+               
             </div>
         </div>
     </div>
