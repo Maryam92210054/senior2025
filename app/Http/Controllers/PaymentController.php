@@ -9,9 +9,9 @@ use App\Models\Order;
 
 class PaymentController extends Controller
 {
-    public function create(Request $request)
+    public function create($orderId)
     {
-        $orderId = $request->query('order_id');
+        
         
         // Fetch the plan price and day number based on the order
         $order = Order::findOrFail($orderId);  // Assume there's an order model to get order details
