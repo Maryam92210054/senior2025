@@ -72,6 +72,7 @@ class BuildPlanController extends Controller
         
         $mealsByType = Meal::whereIn('meal_type_id', $types)
             ->where('goal_id', Auth::user()->goal_id)
+            ->where('availability', 1)
             ->get()
             ->groupBy('meal_type_id');
     

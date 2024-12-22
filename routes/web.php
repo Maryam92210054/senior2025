@@ -48,8 +48,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::post('/meals',[MealController::class , 'store' ])->name('meals.store');
     Route::get('/meals/{meal}/edit', [MealController::class , 'edit' ])->name('meals.edit');
     Route::put('/meals/{meal}', [MealController::class , 'update' ])->name('meals.update');
-    Route::delete('/meals/{meal}', [MealController::class , 'destroy' ])->name('meals.destroy');
-    Route::get('/plans', [PlanController::class , 'index' ])->name('plans.index');
+    Route::post('/meals/{id}/toggle-availability', [MealController::class, 'toggleAvailability']);    Route::get('/plans', [PlanController::class , 'index' ])->name('plans.index');
     Route::get('/plans/{plan}', [PlanController::class , 'show' ])->name('plans.show');
     Route::get('/planscreate', [PlanController::class , 'create' ])->name('plans.create');
     Route::post('/plans',[PlanController::class , 'store' ])->name('plans.store');

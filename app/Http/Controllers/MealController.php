@@ -11,7 +11,9 @@ class MealController extends Controller
 {
     public function meals()
     {
-        $goals = Goal::with('meals')->get();
+        $goals = Goal::with(['meals' => function ($query) {
+            $query->where('availability', 1); 
+        }])->get(); 
         
         return view('viewMeals', compact('goals'));
     }
@@ -154,10 +156,18 @@ class MealController extends Controller
         return redirect()->route('meals.show', $mealId)->with('success', 'Meal updated successfully!');
     }
 
-    public function destroy($mealId) {
-        $meal = Meal::findOrFail($mealId);  
-        $meal->delete();
-        return redirect()->route('meals.index');
 
+    public function toggleAvailability( $id)
+    {
+        $meal = Meal::findOrFail($id);
+
+        $meal->availability = !$meal->availability;
+        $meal->save();
+
+        return response()->json([
+            'availability' => $meal->availability
+        ]);
     }
+
+
 }

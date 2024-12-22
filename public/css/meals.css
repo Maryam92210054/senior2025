@@ -214,3 +214,9 @@ table.table td i {
     margin-top: 20px;
     
 }
+
+.toggle-availability {
+    cursor: pointer;
+    pointer-events: auto; /* Ensure pointer events are enabled */
+}
+

@@ -11,8 +11,7 @@ class PaymentController extends Controller
 {
     public function create($orderId)
     {
-        
-        
+         
         // Fetch the plan price and day number based on the order
         $order = Order::findOrFail($orderId);  // Assume there's an order model to get order details
         $plan = Plan::findOrFail($order->plan_id);

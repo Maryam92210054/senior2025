@@ -507,6 +507,7 @@ class MealSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            //overall health brakfast
             [
                 'name' => 'Avocado Toast With Egg',
                 'description' => 'Whole-grain toast topped with creamy avocado slices and a soft-boiled egg.',
@@ -591,12 +592,210 @@ class MealSeeder extends Seeder
                 'name' => 'Cheese, Ham, and Veggies Baguette',
                 'description' => 'A delicious baguette filled with creamy cheese, savory ham, fresh veggies like lettuce, tomatoes, and cucumbers, all drizzled with a bit of olive oil.',
                 'health_info' => 'Calories: 400, Protein: 20g, Fat: 18g, Carbs: 45g',
-                'goal_id' => 1, // Replace with the appropriate goal ID (e.g., "General Health")
-                'meal_type_id' => 1, // Breakfast meal type (adjust as needed)
-                'meal_image' => 'Cheese, Ham, and Veggies Baguette.jpg', // Add the image of the sandwich in the mealsImages folder
+                'goal_id' => 1, 
+                'meal_type_id' => 1, 
+                'meal_image' => 'Cheese, Ham, and Veggies Baguette.jpg', 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ]
+            ],
+            //overall lunch
+            [
+                'name' => 'Grilled Chicken Shawarma Bowl',
+                'description' => 'Tender grilled chicken marinated in shawarma spices, served with a side of quinoa, hummus, and mixed greens.',
+                'health_info' => 'Calories: 400, Protein: 35g, Fat: 18g, Carbs: 25g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Grilled Chicken Shawarma Bowl.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                //  Lactose-Free
+        
+            ],
+            [
+                'name' => 'Quinoa and Roasted Vegetable Bowl',
+                'description' => 'A filling quinoa bowl with roasted vegetables like zucchini, bell peppers, and sweet potatoes, drizzled with a lemon-tahini dressing.',
+                'health_info' => 'Calories: 450, Protein: 12g, Fat: 18g, Carbs: 60g',
+                'goal_id' => 1,  // Overall health goal
+                'meal_type_id' => 2,  // Lunch meal type
+                'meal_image' => 'Quinoa and Roasted Vegetable Bowl.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian 
+                // Lactose-Free 
+            ],
+            [
+                'name' => 'Avocado and Tuna Salad',
+                'description' => 'A fresh salad with avocado, tuna, mixed greens, and a light lemon vinaigrette dressing.',
+                'health_info' => 'Calories: 380, Protein: 25g, Fat: 22g, Carbs: 12g',
+                'goal_id' => 1,  // Overall health goal
+                'meal_type_id' => 2,  // Lunch meal type
+                'meal_image' => 'Avocado and Tuna Salad.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Lactose-Free (no dairy in this meal)
+            ],
+            [
+                'name' => 'Grilled Chicken Avocado Burger',
+                'description' => 'A grilled chicken breast patty topped with fresh avocado, mixed greens, tomatoes, and a whole grain bun.',
+                'health_info' => 'Calories: 400, Protein: 35g, Fat: 20g, Carbs: 30g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Grilled Chicken Avocado Burger.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Lactose-Free (no dairy in this meal)
+
+            ],
+            [
+                'name' => 'Sweet Potato and Black Bean Tacos',
+                'description' => 'Soft corn tortillas filled with roasted sweet potatoes, black beans, avocado, salsa, and a sprinkle of lime.',
+                'health_info' => 'Calories: 400, Protein: 14g, Fat: 12g, Carbs: 55g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Sweet Potato and Black Bean Tacos.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                //vegetarian
+                //lactose free
+            ],
+            [
+                'name' => 'Baked Salmon with Quinoa and Steamed Broccoli',
+                'description' => 'Oven-baked salmon fillet served with a side of quinoa and steamed broccoli.',
+                'health_info' => 'Calories: 500, Protein: 40g, Fat: 20g, Carbs: 45g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, 
+                'meal_image' => 'Baked Salmon with Quinoa and Steamed Broccoli.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                //lactose free
+            ],
+            [
+                'name' => 'Quinoa & Veggie Burger',
+                'description' => 'A quinoa patty loaded with bell peppers, onions, and spinach, served with a side of sweet potato fries.',
+                'health_info' => 'Calories: 350, Protein: 12g, Fat: 10g, Carbs: 50g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Quinoa & Veggie Burger.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian, Lactose-Free
+        
+            ],
+            [
+                'name' => 'Cauliflower Crust Margherita Pizza',
+                'description' => 'A healthy cauliflower crust topped with fresh mozzarella, tomatoes, basil, and a light drizzle of olive oil.',
+                'health_info' => 'Calories: 250, Protein: 12g, Fat: 15g, Carbs: 20g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Cauliflower Crust Margherita Pizza.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // vegetarian
+        
+            ],
+            [
+                'name' => 'Stuffed Grape Leaves with Quinoa and Yogurt Dip',
+                'description' => 'Healthy stuffed grape leaves filled with quinoa, herbs, and lemon, paired with a side of refreshing yogurt dip.',
+                'health_info' => 'Calories: 220, Protein: 7g, Fat: 9g, Carbs: 28g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Stuffed Grape Leaves with Quinoa and Yogurt Dip.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian,Gluten-Free, Lactose-Free
+            ],
+            [
+                'name' => 'Baked Falafel with Tahini Sauce',
+                'description' => 'Baked falafel made from chickpeas, fresh herbs, and spices, served with a tahini sauce for a healthy alternative to the fried version.',
+                'health_info' => 'Calories: 250, Protein: 12g, Fat: 12g, Carbs: 30g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 2, // Meal Type: Lunch
+                'meal_image' => 'Baked Falafel with Tahini Sauce.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // vegetarian, Gluten-Free
+            ],
+            //dinner overall 
+            [
+                'name' => 'Eggplant Parmesan',
+                'description' => 'A lighter version of the classic eggplant parmesan, baked with a small amount of cheese and topped with marinara sauce and fresh basil.',
+                'health_info' => 'Calories: 320, Protein: 12g, Fat: 18g, Carbs: 28g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Eggplant Parmesan.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // vegetarian,
+            ],
+            [
+                'name' => 'Cucumber and Hummus Wrap',
+                'description' => 'A light and fresh wrap with cucumbers, hummus, and mixed greens wrapped in a whole wheat tortilla.',
+                'health_info' => 'Calories: 250, Protein: 8g, Fat: 10g, Carbs: 35g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Cucumber and Hummus Wrap.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian, Gluten-Free (if using gluten-free tortilla), Lactose-Free
+            ],
+            [
+                'name' => 'Chickpea Salad with Avocado and Lemon Dressing',
+                'description' => 'A simple, nutritious salad made with chickpeas, creamy avocado, fresh greens, and a tangy lemon dressing.',
+                'health_info' => 'Calories: 350, Protein: 15g, Fat: 20g, Carbs: 30g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Chickpea Salad with Avocado and Lemon Dressing.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian, Lactose-Free, Gluten-Free
+            ],
+            [
+                'name' => 'Toasted Cheese Sandwich with Tomato Soup',
+                'description' => 'A comforting toasted cheese sandwich , paired with a bowl of homemade tomato soup.',
+                'health_info' => 'Calories: 400, Protein: 20g, Fat: 20g, Carbs: 35g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Toasted Cheese Sandwich with Tomato Soup.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian
+            ],
+            [
+                'name' => 'Cheese and Tomato Sandwich',
+                'description' => 'A healthy cheese sandwich made with whole grain bread, cheese, tomatoes, and a drizzle of olive oil.',
+                'health_info' => 'Calories: 320, Protein: 15g, Fat: 18g, Carbs: 28g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Cheese and Tomato Sandwich.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegetarian
+            ],
+        
+            [
+                'name' => 'Labneh and Olive Sandwich',
+                'description' => 'A wholesome sandwich made with labneh, black olives, tomatoes, and a sprinkle of za’atar, served on whole wheat bread.',
+                'health_info' => 'Calories: 350, Protein: 12g, Fat: 20g, Carbs: 35g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Labneh and Olive Sandwich.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Lactose-Free (if using dairy-free labneh)
+            ],
+            [
+                'name' => 'Caesar Salad',
+                'description' => 'A plant-based version of Caesar salad with crispy chickpeas, mixed greens, dairy-free dressing, and homemade croutons.',
+                'health_info' => 'Calories: 280, Protein: 12g, Fat: 15g, Carbs: 25g',
+                'goal_id' => 1, // Goal: Overall Health
+                'meal_type_id' => 3, // Meal Type: Dinner
+                'meal_image' => 'Caesar Salad.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                // Vegan, Lactose-Free, Gluten-Free (if using gluten-free croutons)
+            ],
+          
+            
         ]);
     }
 }
