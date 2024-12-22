@@ -123,42 +123,6 @@ class BuildPlanController extends Controller
             'plan_id' => $plan_id, 
         ]);
     }
-    public function viewPlan($planId)
-    {
-        $plan = Plan::findOrFail($planId);  // Fetch the selected plan
-        $user = Auth::user();  // Get the logged-in user
-        
-        // Retrieve the meal types for the plan
-        $mealTypes = [];
-        foreach ($plan->meals as $mealId) {
-            $meal = \App\Models\Meal::find($mealId);
-            if (!in_array($meal->meal_type_id, $mealTypes)) {
-                $mealTypes[] = $meal->meal_type_id;
-            }
-        }
     
-        // Prepare the meal data to show in the view
-        $mealData = [];
-        foreach ($plan->meals as $mealId) {
-            $meal = \App\Models\Meal::find($mealId);
-            $mealData[] = [
-                'meal' => $meal,
-                'mealType' => \App\Models\MealType::find($meal->meal_type_id)
-            ];
-        }
-    
-        return view('meals.view_plan', compact('plan', 'user', 'mealTypes', 'mealData'));
-    }
-
-   
-    public function showPlan($planId)
-    {
-        // Retrieve the plan from the database
-        $plan = Plan::find($planId);
-    
-        // Pass the plan to the view
-        return view('layouts.nav2', compact('plan'));
-    }
-
 
 }

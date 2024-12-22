@@ -24,6 +24,10 @@ public function planTypes()
 {
     return $this->belongsToMany(PlanType::class, 'plan_type_meals', 'meal_type_id', 'plan_type_id');
 }
+public function planTypeMeals()
+{
+    return $this->hasMany(PlanTypeMeal::class);
+}
 
 
 }

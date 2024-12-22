@@ -12,4 +12,8 @@ class OrderDayMeal extends Model
         'order_day_id',
         'meal_id',
     ];
+    public function meal()
+    {
+        return $this->belongsTo(Meal::class, 'meal_id');
+    }
 }

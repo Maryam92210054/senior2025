@@ -15,6 +15,11 @@ class PlanType extends Model
     return $this->belongsToMany(MealType::class, 'plan_type_meals', 'plan_type_id', 'meal_type_id');
 }
 
+public function planTypeMeals()
+{
+    return $this->hasMany(PlanTypeMeal::class);
+}
+
 }
 
 

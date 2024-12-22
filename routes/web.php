@@ -8,6 +8,7 @@ use App\Http\Controllers\BuildPlanController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ViewPlanController;
 
 
 Route::get('/', function () {
@@ -22,10 +23,10 @@ Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
 
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/payment/success', function () {return view('meals.success');})->name('meals.success');
-    Route::get('/view-plan/{planId}', [BuildPlanController::class, 'viewPlan'])->name('viewPlan');
     Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
     Route::post('/payment/{order_id}', [PaymentController::class, 'store'])->name('payment.store');
-    
+    Route::get('/view-plan', [ViewPlanController::class, 'viewPlan'])->name('view.plan');
+
     Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
     Route::get('/build-plan', [BuildPlanController::class, 'index'])->middleware('auth')->name('build_plan');
     Route::get('/choose-days/{plan}', [BuildPlanController::class, 'chooseDays'])->name('chooseDays');
