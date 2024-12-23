@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="custom-background py-5" style="background: url('{{ asset('mealsImages/6.jpg') }}') no-repeat center center; background-size: cover; min-height: 100vh; position: relative; opacity: 0.9;">
+<div class="custom-background py-5" style="background: url('{{ asset('mealsImages/yaz.png') }}') no-repeat center center; background-size: cover; min-height: 100vh; position: relative; opacity: 0.9;">
     <div class="container d-flex justify-content-center">
         <!-- White container in the center with reduced width -->
-        <div class="white-container p-5" style="background-color: rgba(255, 255, 255, 0.95); border-radius: 10px; min-height: 60px; width: 100%; max-width: 1000px; position: relative;">
+        <div class="white-container p-5" style="background-color: rgba(255, 255, 255, 0.9); border-radius: 10px; min-height: 60px; width: 100%; max-width: 1000px; position: relative;">
             <div class="d-flex justify-content-between">
                 <!-- Left-side images inside the container -->
                 <div class="image-container-left d-flex flex-column" style="position: relative; z-index: 1;">
@@ -30,7 +30,7 @@
                             </select>
                         </div>
 
-                        <div class="text-center mt-4">
+                        <div class="text-center mt-2">
                             <button type="submit" class="btn btn-success btn-lg">Submit Days</button>
                         </div>
                     </form>
@@ -59,7 +59,7 @@
     .italiana-font { font-family: 'Italiana', serif; }
     html, body { height: 100%; margin: 0; padding: 0; }
     .custom-background { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; position: relative; }
-    .white-container { background-color: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); min-height: 600px; }
+    .white-container { background-color: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); min-height: 600px; }
     .font-weight-bold { font-weight: bold; }
     h1, label { color: #2d3436; }
     button.btn-success { background-color: #4caf50; border-color: #4caf50; }
