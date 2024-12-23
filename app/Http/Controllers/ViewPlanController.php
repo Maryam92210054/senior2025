@@ -82,7 +82,7 @@ class ViewPlanController extends Controller
                 }
             }
         }
-        // Store the data for this order day
+i        // Store the data for this order day
         $orderDayMealsData[] = [
             'day_number' => $orderDay->day_number,
             'date' => $orderDay->date,
