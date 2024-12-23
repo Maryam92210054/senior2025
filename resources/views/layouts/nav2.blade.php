@@ -22,7 +22,7 @@
   <ul class="nav-links">
       <li><a href="{{ route('viewMeals') }}">Meals</a></li>
       <li><a href="{{ route('build_plan') }}">Build plan</a></li>
-      <li><a href="">View Plan</a></li>
+      <li><a href="{{ route('view.plan') }}">View Plan</a></li>
 
       <li><a href="{{ route('profile.show') }}">Profile</a></li>
       @auth
