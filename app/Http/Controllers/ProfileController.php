@@ -43,6 +43,7 @@ class ProfileController extends Controller
     $user->address = $validated['address'];
     $user->phone = $validated['phone'];
     $user->goal_id = $validated['goal_id'];
+    $user->restriction_id =$request->restriction_id;
 
     if ($request->filled('password')) {
         $user->password = bcrypt($validated['password']);

@@ -76,7 +76,62 @@
         <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}" class="btn btn-success btn-lg">Go to Choose Days</a>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const daysArray = @json($daysArray); // Blade variable to JavaScript
+    const dateInputs = daysArray.map(day => document.getElementById(`date-day-${day}`));
 
+    // Calculate the start (Monday) and end (Sunday) of the next week
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+
+    // Determine the next Monday (start of next week)
+    const daysUntilNextMonday = dayOfWeek === 0 ? 1 : 8 - dayOfWeek; // If today is Sunday, next Monday is 1 day away
+    const nextMonday = new Date(today);
+    nextMonday.setDate(today.getDate() + daysUntilNextMonday);
+
+    // Calculate the next Sunday (end of next week)
+    const nextSunday = new Date(nextMonday);
+    nextSunday.setDate(nextMonday.getDate() + 6);
+
+    // Format date as YYYY-MM-DD (for date inputs)
+    const formatDate = date => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const minDate = formatDate(nextMonday);
+    const maxDate = formatDate(nextSunday);
+
+    // Set restrictions on all date inputs
+    dateInputs.forEach((input, index) => {
+        input.min = minDate;
+        input.max = maxDate;
+
+        // Add validation for date sequence (from previous inputs)
+        input.addEventListener('change', () => {
+            const currentDate = new Date(input.value);
+
+            // Check if there's a previous day and validate
+            if (index > 0) {
+                const previousDate = new Date(dateInputs[index - 1].value);
+                if (currentDate <= previousDate) {
+                    alert(`The date for Day ${daysArray[index]} must be after the date for Day ${daysArray[index - 1]}.`);
+                    input.value = ''; // Clear the invalid input
+                }
+            }
+
+            // Ensure future days cannot have earlier dates
+            for (let i = index + 1; i < dateInputs.length; i++) {
+                dateInputs[i].min = input.value;
+            }
+        });
+    });
+});
+
+</script>
 @endsection
 
 @section('styles')

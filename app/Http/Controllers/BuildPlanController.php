@@ -23,6 +23,7 @@ class BuildPlanController extends Controller
 
           
             $plans = Plan::where('goal_id', $goal_id)
+                        ->where('availability', 1) 
                          ->with('planType')
                          ->get();
         } else {
@@ -63,30 +64,40 @@ class BuildPlanController extends Controller
     public function chooseMeals($planId, $days)
     {
         $plan = Plan::findOrFail($planId);
-    
-      
+
+        // Get the meal types included in the plan
         $types = DB::table('plan_type_meals')
             ->where('plan_type_id', $plan->plan_type_id)
             ->pluck('meal_type_id');
-    
         
-        $mealsByType = Meal::whereIn('meal_type_id', $types)
+        // Get the user's restriction
+        $userRestriction = Auth::user()->restriction_id;
+        
+        // Query meals based on meal type, goal, availability, and restriction
+        $mealsQuery = Meal::whereIn('meal_type_id', $types)
             ->where('goal_id', Auth::user()->goal_id)
-            ->where('availability', 1)
-            ->get()
-            ->groupBy('meal_type_id');
-    
-       
-        $daysArray = range(1, $days); 
+            ->where('availability', 1);
         
-    
-       
+        // If the user has a restriction, filter meals accordingly
+        if ($userRestriction) {
+            $mealsQuery->whereHas('restrictions', function ($query) use ($userRestriction) {
+                $query->where('restriction_id', $userRestriction);
+            });
+        }
+        
+        // Get the filtered meals grouped by meal type
+        $mealsByType = $mealsQuery->get()->groupBy('meal_type_id');
+        
+        // Create an array for the number of days
+        $daysArray = range(1, $days);
+        
         return view('meals.choose_meals', [
             'plan' => $plan,
             'mealsByType' => $mealsByType,
             'daysArray' => $daysArray,
-           
         ]);
+        
+
     }
     
     public function storeUserMealPlan(Request $request)

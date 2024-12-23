@@ -17,6 +17,7 @@ class MealRestrictionSeeder extends Seeder
         DB::table('meal_restrictions')->delete();
         DB::statement('ALTER TABLE meal_restrictions AUTO_INCREMENT = 1;');
         DB::table('meal_restrictions')->insert([
+            //Low Calorie Breakfast 
             [
                 'meal_id' => '1',
                 'restriction_id' => '1',
@@ -88,23 +89,168 @@ class MealRestrictionSeeder extends Seeder
                 'restriction_id' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ],
-            
+            ],       
             [
                 'meal_id' => '9',
                 'restriction_id' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
-            ],
-            
+            ],     
             [
                 'meal_id' => '10',
                 'restriction_id' => '1',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-           
-            //Low Calorie Breakfast above
+            //Low Calorie Lunch 
+            [
+                'meal_id' => '15',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '16',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '17',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '18',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '19',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '19',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '20',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            //low calorie dinner
+            [
+                'meal_id' => '22',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '22',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '23',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '24',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '24',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '25',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '26',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '27',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '28',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            //high protein breakfast
+            [
+                'meal_id' => '29',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '30',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '31',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '32',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '32',
+                'restriction_id' => '2',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '33',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '34',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'meal_id' => '35',
+                'restriction_id' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            //high protein lunch
+            
         ]);
     }
 }

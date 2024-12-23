@@ -5,7 +5,7 @@
 <div class="custom-background py-5" style="background-color: #bddb8f; min-height: 100vh;">
     <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
 
-        <h1 class="italiana-font">Your Plan:</h1>
+        <h1 class="italiana-font">Your Current Plan:</h1>
 
         <table class="table table-bordered mt-4" style="border-color: #bddb8f;">
             <thead class="thead-light" style="background-color: #bddb8f; color: white;">

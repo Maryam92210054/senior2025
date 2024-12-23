@@ -1,13 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\OrderDay;
 use App\Models\OrderDayMeal;
-use App\Models\Meal;
-use App\Models\MealType;
 use App\Models\Plan;
 use App\Models\PlanType;
 use Illuminate\Support\Facades\Auth;
@@ -57,8 +53,8 @@ class ViewPlanController extends Controller
         // Iterate over the order days and retrieve the meals
         foreach ($orderDays as $orderDay) {
             $orderDayMeals = OrderDayMeal::where('order_day_id', $orderDay->id)
-                                         ->with('meal') // Eager load the meal data
-                                         ->get();
+                                        ->with('meal') // Eager load the meal data
+                                        ->get();
 
             // Organize meals by meal type
             $mealsByType = [];
@@ -80,15 +76,13 @@ class ViewPlanController extends Controller
                 }
             }
 
-        }
-
-
+            // Add the current day's data to the array
             $orderDayMealsData[] = [
                 'day_number' => $orderDay->day_number,
                 'date' => $orderDay->date,
                 'meals_by_type' => $mealsByType,
             ];
-        
+        }
 
         return view('meals.viewPlan', compact('orderDayMealsData', 'mealTypes'));
     }
