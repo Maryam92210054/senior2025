@@ -18,7 +18,7 @@
   
   <body>
   <nav class="navbar">
-  <img src="logo.jpeg" alt="Logo">
+  <img src="{{ asset('mealsImages/logooo.png') }}" alt="Logo">
   <ul class="nav-links">
       <li><a href="{{ route('viewMeals') }}">Meals</a></li>
       <li><a href="{{ route('build_plan') }}">Build plan</a></li>
