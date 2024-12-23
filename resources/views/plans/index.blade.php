@@ -4,12 +4,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Bootstrap Simple Data Table</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="{{ asset('css/meals.css') }}" rel="stylesheet">
-
+</head>
 <body>
     <div class="container-xl">
         <div class="table-responsive">
@@ -54,45 +55,61 @@
                                     <a href="{{route('plans.edit',$plan->id)}}" class="edit" title="Edit" data-toggle="tooltip">
                                         <i class="material-icons">&#xE254;</i>
                                     </a>
-                                    <a href="{{route('plans.destroy',$plan->id)}}" class="delete" title="Delete" data-toggle="modal" data-target="#deleteModal-{{ $plan->id }}" style="color: red;">
-                                        <i class="material-icons">&#xE872;</i>
-                                    </a>
-
-                                    <form id="delete-form-{{ $plan->id }}" action="{{ route('plans.destroy', $plan->id) }}" method="POST" style="display: none;">
-                                        @csrf
-                                        @method('DELETE')
-                                    </form>
-
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="deleteModal-{{ $plan->id }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel-{{ $plan->id }}" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel-{{ $plan->id }}">Confirm Deletion</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p class="text-muted">Are you sure you want to delete this plan? This action cannot be undone.</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                    <button type="button" class="btn btn-danger" onclick="document.getElementById('delete-form-{{ $plan->id }}').submit();">
-                                                        Confirm
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- End Modal -->
-
-                                 
+                                    @if ($plan->availability === 1)
+                                        <i class="material-icons text-success toggle-availability"
+                                           title="Available"
+                                           data-id="{{ $plan->id }}"
+                                           data-availability="1">&#xE5CA;</i> 
+                                    @else
+                                        <i class="material-icons text-danger toggle-availability"
+                                           title="Unavailable"
+                                           data-id="{{ $plan->id }}"
+                                           data-availability="0">&#xE14C;</i> 
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    $(document).on('click', '.toggle-availability', function () {
+                        const planId = $(this).data('id');
+                        const currentAvailability = $(this).data('availability');
+
+                        $.ajax({
+                            url: `/plans/${planId}/toggle-availability`,
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            data: {
+                                availability: currentAvailability
+                            },
+                            success: function (response) {
+                                console.log('Response:', response); // Debugging availability
+                                if (response.availability) {
+                                    $(`[data-id="${planId}"]`)
+                                        .removeClass('text-danger')
+                                        .addClass('text-success')
+                                        .html('&#xE5CA;') // Check Icon
+                                        .data('availability', 1)
+                                        .attr('title', 'Available');
+                                } else {
+                                    $(`[data-id="${planId}"]`)
+                                        .removeClass('text-success')
+                                        .addClass('text-danger')
+                                        .html('&#xE14C;') // Close Icon
+                                        .data('availability', 0)
+                                        .attr('title', 'Unavailable');
+                                }
+                            },
+                            error: function () {
+                                alert('An error occurred while updating availability.');
+                            }
+                        });
+                    });
+                </script>
                 
             </div>
         </div>

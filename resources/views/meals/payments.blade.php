@@ -4,7 +4,7 @@
 
 <div class="custom-background py-5" style="background-color: #bddb8f; min-height: 100vh;">
     <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
-      
+
         <!-- Payment Method Sections (Half-half navbar) -->
         <div class="d-flex mb-4">
             <div id="omt-section" class="flex-fill p-3 text-center" style="background-color: #ffc107; color: black; cursor: pointer;">
@@ -32,17 +32,23 @@
                 <input type="text" name="amount" id="amount" class="form-control" value="{{ $calculatedAmount }}" readonly>
             </div>
 
+            <!-- Display Today's Payment Date -->
+            <div class="form-group">
+                <label for="payment_date">Payment Date</label>
+                <input type="text" id="payment_date" class="form-control" value="{{ $todayDate }}" readonly>
+            </div>
+
             <!-- Account Code Input (Static, not stored) -->
             <div class="form-group">
                 <label for="account_code">Account Code</label>
-                <input type="text" name="account_code" id="account_code" class="form-control" placeholder="Enter your account code for payment" required>
+                <input type="password" name="account_code" id="account_code" class="form-control" placeholder="Enter your account code for payment" required>
+                <small id="passwordHelp" class="form-text text-muted">
+                    Your account code must be at least 7 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.
+                </small>
             </div>
 
-            <!-- Payment Date -->
-            <div class="form-group">
-                <label for="payment_date">Payment Date</label>
-                <input type="date" name="payment_date" id="payment_date" class="form-control" required>
-            </div>
+            <!-- Hidden Order ID -->
+            <input type="hidden" name="order_id" value="{{ $orderId }}">
 
             <!-- Display selected payment method -->
             <div id="selected-method" class="text-center mt-3">
@@ -100,6 +106,18 @@
     // Event listener for Whish section click
     document.getElementById('whish-section').addEventListener('click', function() {
         document.getElementById('selected-method').innerText = "You have selected: Whish";
+    });
+
+    // Validate the account code
+    document.getElementById('account_code').addEventListener('input', function() {
+        const accountCode = this.value;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{7,})/;
+
+        if (!regex.test(accountCode)) {
+            this.setCustomValidity("Your account code must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 7 characters long.");
+        } else {
+            this.setCustomValidity("");  // Clear the error if valid
+        }
     });
 </script>
 @endsection

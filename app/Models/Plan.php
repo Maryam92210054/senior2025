@@ -20,9 +20,9 @@ class Plan extends Model
     
     
 
-public function meals()
-{
-    return $this->belongsToMany(Meal::class, 'meal_plan', 'plan_id', 'meal_id');
-}
+    public function meals()
+    {
+        return $this->belongsToMany(Meal::class, 'plan_type_meals', 'plan_type_id', 'meal_type_id');
+    }
 
 }

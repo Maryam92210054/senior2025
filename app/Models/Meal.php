@@ -42,7 +42,11 @@ class Meal extends Model
         return $this->belongsToMany(OrderDay::class, 'order_day_meals', 'meal_id', 'order_day_id');
     }
 
-        
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class, 'plan_type_meals', 'meal_type_id', 'plan_type_id');
+    }
+    
 
     
 }

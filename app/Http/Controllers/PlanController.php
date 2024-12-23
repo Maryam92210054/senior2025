@@ -83,11 +83,16 @@ class PlanController extends Controller
         return redirect()->route('plans.index', $planId)->with('success', 'Plan updated successfully!');
     }
 
-    public function destroy($planId) {
-        $plan = Plan::findOrFail($planId);  // Use findOrFail to ensure it throws an error if the post doesn't exist
-        $plan->delete();
-        return redirect()->route('plans.index');
+    public function toggleAvailability( $id)
+    {
+        $plan = Plan::findOrFail($id);
 
+        $plan->availability = !$plan->availability;
+        $plan->save();
+
+        return response()->json([
+            'availability' => $plan->availability
+        ]);
     }
 
 }

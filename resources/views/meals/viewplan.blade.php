@@ -1,34 +1,50 @@
 @extends('layouts.nav2')
 
 @section('content')
-<table class="table table-bordered mt-4" style="border-color: #bddb8f;">
-    <thead  class="thead-light" style="background-color: #bddb8f; color: white;">
-        <tr>
-            <th>Day Number</th>
-            <th>Date</th>
-            @foreach ($mealTypes as $mealType)
-                <th>{{ $mealType->name }}</th>
-            @endforeach
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($orderDayMealsData as $orderDayData)
-            <tr>
-                <td>{{ $orderDayData['day_number'] }}</td>
-                <td>{{ $orderDayData['date'] }}</td>
 
-                @foreach ($mealTypes as $mealType)
-                    <td>
-                            @foreach ($orderDayData['meals_by_type'][$mealType->name] as $mealName)
-                                <p>{{ $mealName }}</p>
-                            @endforeach
-                        
-                    </td>
+<div class="custom-background py-5" style="background-color: #bddb8f; min-height: 100vh;">
+    <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
+
+        <h1 class="italiana-font">Your Plan:</h1>
+
+        <table class="table table-bordered mt-4" style="border-color: #bddb8f;">
+            <thead class="thead-light" style="background-color: #bddb8f; color: white;">
+                <tr>
+                    <th>Day Number</th>
+                    <th>Date</th>
+                    @foreach ($mealTypes as $mealType)
+                        <th>{{ $mealType->name }}</th>
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orderDayMealsData as $orderDayData)
+                    <tr>
+                        <td>{{ $orderDayData['day_number'] }}</td>
+                        <td>{{ $orderDayData['date'] }}</td>
+
+                        @foreach ($mealTypes as $mealType)
+                            <td>
+                                @if(isset($orderDayData['meals_by_type'][$mealType->name]))
+                                    @foreach ($orderDayData['meals_by_type'][$mealType->name] as $meal)
+                                        <div style="text-align: center;">
+                                            <p>{{ $meal['name'] }}</p>
+                                            <img src="{{ asset('mealsImages/'.$meal['image']) }}" alt="{{ $meal['name'] }}" style="height: 100px; width: 100px; object-fit: cover; margin-top: 5px;">
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>No meal</p>
+                                @endif
+                            </td>
+                        @endforeach
+                    </tr>
                 @endforeach
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
 @endsection
 
 @section('styles')
@@ -77,10 +93,12 @@ html, body {
     width: 100px;
     object-fit: cover;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .table tbody td {
     vertical-align: middle;
+    text-align: center;
 }
 
 h1 {
@@ -99,3 +117,5 @@ h1 {
 }
 
 </style>
+
+@endsection

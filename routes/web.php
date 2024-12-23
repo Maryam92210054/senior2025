@@ -55,7 +55,7 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::post('/plans',[PlanController::class , 'store' ])->name('plans.store');
     Route::get('/plans/{plan}/edit', [PlanController::class , 'edit' ])->name('plans.edit');
     Route::put('/plans/{plan}', [PlanController::class , 'update' ])->name('plans.update');
-    Route::delete('/plans/{plan}', [PlanController::class , 'destroy' ])->name('plans.destroy');
+    Route::post('/plans/{id}/toggle-availability', [PlanController::class, 'toggleAvailability']);    Route::get('/plans', [PlanController::class , 'index' ])->name('plans.index');
     Route::get('/orders', [OrderController::class , 'index' ])->name('orders.index');
     Route::get('/orders/{order}', [OrderController::class , 'display' ])->name('orders.display');
 });
