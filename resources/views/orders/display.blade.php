@@ -37,28 +37,29 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($order->orderDays as $day)
-            <tr>
-                <td style="width: 5%; text-align: center;">{{ $day->day_number }}</td>
-                <td style="width: 10%;">{{ $day->date }}</td>
-                @foreach ($mealTypes as $type)
-                <td style="width: 15%; max-width: 150px; overflow: hidden; text-overflow: ellipsis;">
-    @php
-        // Find the meal with this meal type for the current day
-        $meal = $day->meals->firstWhere('mealType.id', $type->id);
-    @endphp
-
-    @if ($meal)
-        <strong>Id: </strong> {{ $meal->id }} <br>
-        <strong>Name: </strong> {{ $meal->name }}
-    @else
-        ---
-    @endif
-</td>
-
-                @endforeach
-            </tr>
+    @foreach ($orderDays as $day)
+    <tr>
+        <td>{{ $day->day_number }}</td>
+        <td>{{ $day->date }}</td>
+        
+        @foreach ($mealTypes as $type)
+            <td>
+                @php
+                    // Fetch the meal for this meal type
+                    $meal = $day->meals->firstWhere('mealType.id', $type->id);
+                @endphp
+                
+                @if ($meal)
+                    <strong>Id: </strong> {{ $meal->id }} <br>
+                    <strong>Name: </strong> {{ $meal->name }}
+                @else
+                    ---
+                @endif
+            </td>
         @endforeach
+    </tr>
+@endforeach
+
     </tbody>
 </table>
 

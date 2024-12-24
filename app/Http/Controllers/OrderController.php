@@ -10,23 +10,52 @@ use App\Models\MealType;
 
 class OrderController extends Controller
 {   
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::with('user')->get(); 
-        return view('orders.index', ['orders' => $orders]);
+        $query = Order::query();
+    
+        // Filter by city
+        if ($request->has('city') && $request->city) {
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('address', $request->city);
+            });
+        }
+    
+        // Filter by delivery time
+        if ($request->has('delivery_time') && $request->delivery_time) {
+            $query->where('delivery_time', $request->delivery_time);
+        }
+    
+        // Filter by order date
+        if ($request->has('order_date') && $request->order_date) {
+            $query->whereHas('orderDays', function ($q) use ($request) {
+                $q->whereDate('date', $request->order_date);
+            });
+        }
+    
+        // Get the filtered orders
+        $orders = $query->get();
+    
+        return view('orders.index', compact('orders'));
     }
+    
 
     public function display($orderId)
     {
         $order = Order::find($orderId);
 
-        // Get meal types through the order's plan
-        $mealTypes = $order->plan->planType->mealTypes;
+   
+        $mealTypes = $order->plan->planType->mealTypes; // Assuming this part of your logic is correct
+
+        // Now, you can load the meals for each orderDay using the pivot table
+        $orderDays = $order->orderDays; // Get the order days for the specific order
 
         return view('orders.display', [
             'order' => $order,
-            'mealTypes' => $mealTypes
+            'mealTypes' => $mealTypes,
+            'orderDays' => $orderDays,  // Send the order days to the view
         ]);
+    
 
     }
     

@@ -43,10 +43,44 @@
 
       <div class="input-row">
         <div class="input-box">
-          <span>Address</span>
-          <input type="text" placeholder="Enter your detailed address" name="address" value="{{ old('address', $user->address) }}">
+          <span>Select your city</span>
+          <select name="address" required>
+            <option value="Akkar al-Atika">Akkar al-Atika</option>
+            <option value="Andaket">Andaket</option>
+            <option value="Beino">Beino</option>
+            <option value="Berqayel">Berqayel</option>
+            <option value="Halba">Halba</option>
+            <option value="Kobayat">Kobayat</option>
+            <option value="Miniara">Miniara</option>
+            <option value="Qoubaiyat">Qoubaiyat</option>
+            <option value="Tal Abbas al-Gharbi">Tal Abbas al-Gharbi</option>
+            <option value="Tal Abbas al-Sharqi">Tal Abbas al-Sharqi</option>
+          </select>
           <span class="text-danger">@error('address'){{ $message }} @enderror</span>
         </div>
+        <div class="input-box">
+    <span>Select your city</span>
+    <select name="address" required>
+        <option value="Akkar al-Atika" {{ old('address', $user->address) == 'Akkar al-Atika' ? 'selected' : '' }}>Akkar al-Atika</option>
+        <option value="Andaket" {{ old('address', $user->address) == 'Andaket' ? 'selected' : '' }}>Andaket</option>
+        <option value="Beino" {{ old('address', $user->address) == 'Beino' ? 'selected' : '' }}>Beino</option>
+        <option value="Berqayel" {{ old('address', $user->address) == 'Berqayel' ? 'selected' : '' }}>Berqayel</option>
+        <option value="Halba" {{ old('address', $user->address) == 'Halba' ? 'selected' : '' }}>Halba</option>
+        <option value="Kobayat" {{ old('address', $user->address) == 'Kobayat' ? 'selected' : '' }}>Kobayat</option>
+        <option value="Miniara" {{ old('address', $user->address) == 'Miniara' ? 'selected' : '' }}>Miniara</option>
+        <option value="Qoubaiyat" {{ old('address', $user->address) == 'Qoubaiyat' ? 'selected' : '' }}>Qoubaiyat</option>
+        <option value="Tal Abbas al-Gharbi" {{ old('address', $user->address) == 'Tal Abbas al-Gharbi' ? 'selected' : '' }}>Tal Abbas al-Gharbi</option>
+        <option value="Tal Abbas al-Sharqi" {{ old('address', $user->address) == 'Tal Abbas al-Sharqi' ? 'selected' : '' }}>Tal Abbas al-Sharqi</option>
+    </select>
+    <span class="text-danger">@error('address'){{ $message }} @enderror</span>
+</div>
+
+        <div class="input-box">
+            <span>Address Details</span>
+            <textarea placeholder="Enter additional details" name="address_details" rows="2">{{ old('address_details', $user->address_details) }}</textarea>
+            <span class="text-danger">@error('address_details'){{ $message }} @enderror</span>
+        </div>
+
         <div class="input-box">
           <span>Phone Number</span>
           <input type="text" placeholder="00/000000" name="phone" value="{{ old('phone', $user->phone) }}">

@@ -64,10 +64,18 @@
     
             <div class="form-group">
                 <label for="delivery_time" class="font-weight-bold">Choose Delivery Time:</label>
-                <input type="time" name="delivery_time" id="delivery_time" class="form-control" required>
+                <select name="delivery_time" id="delivery_time" class="form-control" required>
+                    <option value="07:00">07:00 AM</option>
+                    <option value="08:00">08:00 AM</option>
+                    <option value="09:00">09:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">01:00 PM</option>
+                    
+                </select>
             </div>
-
-       
+                
             <input type="hidden" name="plan_id" value="{{ $plan_id }}">
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> 
             
@@ -83,7 +91,6 @@
             <div class="text-center mt-3">
                 <button type="submit" class="btn btn-success btn-lg">Confirm Order</button>
             </div>
-        </form>
 
     </div>
 </div>

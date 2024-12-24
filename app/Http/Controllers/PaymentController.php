@@ -35,12 +35,7 @@ class PaymentController extends Controller
         return view('meals.payments', compact('orderId', 'calculatedAmount', 'todayDate'));
     }
 
-    /**
-     * Store the payment information in the database.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
+ 
     public function store(Request $request)
     {
         $request->validate([
@@ -67,7 +62,8 @@ class PaymentController extends Controller
 
         // Link the payment to the order
         $order = Order::findOrFail($request->order_id);
-        $order->payment_id = $payment->id;
+        $order->status = 'placed'; // You can use 'placed' to mark the order as paid
+
         $order->save();
 
         // Redirect to a success page
