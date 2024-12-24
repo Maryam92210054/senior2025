@@ -73,7 +73,7 @@
     </div>
 
     <div class="text-center mt-4">
-        <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}" class="btn btn-success btn-lg">Go to Choose Days</a>
+        <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}" class="btn btn-success btn-lg">Change number of days</a>
     </div>
 </div>
 <script>

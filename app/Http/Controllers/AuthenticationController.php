@@ -61,11 +61,13 @@ class AuthenticationController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:12',
             'address' => 'required',
+            'address_details'=>'required|min:20',
             'phone' => ['required', 'regex:/^\d{2}\/\d{6}$/'],
             'goal_id' => 'required|exists:goals,id',
             
         ], [
-            'name.regex' => 'Please provide your full name',  // Custom error message for the "name" field
+            'name.regex' => 'Please provide your full name',
+            'address_details.min' => 'Please provide your full address ', 
         ]);
 
 
@@ -78,6 +80,7 @@ class AuthenticationController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password); 
         $user->address = $request->address;
+        $user->address_details = $request->address_details;
         $user->phone = $request->phone;
         $user->role_id = 1; 
         $user->goal_id = $request->goal_id;

@@ -24,5 +24,9 @@ class OrderDay extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    public function meals()
+    {
+        return $this->belongsToMany(Meal::class, 'order_day_meals', 'order_day_id', 'meal_id');
+    }
 }
 

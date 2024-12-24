@@ -45,9 +45,8 @@
         </div>
     </div>
 
-    <!-- Go to Choose Days button -->
     <div class="text-center mt-3 ml-4">
-        <a href="{{ route('build_plan', ['plan' => $plan->id]) }}" class="btn btn-success btn-lg">Go to Choose Days</a>
+        <a href="{{ route('build_plan', ['plan' => $plan->id]) }}" class="btn btn-success btn-lg">Change Plan</a>
     </div>
 </div>
 

@@ -69,34 +69,35 @@ class BuildPlanController extends Controller
         $types = DB::table('plan_type_meals')
             ->where('plan_type_id', $plan->plan_type_id)
             ->pluck('meal_type_id');
+           
+
+        // Check the user's restrictions
+        $userRestrictions = Auth::user()->restriction_id;
         
-        // Get the user's restriction
-        $userRestriction = Auth::user()->restriction_id;
-        
-        // Query meals based on meal type, goal, availability, and restriction
+        // Query meals based on meal type, goal, availability, and restrictions
         $mealsQuery = Meal::whereIn('meal_type_id', $types)
             ->where('goal_id', Auth::user()->goal_id)
             ->where('availability', 1);
         
-        // If the user has a restriction, filter meals accordingly
-        if ($userRestriction) {
-            $mealsQuery->whereHas('restrictions', function ($query) use ($userRestriction) {
-                $query->where('restriction_id', $userRestriction);
+
+        // If the user has restrictions, filter meals accordingly
+        if ($userRestrictions) {
+            $mealsQuery->whereHas('restrictions', function ($query) use ($userRestrictions) {
+                $query->whereIn('restriction_id', $userRestrictions);
             });
         }
-        
+
         // Get the filtered meals grouped by meal type
         $mealsByType = $mealsQuery->get()->groupBy('meal_type_id');
-        
+
         // Create an array for the number of days
-        $daysArray = range(1, $days);
-        
+        $daysArray = range(1, $days); 
+
         return view('meals.choose_meals', [
             'plan' => $plan,
             'mealsByType' => $mealsByType,
             'daysArray' => $daysArray,
         ]);
-        
 
     }
     
