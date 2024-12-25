@@ -14,6 +14,12 @@ use App\Http\Controllers\ViewPlanController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+Route::get('/test', function () {
+    return view('test');
+})->name('test');
 
 
 Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
@@ -30,9 +36,9 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
     Route::get('/build-plan', [BuildPlanController::class, 'index'])->middleware('auth')->name('build_plan');
     Route::get('/choose-days/{plan}', [BuildPlanController::class, 'chooseDays'])->name('chooseDays');
-    Route::post('/store-days', [BuildPlanController::class, 'storeDays'])->name('storeDays');
+    Route::get('/store-days/{plan}/{nb}', [BuildPlanController::class, 'storeDays'])->name('storeDays');
     Route::get('/choose-meals/{planId}/{days}', [BuildPlanController::class, 'chooseMeals'])->name('chooseMeals');
-        Route::post('/submit-plan', [BuildPlanController::class, 'submitPlan'])->name('submitPlan');
+    Route::post('/submit-plan', [BuildPlanController::class, 'submitPlan'])->name('submitPlan');
     Route::get('/order-confirmation/{id}', [OrderController::class, 'show'])->name('orderConfirmation');
     Route::post('/confirm-order', [OrderController::class, 'store'])->name('confirmOrder');
     Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMealPlan'])->name('storeUserMealPlan');

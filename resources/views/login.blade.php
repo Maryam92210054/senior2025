@@ -13,7 +13,7 @@
 <body>
 
   <!-- Login Form -->
-  <div class="container">
+  <div class="login-container">
     <div class="title">Login</div>
     <form action="{{route('login.post')}}" method="POST">
       @csrf

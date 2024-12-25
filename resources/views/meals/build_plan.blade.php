@@ -1,33 +1,27 @@
 @extends('layouts.nav2')
 
 @section('content')
-<div class="custom-background py-5"> 
-    <div class="container white-container p-5"> 
-        
-      
-        <div class="header-green-background p-3 mb-4">
-            <h1 class="text-center personalized-title">Your Personalized Plans</h1>
 
-            @if (Auth::check())
-                <h2 class="text-center welcome-name">Welcome, {{ Auth::user()->name }}</h2>
-            @else
-                <p class="text-center">You are not logged in. Please <a href="{{ route('login') }}">login</a>.</p>
-            @endif
+
+ <!-- Team Start -->
+<div class="container-fluid team py-6">
+    <div class="container">
+        <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+            <h2 class=" display-5 mb-5 d-inline-block fw-bold text-dark bg-light border border-primary rounded-pill px-4 py-1 mb-3">{{ $goal->name }} Plans</h2>
+            <h1 class="display-5 mb-5">Select the plan that best fits your goals and preferences.</h1>
         </div>
-
-        <div class="row flex-column align-items-center"> 
+        <div class="row justify-content-center g-4">
             @forelse($plans as $plan)
-                <div class="col-md-8 mb-4"> 
-                    <div class="card shadow-sm organic-card">
-                        <div class="card-body">
-                        
-                            <h5 class="card-title text-center">
-                                <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}">{{ $plan->planType->description }}</a>
-                            </h5>
-                            <p class="card-text text-center">{{ $plan->description }}</p>
-                            <p class="card-text text-center">Price Per Day: ${{ $plan->price }}</p>
+                <div class="col-lg-3 col-md-6 wow bounceInUp d-flex" data-wow-delay="0.3s">
+                    <a href="{{ route('chooseDays', ['plan' => $plan->id]) }}" class="text-decoration-none w-100">
+                        <div class="team-item rounded h-100 d-flex flex-column">
+                            <img class="img-fluid rounded-top" src="img/plan.jpeg" alt="">
+                            <div class="team-content text-center py-3  rounded-bottom flex-grow-1">
+                                <h4 >{{ $plan->planType->description }}</h4>
+                                <p >Price Per Day: ${{ $plan->price }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @empty
                 <p class="text-center">No plans available for your goal.</p>
@@ -35,76 +29,19 @@
         </div>
     </div>
 </div>
+<!-- Team End -->
 
-@endsection
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/wow/wow.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-<style>
-    .custom-background {
-        background-color: #bddb8f;
-        min-height: 100vh; 
-    }
-
-   
-    .white-container {
-        background-color: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-  
-    .header-green-background {
-        background-color: #bddb8f;
-        border-radius: 8px 8px 0 0; 
-    }
-
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
     
-    .personalized-title,
-    .welcome-name {
-        font-family: 'Italiana', serif;
-        font-weight: bold;
-        color: white;
-    }
-
-  
-    .organic-card {
-        border: none; 
-        border-radius: 12px;
-        background-color: #f7f7f7;
-        transition: transform 0.3s ease, box-shadow 0.3s ease; 
-    }
-
-   
-    .organic-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
-    }
-
-   
-    .card-title, .card-text {
-        font-family: 'Arial', sans-serif;
-        font-size: 1.1rem;
-        color: #333;
-    }
-
-    .card-title a {
-        text-decoration: none;
-        color: #2c3e50; 
-    }
-
-    .card-title a:hover {
-        color: #27ae60; 
-    }
-
-    .row.flex-column.align-items-center {
-        display: flex;
-        justify-content: center;
-    }
-
-   
-    .header-green-background {
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-    }
-</style>
+@endsection

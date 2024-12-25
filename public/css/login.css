@@ -13,7 +13,7 @@
     }
 
     /* Login Form Container */
-    .container {
+    .login-container {
       max-width: 400px;
       margin: 50px auto;
       background-color: #fff;
@@ -22,14 +22,14 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .container .title {
+    .login-container .title {
       font-size: 24px;
       font-weight: 600;
       text-align: center;
       margin-bottom: 20px;
     }
 
-    .container form {
+    .login-container form {
       display: flex;
       flex-direction: column;
       gap: 15px;
@@ -55,14 +55,14 @@
     }
 
     .input-box input:focus {
-      border-color: #809c56;
+      border-color: #bddb8f;
     }
 
-    .container .button {
+    .login-container .button {
       text-align: center;
     }
 
-    .container .button input {
+    .login-container .button input {
       background: linear-gradient(135deg, #bddb8f, #809c56);
       color: white;
       border: none;
@@ -74,22 +74,22 @@
       transition: background-color 0.3s ease;
     }
 
-    .container .button input:hover {
+    .login-container .button input:hover {
       background: linear-gradient(135deg, #809c56, #bddb8f);
     }
 
     /* Link for "Don't have an account?" */
-    .container .signup-link {
+    .login-container .signup-link {
       text-align: center;
       margin-top: 15px;
     }
 
-    .container .signup-link a {
-      color: #809c56;
+    .login-container .signup-link a {
+      color: #bddb8f;
       font-weight: 500;
       text-decoration: none;
     }
 
-    .container .signup-link a:hover {
-      color: #4e7f3f;
+    .login-container .signup-link a:hover {
+      color: #809c56;
     }

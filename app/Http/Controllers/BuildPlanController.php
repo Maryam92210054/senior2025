@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\Meal;
 use App\Models\MealType;
 use App\Models\UserMeal;
+use App\Models\Goal;
+
 use Illuminate\Support\Facades\DB;
 
 class BuildPlanController extends Controller
@@ -17,6 +19,7 @@ class BuildPlanController extends Controller
         if (Auth::user()) {
             $user = Auth::user();
             $goal_id = $user->goal_id; 
+            $goal = Goal::find($goal_id);
             $userName = $user->name; 
 
             \Log::info('Logged-in user: ', ['name' => $userName, 'goal_id' => $goal_id]);
@@ -31,7 +34,7 @@ class BuildPlanController extends Controller
             $userName = 'Guest';
         }
 
-        return view('meals.build_plan', compact('plans', 'userName'));
+        return view('meals.build_plan', compact('plans', 'userName','goal'));
     }
 
     public function chooseDays($planId)
@@ -50,10 +53,10 @@ class BuildPlanController extends Controller
 
         return view('meals.choose_days', compact('plan', 'mealsByType'));
     }
-    public function storeDays(Request $request)
+    public function storeDays($plan,$nb)
     {
-        $planId = $request->input('plan_id'); 
-        $days = $request->input('days');
+        $planId = $plan; 
+        $days = $nb;
 
        
         session(['selected_days' => $days]);
