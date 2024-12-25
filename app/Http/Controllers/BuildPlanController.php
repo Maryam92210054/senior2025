@@ -138,6 +138,13 @@ class BuildPlanController extends Controller
             'plan_id' => $plan_id, 
         ]);
     }
-    
+    public function getMealDetails($mealId)
+    {
+        $meal = Meal::select('meals.*', 'goals.name as goal_name')
+            ->join('goals', 'meals.goal_id', '=', 'goals.id')
+            ->findOrFail($mealId);
+
+        return response()->json($meal);
+    }
 
 }

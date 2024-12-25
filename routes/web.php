@@ -26,6 +26,7 @@ Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
     Route::post('/login', [AuthenticationController::class, 'loginPost'])->name('login.post');
     Route::get('/registration',[AuthenticationController::class,'registration'])->name('registration');
     Route::post('/registration', [AuthenticationController::class, 'registrationPost'])->name('registration.post');
+    Route::post('/cancel-order', [ViewPlanController::class, 'cancelOrder'])->name('cancel-order');
 
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/payment/success', function () {return view('meals.success');})->name('meals.success');
@@ -44,8 +45,14 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMealPlan'])->name('storeUserMealPlan');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-
-
+    Route::get('/meals/{mealId}', [MealPlanController::class, 'getMealDetails']);
+    Route::get('/api/meals/{id}', function ($id) {
+        $meal = \App\Models\Meal::select('meals.*', 'goals.name as goal_name')
+            ->join('goals', 'meals.goal_id', '=', 'goals.id')
+            ->findOrFail($id);
+    
+        return response()->json($meal);
+    });
 });
 
 Route::middleware(['auth', 'role:2'])->group(function () {

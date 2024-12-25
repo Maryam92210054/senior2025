@@ -7,6 +7,7 @@ use App\Models\OrderDayMeal;
 use App\Models\Plan;
 use App\Models\PlanType;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class ViewPlanController extends Controller
 {
@@ -86,4 +87,24 @@ class ViewPlanController extends Controller
 
         return view('meals.viewPlan', compact('orderDayMealsData', 'mealTypes'));
     }
+    public function cancelOrder(Request $request)
+    {
+        $userId = Auth::id(); // Get the logged-in user's ID
+
+        // Retrieve the most recent order for the user
+        $lastOrder = Order::where('user_id', $userId)->latest('created_at')->first();
+
+        if (!$lastOrder) {
+            return redirect()->back()->with('error', 'No order to cancel.');
+        }
+
+        // Delete the order or perform the necessary logic to cancel it
+        $lastOrder->delete();
+
+        return redirect()->back()->with('success', 'Order has been successfully cancelled.');
+    }
+
+
 }
+
+
