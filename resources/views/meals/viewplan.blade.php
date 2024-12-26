@@ -99,7 +99,7 @@
                     <tr>
                         <th>Meal Name</th>
                         <th>Meal Image</th>
-                        <th>Date</th>
+                      
                     </tr>
                 </thead>
                 <tbody id="orderDetailsBody">
@@ -131,7 +131,7 @@
                             <tr>
                                 <td>${meal.name}</td>
                                 <td><img src="{{ asset('mealsImages') }}/${meal.image}" alt="${meal.name}" style="width: 100px; height: auto;"></td>
-                                <td>${meal.date}</td>
+                              
                             </tr>
                         `;
                     });
