@@ -46,7 +46,10 @@ class Meal extends Model
     {
         return $this->belongsToMany(Plan::class, 'plan_type_meals', 'meal_type_id', 'plan_type_id');
     }
-    
+    public function orderDayMeals()
+{
+    return $this->hasMany(OrderDayMeal::class);
+}
     
 
     

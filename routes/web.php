@@ -30,8 +30,11 @@ Route::get('/login', [AuthenticationController::class, 'login'])->name('login');
 
 Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/payment/success', function () {return view('meals.success');})->name('meals.success');
-    Route::get('/payment/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('/payment/{order_id}', [PaymentController::class, 'store'])->name('payment.store');
+  
+
+Route::get('/payments/create/{order_id}', [PaymentController::class, 'create'])->name('payment.create');
+Route::post('/payments/store/{order_id}', [PaymentController::class, 'store'])->name('payment.store');
+
     Route::get('/view-plan', [ViewPlanController::class, 'viewPlan'])->name('view.plan');
 
     Route::get('/viewMeals', [MealController::class, 'meals'])->name('viewMeals');
@@ -53,6 +56,9 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     
         return response()->json($meal);
     });
+    Route::get('/order-details/{orderId}', [ViewPlanController::class, 'getOrderDetails']);
+
+
 });
 
 Route::middleware(['auth', 'role:2'])->group(function () {
