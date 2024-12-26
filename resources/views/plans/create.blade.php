@@ -12,8 +12,8 @@
 </head>
 
 <body>
-
-<div class="container">
+<div class="parent-container">
+<div class="create-container">
   <div class="title">Create Plan</div>
   <form action="{{route('plans.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -52,6 +52,8 @@
     </div>
   </form>
 </div>
+</div>
+
 
 </body>
 </html>

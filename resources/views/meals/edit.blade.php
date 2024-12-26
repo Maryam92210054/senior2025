@@ -13,7 +13,7 @@
 
 <body>
 
-<div class="container">
+<div class="create-container" style=" width: 80%; margin: 50px auto; padding: 40px;">  
   <div class="title">Edit Meal</div>
   <form action="{{route('meals.update',$meal->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -91,7 +91,6 @@
     </div>
   </form>
 </div>
-
 </body>
 </html>
 @endsection

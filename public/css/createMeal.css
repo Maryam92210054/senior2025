@@ -1,33 +1,36 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
+
 
 body {
-  background: #bddb8f;
+  background: #ccd5ae;
   color: #333;
 }
 
 /* Create Meal Form Container */
-.container {
+.parent-container {
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  height: 100vh; 
+  margin-bottom:50px;          /* Full viewport height */
+}
+.create-container {
   width: 80%; /* Make the container take up 80% of the page width */
-  margin: 50px auto;
-  background-color: #fff;
+  margin-top: 50px;
   padding: 40px; /* Increase padding for more space inside the form */
-  border-radius: 8px;
+  border: 2px solid #ccd5ae;
+  border-radius: 10px;
+  background-color: #fefae0;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.container .title {
+.create-container .title {
   font-size: 30px; /* Increase font size for the title */
   font-weight: 600;
   text-align: center;
   margin-bottom: 30px; /* Increase margin bottom for more space between title and form */
 }
 
-.container form {
+.create-container form {
   display: flex;
   flex-direction: column;
   gap: 25px; /* Increase gap between form fields */
@@ -57,7 +60,9 @@ body {
 .input-box select {
   height: 45px; /* Slightly increase height for input fields */
   padding: 8px 12px; /* Increase padding inside the fields */
-  border: 1px solid #ccc;
+  border: 1px solid #000000;
+  background-color: #fefae0;
+
   border-radius: 5px;
   font-size: 16px; /* Increase font size for better readability */
   transition: border-color 0.3s ease;
@@ -75,14 +80,14 @@ body {
 }
 
 /* Create Button */
-.container .button {
+.create-container .button {
   text-align: center;
 }
 
 /* Make the button wider */
-.container .button input {
-  background: linear-gradient(135deg, #bddb8f, #809c56);
-  color: white;
+.create-container .button input {
+  background: #ccd5ae;
+  color: rgb(0, 0, 0);
   border: none;
   padding: 15px 30px; /* Increase padding for the button */
   font-size: 18px; /* Increase font size for the button */
@@ -92,8 +97,8 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.container .button input:hover {
-  background: linear-gradient(135deg, #809c56, #bddb8f);
+.create-container .button input:hover {
+  background:#d4a373;
 }
 
 /* Restrictions Section */

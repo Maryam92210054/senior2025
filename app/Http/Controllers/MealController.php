@@ -17,15 +17,46 @@ class MealController extends Controller
         
         return view('viewMeals', compact('goals'));
     }
-    public function index(Request $request) {
-        $search = $request->input('search');
+    public function index(Request $request)
+    {
+        // Retrieve all meal types, goals, and restrictions for the filter form
+        $types = MealType::all();
+        $goals = Goal::all();
+        $restrictions = Restriction::all();
 
-        $meals = Meal::when($search, function ($query, $search) {
-            return $query->where('name', 'like', '%' . $search . '%');
-        })->paginate(10); 
+        // Initialize the meals query
+        $mealsQuery = Meal::query();
 
-        return view('meals.index', compact('meals', 'search'));
+        // Apply search filter
+        if ($search = $request->input('search')) {
+            $mealsQuery->where('name', 'like', '%' . $search . '%');
+        }
+
+        // Apply meal type filter
+        if ($mealTypeId = $request->input('meal_type_id')) {
+            $mealsQuery->where('meal_type_id', $mealTypeId);
+        }
+
+        // Apply goal filter
+        if ($goalId = $request->input('goal_id')) {
+            $mealsQuery->where('goal_id', $goalId);
+        }
+
+        // Apply dietary restrictions filter
+        if ($restrictionIds = $request->input('restrictions')) {
+            $mealsQuery->whereHas('restrictions', function ($query) use ($restrictionIds) {
+                $query->whereIn('restrictions.id', $restrictionIds);
+            });
+        }
+
+        // Paginate the filtered results
+        $meals = $mealsQuery->paginate(10);
+
+        // Pass data to the view
+        return view('meals.index', compact('meals', 'search', 'types', 'goals', 'restrictions'));
     }
+
+
     public function show($mealId) {
        
         $singleMealFromDb= Meal::find($mealId);

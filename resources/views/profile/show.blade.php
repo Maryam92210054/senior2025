@@ -43,22 +43,6 @@
 
       <div class="input-row">
         <div class="input-box">
-          <span>Select your city</span>
-          <select name="address" required>
-            <option value="Akkar al-Atika">Akkar al-Atika</option>
-            <option value="Andaket">Andaket</option>
-            <option value="Beino">Beino</option>
-            <option value="Berqayel">Berqayel</option>
-            <option value="Halba">Halba</option>
-            <option value="Kobayat">Kobayat</option>
-            <option value="Miniara">Miniara</option>
-            <option value="Qoubaiyat">Qoubaiyat</option>
-            <option value="Tal Abbas al-Gharbi">Tal Abbas al-Gharbi</option>
-            <option value="Tal Abbas al-Sharqi">Tal Abbas al-Sharqi</option>
-          </select>
-          <span class="text-danger">@error('address'){{ $message }} @enderror</span>
-        </div>
-        <div class="input-box">
     <span>Select your city</span>
     <select name="address" required>
         <option value="Akkar al-Atika" {{ old('address', $user->address) == 'Akkar al-Atika' ? 'selected' : '' }}>Akkar al-Atika</option>

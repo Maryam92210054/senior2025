@@ -73,14 +73,16 @@ class BuildPlanController extends Controller
             ->where('plan_type_id', $plan->plan_type_id)
             ->pluck('meal_type_id');
            
+           
 
         // Check the user's restrictions
-        $userRestrictions = Auth::user()->restriction_id;
+        $userRestrictions = is_array(Auth::user()->restriction_id) ? Auth::user()->restriction_id : (Auth::user()->restriction_id ? [Auth::user()->restriction_id] : []);
         
         // Query meals based on meal type, goal, availability, and restrictions
         $mealsQuery = Meal::whereIn('meal_type_id', $types)
             ->where('goal_id', Auth::user()->goal_id)
             ->where('availability', 1);
+            
         
 
         // If the user has restrictions, filter meals accordingly

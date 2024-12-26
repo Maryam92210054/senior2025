@@ -1,11 +1,14 @@
 
 body {
-    font-family: 'Arial', sans-serif; /* Use the same font family as your previous pages */
-    background-color: #bddb8f;
+    background-color: #fefae0;
     color: #333;
 }
-.container {
+.show-container {
     margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    background-color: #fefae0;
+
 }
 
 .meal-profile {
@@ -13,9 +16,9 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 30px;
-    border: 1px solid #ddd;
+    border: 2px solid #ccd5ae;
     border-radius: 10px;
-    background-color: #fff;
+    background-color: #fefae0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -64,6 +67,18 @@ body {
 .meal-actions .btn {
     padding: 10px 20px; /* Adjust padding to fit your design */
     font-size: 16px; /* Adjust font size */
+    background-color: #ccd5ae;
+    border: 2px solid #ccd5ae;
+    color:black;
+
+}
+.meal-actions .btn:hover {
+    padding: 10px 20px; /* Adjust padding to fit your design */
+    font-size: 16px; /* Adjust font size */
+    background-color: #d4a373;
+    border: 2px solid #d4a373;
+    color:black;
+
 }
 
 .meal-actions .btn-lg {

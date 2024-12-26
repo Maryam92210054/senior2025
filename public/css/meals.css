@@ -1,6 +1,6 @@
 body {
     color: #566787;
-    background: #bddb8f;
+    background: #FEFAE0;
     font-family: 'Roboto', sans-serif;
 }
 .table-responsive {
@@ -8,7 +8,7 @@ body {
 }
 .table-wrapper {
     min-width: 1000px;
-    background: #fff;
+    background: #FEFAE0;
     padding: 20px;
     box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
@@ -19,19 +19,22 @@ body {
 }
 .table-title h2 {
     margin: 8px 0 0;
-    font-size: 22px;
-    color:#809c56
+    font-size: 30px;
+    color:#000000
 }
 
 table.table tr th, table.table tr td {
     border-color: #e9e9e9;
+    color:#000000
 }
-table.table-striped tbody tr:nth-of-type(odd) {
-    background-color: #fcfcfc;
+table tbody {
+    color: #000000;
+    background: #FEFAE0;
+    font-family: 'Roboto', sans-serif;
 }
-table.table-striped.table-hover tbody tr:hover {
-    background: #f5f5f5;
-}
+
+
+
 table.table th i {
     font-size: 13px;
     margin: 0 5px;
@@ -41,7 +44,7 @@ table.table td:last-child {
     width: 130px;
 }
 table.table td a {
-    color: #a0a5b1;
+    color: #215deb;
     display: inline-block;
     margin: 0 5px;
 }
@@ -74,25 +77,25 @@ table.table td i {
 /* Style the pagination links */
 .pagination .page-link {
     padding: 8px 15px;
-    border: 1px solid #ddd;
+    background-color: #ccd5ae;
     border-radius: 5px;
-    color: #809c56; /* Default link color */
+    color: #000000; /* Default link color */
     font-weight: bold;
     text-decoration: none;
 }
 
 /* Change link color on hover */
 .pagination .page-link:hover {
-    background-color: #809c56;
-    color:#fff;
+    background-color: #d4a373;
+    color:#000000;
 
 }
 
 /* Highlight the active page */
 .pagination .active .page-link {
-    background-color: #809c56;
-    color: #fff;
-    border-color: #bddb8f;
+    background-color: #d4a373;
+    color: #000000;
+    
 }
 
 /* Disable page link */
@@ -118,8 +121,10 @@ table.table td i {
 }    
 /* Change button color */
 .btn-success,.filter-button {
-    background: linear-gradient(135deg, #bddb8f, #809c56);
-  color: white;
+    background: #CCD5AE;
+    text-align: center; /* Centers text horizontally */
+
+  color: rgb(0, 0, 0);
   border: none;
   padding: 15px 30px; /* Increase padding for the button */
   font-size: 18px; /* Increase font size for the button */
@@ -129,11 +134,13 @@ table.table td i {
 }
 
 .btn-success:hover {
-    background: linear-gradient(135deg, #809c56, #bddb8f);
+    
+    background: #d4a373;
+    color: rgb(0, 0, 0);
 
 }
 .filter-button:hover {
-    background: linear-gradient(135deg, #809c56, #bddb8f);
+    background: #d4a373;
 
 }
 
@@ -156,37 +163,36 @@ table.table td i {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .modal-header {
-    background-color: #f8f9fa;
-    border-bottom: 2px solid #dee2e6;
+    background-color: #CCD5AE;
+    border-bottom: 2px solid #CCD5AE;
 }
 .modal-title {
-    color: #495057;
+    color: #000000;
     font-weight: bold;
 }
 .modal-body {
     font-size: 1rem;
-    color: #495057;
+    color: #000000;
 }
 .modal-footer {
     border-top: 2px solid #dee2e6;
 }
-.btn-danger {
-    background-color: #e74c3c;
-    border-color: #e74c3c;
-    transition: background-color 0.3s, border-color 0.3s;
+.btn-apply-filters {
+    
+    background-color: #CCD5AE; /* Custom background color */
+    color: rgb(0, 0, 0);              /* Text color */
 }
-.btn-danger:hover {
-    background-color: #c0392b;
-    border-color: #c0392b;
+.btn-apply-filters:hover {
+    background-color: #d4a373; /* Background color on hover */
+    color: rgb(0, 0, 0);              /* Text color on hover */
 }
 .btn-secondary {
-    background-color: #f8f9fa;
-    border-color: #f8f9fa;
-    color: #495057;
+    background-color: #CCD5AE;
+    color: #000000;
 }
 .btn-secondary:hover {
-    background-color: #e2e6ea;
-    border-color: #dae0e5;
+    background-color: #d4a373;
+
 }
 
 /* Smaller Modal */
@@ -201,14 +207,14 @@ table.table td i {
     height: 34px;
     border-radius: 20px;
     padding-left: 35px;
-    border-color: #ddd;
+    border-color: #000000;
     box-shadow: none;
 }
 .search-box input:focus {
-    border-color: #3FBAE4;
+    border-color: #CCD5AE;
 }
 .search-box i {
-    color: #a0a5b1;
+    color: #000000;
     position: absolute;
     font-size: 19px;
     top: 8px;

@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="show-container">
         <!-- Meal Profile Card -->
         <div class="meal-profile">
             <!-- Meal Information (Left) -->

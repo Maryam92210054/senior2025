@@ -12,8 +12,9 @@
 </head>
 
 <body>
+<div class="parent-container">
 
-<div class="container">
+<div class="create-container">
   <div class="title">Edit Plan</div>
   <form action="{{route('plans.update',$plan->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
@@ -56,7 +57,7 @@
     </div>
   </form>
 </div>
-
+</div>
 </body>
 </html>
 @endsection

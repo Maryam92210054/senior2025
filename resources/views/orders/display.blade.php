@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
    
 
-    <link href="{{ asset('css/orders.display.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/meals.css') }}" rel="stylesheet">
 
 <body>
     <div class="container-xl">

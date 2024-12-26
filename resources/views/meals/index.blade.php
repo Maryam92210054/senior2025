@@ -15,33 +15,39 @@
     <div class="container-xl">
         <div class="table-responsive">
             <div class="table-wrapper">
-                <div class="table-title">
-                    <div class="row">
-                        <div class="col-sm-8">
-                            <h2>Meal <b>Details</b></h2>
-                        </div>
-                        <div class="col-sm-4 text-right">
-                            <form method="GET" action="{{ route('meals.index') }}">
-                                <div class="search-box">
-                                    <i class="material-icons">&#xE8B6;</i>
-                                    <input
-                                        type="text"
-                                        name="search"
-                                        class="form-control"
-                                        placeholder="Search&hellip;"
-                                        value="{{ request('search') }}"
-                                    />
-                                </div>
-                            </form>
-                        </div>
-                        <div class='button-div'>
-                            <!-- Create Meal Button -->
-                            <a href="{{ route('meals.create') }}" class="btn btn-success d-flex align-items-center justify-content-center" title="Create Meal">
-                                <i class="material-icons mr-2">&#xE145;</i> <span>Create New Meal</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="table-title">
+    <div class="d-flex justify-content-between align-items-center">
+        <!-- Meal Details Heading -->
+        <h2>Meal <b>Details</b></h2>
+
+        <!-- Search Form -->
+        <form method="GET" action="{{ route('meals.index') }}" class="search-form">
+            <div class="search-box">
+                <i class="material-icons">&#xE8B6;</i>
+                <input
+                    type="text"
+                    name="search"
+                    class="form-control"
+                    placeholder="Search&hellip;"
+                    value="{{ request('search') }}"
+                />
+            </div>
+        </form>
+
+        <!-- Filter Button -->
+        <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">
+            Filters
+        </button>
+    </div>
+
+    <!-- Create Meal Button -->
+    <div class="button-div mt-3">
+        <a href="{{ route('meals.create') }}" class="btn btn-success d-flex align-items-center justify-content-center" title="Create Meal">
+            <i class="material-icons mr-2">&#xE145;</i> <span>Create New Meal</span>
+        </a>
+    </div>
+</div>
+
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
@@ -97,6 +103,71 @@
                         @endforelse
                     </tbody>
                 </table>
+                                <!-- Filter Modal -->
+                                <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="filterModalLabel">Apply Filters</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Filter Form -->
+                        <form method="GET" action="{{ route('meals.index') }}">
+                            <div class="form-group mb-3">
+                                <label for="">Meal Type:</label>
+                                <select name="meal_type_id" class="form-control">
+                                    <option value="" disabled selected>Select Meal Type</option>
+                                    @foreach ($types as $type)
+                                        <option value="{{ $type->id }}" >
+                                            {{ $type->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="">Meal Goal:</label>
+                                <select name="goal_id" class="form-control">
+                                    <option value="" disabled selected>Select Meal Goal</option>
+                                    @foreach ($goals as $goal)
+                                        <option value="{{ $goal->id }}" >
+                                            {{ $goal->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                            </div>
+                      
+                            <div class="form-group mb-3">
+                                <label>Dietary Restrictions:</label>
+                                @foreach ($restrictions as $restriction)
+                                    <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            name="restrictions[]"
+                                            value="{{ $restriction->id }}"
+                                            id="restriction_{{ $restriction->id }}"
+                                            {{ is_array(request('restrictions')) && in_array($restriction->id, request('restrictions')) ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="restriction_{{ $restriction->id }}">
+                                            {{ $restriction->name }}
+                                        </label>
+                                    </div>
+                                @endforeach
+                            </div>
+
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-apply-filters " >Apply Filters</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
@@ -137,6 +208,8 @@
                         });
                     });
                 </script>
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
                 <div class="pagination">
                     {{ $meals->links() }}

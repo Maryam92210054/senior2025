@@ -23,7 +23,7 @@
                             <h2>Order <b>Details</b></h2>
                         </div>
                         <!-- Filters Button aligned right -->
-                        <div class="col-sm-4 text-right filters-btn">
+                        <div class="col-sm-4 text-end"">
                             <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">
                                 Filters
                             </button>
@@ -113,7 +113,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Apply Filters</button>
+                                <button type="submit" class="btn btn-apply-filters " >Apply Filters</button>
                             </div>
                         </form>
                     </div>

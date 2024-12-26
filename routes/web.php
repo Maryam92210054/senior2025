@@ -48,7 +48,6 @@ Route::post('/payments/store/{order_id}', [PaymentController::class, 'store'])->
     Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMealPlan'])->name('storeUserMealPlan');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-    Route::get('/meals/{mealId}', [MealPlanController::class, 'getMealDetails']);
     Route::get('/api/meals/{id}', function ($id) {
         $meal = \App\Models\Meal::select('meals.*', 'goals.name as goal_name')
             ->join('goals', 'meals.goal_id', '=', 'goals.id')
