@@ -56,7 +56,7 @@ Route::post('/payments/store/{order_id}', [PaymentController::class, 'store'])->
         return response()->json($meal);
     });
     Route::get('/order-details/{orderId}', [ViewPlanController::class, 'getOrderDetails']);
-
+    Route::get('/order-history', [ViewPlanController::class, 'viewOrderHistory'])->name('order-history');
 
 });
 

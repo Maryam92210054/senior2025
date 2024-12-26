@@ -43,31 +43,35 @@ class PaymentController extends Controller
                 'required',
                 'string',
                 'min:7',
-                
             ],
-        ]);
-        // Validate the request
-        $request->validate([
             'amount' => 'required|numeric',
-            'account_code' => 'required|string',
             'order_id' => 'required|exists:orders,id',
         ]);
-
+    
+        // Calculate the final amount based on eco-friendly packaging selection
+        $calculatedAmount = $request->amount;
+    
+        if ($request->has('eco_friendly')) {
+            $calculatedAmount += 5; // Add $5 for eco-friendly packaging
+        }
+    
         // Create a new payment entry
         $payment = Payment::create([
-            'amount' => $request->amount,
-            'payment_date' => now()->format('Y-m-d'), // Automatically set today's date
+            'amount' => $calculatedAmount,
+            'payment_date' => now()->format('Y-m-d'),
             'order_id' => $request->order_id,
         ]);
-
-        // Link the payment to the order
+    
+        // Update the order status to 'placed'
         $order = Order::findOrFail($request->order_id);
-        $order->status = 'placed'; // You can use 'placed' to mark the order as paid
-
+        $order->status = 'placed';
+    
         $order->save();
-
+    
         // Redirect to a success page
         return redirect()->route('meals.success')->with('success', 'Payment completed successfully!');
     }
+    
+    }
    
-}
+

@@ -31,7 +31,10 @@
                 <label for="amount">Payment Amount</label>
                 <input type="text" name="amount" id="amount" class="form-control" value="{{ $calculatedAmount }}" readonly>
             </div>
-
+            <div class="form-group">
+                <label for="eco_friendly">Eco-friendly Packaging ($5 extra)</label>
+                <input type="checkbox" id="eco_friendly" name="eco_friendly" value="5">
+            </div>
             <!-- Display Today's Payment Date -->
             <div class="form-group">
                 <label for="payment_date">Payment Date</label>
@@ -46,6 +49,9 @@
                     Your account code must be at least 7 characters long and contain at least one uppercase letter, one lowercase letter, one special character, and one number.
                 </small>
             </div>
+
+            <!-- Eco-friendly Packaging Checkbox -->
+            
 
             <!-- Hidden Order ID -->
             <input type="hidden" name="order_id" value="{{ $orderId }}">
@@ -108,16 +114,18 @@
         document.getElementById('selected-method').innerText = "You have selected: Whish";
     });
 
-    // Validate the account code
-    document.getElementById('account_code').addEventListener('input', function() {
-        const accountCode = this.value;
-        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{7,})/;
+    // Adjust the payment amount if the eco-friendly packaging is selected
+    document.getElementById('eco_friendly').addEventListener('change', function() {
+        let baseAmount = parseFloat('{{ $calculatedAmount }}');
+        let ecoFriendlyPrice = 5;
 
-        if (!regex.test(accountCode)) {
-            this.setCustomValidity("Your account code must contain at least one uppercase letter, one lowercase letter, one number, one special character, and be at least 7 characters long.");
+        if (this.checked) {
+            baseAmount += ecoFriendlyPrice;
         } else {
-            this.setCustomValidity("");  // Clear the error if valid
+            baseAmount -= ecoFriendlyPrice;
         }
+
+        document.getElementById('amount').value = baseAmount.toFixed(2);
     });
 </script>
 @endsection

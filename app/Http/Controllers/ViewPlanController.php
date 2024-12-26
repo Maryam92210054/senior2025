@@ -113,35 +113,53 @@ class ViewPlanController extends Controller
     public function getOrderDetails($orderId)
 {
     try {
-        // Fetch order by ID
+        // Fetch order by ID with related data
         $order = Order::with(['orderDays.orderDayMeals.meal'])->find($orderId);
 
         if (!$order) {
             return response()->json(['error' => 'Order not found'], 404);
         }
 
-        $meals = [];
+        $days = [];
 
-        // Iterate through orderDays and their meals
+        // Iterate through each orderDay and its meals
         foreach ($order->orderDays as $orderDay) {
+            $meals = [];
+
             foreach ($orderDay->orderDayMeals as $orderDayMeal) {
                 if ($orderDayMeal->meal) {
                     $meals[] = [
                         'name' => $orderDayMeal->meal->name,
                         'image' => $orderDayMeal->meal->meal_image,
-                        'date' => $orderDay->date,
                     ];
                 }
             }
+
+            $days[] = [
+                'day_number' => $orderDay->day_number,
+                'date' => $orderDay->date,
+                'meals' => $meals,
+            ];
         }
 
-        return response()->json(['meals' => $meals]);
+        return response()->json(['days' => $days]);
     } catch (\Exception $e) {
-        Log::error('Error fetching order details: ' . $e->getMessage());
+        \Log::error('Error fetching order details: ' . $e->getMessage());
         return response()->json(['error' => 'An unexpected error occurred'], 500);
     }
 }
 
+public function viewOrderHistory()
+{
+    $userId = Auth::id();
+
+    // Fetch order history sorted by latest created_at
+    $orderHistory = Order::where('user_id', $userId)
+                         ->orderBy('created_at', 'desc') // Order by latest
+                         ->get();
+
+    return view('meals.orderHistory', compact('orderHistory'));
+}
 
 }
 
