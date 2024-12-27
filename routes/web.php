@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ViewPlanController;
+use App\Http\Controllers\PlanTypeController;
 
 
 Route::get('/', function () {
@@ -72,6 +73,12 @@ Route::middleware(['auth', 'role:2'])->group(function () {
     Route::post('/plans/{id}/toggle-availability', [PlanController::class, 'toggleAvailability']);    Route::get('/plans', [PlanController::class , 'index' ])->name('plans.index');
     Route::get('/orders', [OrderController::class , 'index' ])->name('orders.index');
     Route::get('/orders/{order}', [OrderController::class , 'display' ])->name('orders.display');
+    Route::get('/plan-types',[PlanTypeController::class , 'index' ])->name('plan-types.index');
+    Route::get('/plan-typescreate', [PlanTypeController::class , 'create' ])->name('plan-types.create');
+    Route::post('/plan-types',[PlanTypeController::class , 'store' ])->name('plan-types.store');
+    Route::get('/plan-types/{id}/edit', [PlanTypeController::class , 'edit' ])->name('plan-types.edit');
+    Route::put('/plan-types/{id}', [PlanTypeController::class , 'update' ])->name('plan-types.update');
+
 });
 
 Route::middleware(['auth'])->group(function () {

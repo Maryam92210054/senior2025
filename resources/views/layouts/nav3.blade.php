@@ -48,7 +48,13 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
                           <a href="{{ route('meals.index') }}" class="nav-item nav-link ">Meals</a>
-                          <a href="{{ route('plans.index') }}" class="nav-item nav-link "> Plans</a>
+                          <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Plans</a>
+                                <div class="dropdown-menu bg-light">
+                                        <a href="{{ route('plans.index') }}" class="nav-item nav-link "> Plans</a>
+                                <a href="{{ route('plan-types.index') }}" class="nav-item nav-link "> Plan Types</a>
+                                </div>
+                            </div>
                           <a href="{{ route('orders.index') }}" class="nav-item nav-link "> Orders</a>
 
                             @auth

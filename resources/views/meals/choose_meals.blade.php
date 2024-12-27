@@ -1,6 +1,11 @@
 @extends('layouts.nav2')
 
 @section('content')
+<head>
+
+
+
+</head>
 
 <div class="custom-background py-5" style="background-color: #fefae0; min-height: 100vh;">
     <div class="container white-container p-5" style="background-color: #fefae0; border-radius: 10px;">
@@ -12,58 +17,63 @@
         <input type="hidden" name="plan_id" value="{{ $plan->id }}">
 
         @foreach ($daysArray as $day)
-        <div class="my-4">
-            <h5 class="mb-3 text-center italiana-font font-weight-bold">Day {{ $day }}</h5>
+    <div class="my-4">
+        <h5 class="mb-3 text-center italiana-font font-weight-bold">Day {{ $day }}</h5>
 
-            <!-- Date selector for each day -->
-            <div class="form-group text-center">
-                <label for="date-day-{{ $day }}" class="italiana-font font-weight-bold">Select Date for Day {{ $day }}</label>
-                <input type="date" id="date-day-{{ $day }}" name="dates[{{ $day }}]" class="form-control" required>
-            </div>
+        <!-- Date selector for each day -->
+        <div class="form-group text-center">
+            <label for="date-day-{{ $day }}" class="italiana-font font-weight-bold">Select Date for Day {{ $day }}</label>
+            <input type="date" id="date-day-{{ $day }}" name="dates[{{ $day }}]" class="form-control" required>
+        </div>
 
-            <!-- Meal selection based on meal types -->
-            @foreach ($mealsByType as $mealTypeId => $meals)
+        <!-- Meal selection based on meal types -->
+        @foreach ($mealsByType as $mealTypeId => $meals)
             <h3 class="mt-4 text-center italiana-font font-weight-bold">{{ \App\Models\MealType::find($mealTypeId)->name }}</h3>
 
             <!-- Meal carousel for each meal type -->
             <div id="mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" class="carousel slide">
                 <div class="carousel-inner">
                     @foreach ($meals->chunk(4) as $index => $mealChunk)
-                    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                        <div class="row">
-                            @foreach ($mealChunk as $meal)
-                            <div class="col-lg-3 col-md-6 wow bounceInUp d-flex" data-wow-delay="0.3s">
-                                <div class="team-item rounded h-100 d-flex flex-column">
-                                    <!-- Image acts as a trigger for the modal -->
-                                    <img class="img-fluid rounded-top meal-image" src="{{ asset('mealsImages/' . $meal->meal_image) }}" alt="{{ $meal->name }}" style="height: 200px;" data-meal-id="{{ $meal->id }}">
-                                    <div class="team-content text-center py-3 rounded-bottom flex-grow-1">
-                                        <h4>{{ $meal->name }}</h4>
-                                        <input class="form-check-input mt-3" type="radio" name="meals[{{ $day }}][{{ $mealTypeId }}]" id="meal_{{ $meal->id }}_day_{{ $day }}" value="{{ $meal->id }}" required>
+                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                            <div class="row">
+                                @foreach ($mealChunk as $meal)
+                                    <div class="col-lg-3 col-md-6 wow bounceInUp d-flex" data-wow-delay="0.3s">
+                                        <div class="team-item rounded h-100 d-flex flex-column meal-item" id="meal_{{ $meal->id }}_day_{{ $day }}">
+                                            <!-- Image -->
+                                            <img class="img-fluid rounded-top meal-image" src="{{ asset('mealsImages/' . $meal->meal_image) }}" 
+                                                alt="{{ $meal->name }}" style="height: 200px;" data-meal-id="{{ $meal->id }}">
+                                            <i class="fas fa-search-plus zoom-in-icon position-absolute top-0 start-0 m-2" 
+                                            style="font-size: 24px; color: black; cursor: pointer;"></i>
+
+                                            <div class="team-content text-center py-3 rounded-bottom flex-grow-1">
+                                                <h4>{{ $meal->name }}</h4>
+                                                <input class="form-check-input mt-3" type="radio" name="meals[{{ $day }}][{{ $mealTypeId }}]" id="meal_{{ $meal->id }}_day_{{ $day }}" value="{{ $meal->id }}" required>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
-                    </div>
                     @endforeach
                 </div>
 
                 <!-- Carousel indicators -->
                 <div class="d-flex justify-content-center mt-10">
                     @foreach ($meals->chunk(4) as $index => $mealChunk)
-                    <button type="button" 
-                            data-target="#mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" 
-                            data-slide-to="{{ $index }}" 
-                            class="carousel-indicator {{ $index == 0 ? 'active' : '' }}" 
-                            aria-label="Slide {{ $index + 1 }}">
-                        {{ $index + 1 }}
-                    </button>
+                        <button type="button" 
+                                data-target="#mealCarousel-{{ $mealTypeId }}-day-{{ $day }}" 
+                                data-slide-to="{{ $index }}" 
+                                class="carousel-indicator {{ $index == 0 ? 'active' : '' }}" 
+                                aria-label="Slide {{ $index + 1 }}">
+                            {{ $index + 1 }}
+                        </button>
                     @endforeach
                 </div>
             </div>
-            @endforeach
-        </div>
         @endforeach
+    </div>
+@endforeach
+
 
         <div class="text-center">
             <button type="submit" class="custom-btn">Submit Plan</button>
@@ -164,56 +174,97 @@
         });
     });
 });
+document.querySelectorAll('.zoom-in-icon').forEach(icon => {
+    icon.addEventListener('click', function () {
+        const mealItem = this.closest('.meal-item');
+        const mealId = mealItem.querySelector('.meal-image').getAttribute('data-meal-id');
+
+        fetch(`/api/meals/${mealId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('meal-image').src = `/mealsImages/${data.meal_image}`;
+                document.getElementById('meal-name').textContent = data.name;
+                document.getElementById('meal-description').textContent = `Description: ${data.description}`;
+                document.getElementById('meal-health-info').textContent = `Health Info: ${data.health_info}`;
+                document.getElementById('meal-goal-name').textContent = `Goal: ${data.goal_name}`;
+                $('#mealDetailsModal').modal('show');
+            })
+            .catch(error => console.error('Error fetching meal details:', error));
+    });
+});
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Add event listener to all images
-    document.querySelectorAll('.meal-image').forEach(image => {
-        image.addEventListener('click', function () {
-            const mealId = this.getAttribute('data-meal-id');
+    // JavaScript to highlight the selected meal when the radio button is clicked
+    document.querySelectorAll('.meal-item').forEach(mealItem => {
+        mealItem.addEventListener('click', function () {
+            // Find the radio button associated with the clicked meal
+            const radioButton = mealItem.querySelector('input[type="radio"]');
 
-            // Fetch meal details from the API
-            fetch(`/api/meals/${mealId}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Populate modal with meal details
-                    document.getElementById('meal-image').src = `/mealsImages/${data.meal_image}`;
-                    document.getElementById('meal-name').textContent = data.name;
-                    document.getElementById('meal-description').textContent = `Description: ${data.description}`;
-                    document.getElementById('meal-health-info').textContent = `Health Info: ${data.health_info}`;
-                    document.getElementById('meal-goal-name').textContent = `Goal: ${data.goal_name}`;
+            // Manually trigger the change event to select the meal
+            radioButton.checked = true;
 
-                    // Show the modal
-                    $('#mealDetailsModal').modal('show');
-                })
-                .catch(error => {
-                    console.error('Error fetching meal details:', error);
-                });
+            // Deselect all meals in the carousel
+            const mealTypeId = mealItem.closest('.carousel').id.split('-')[1]; // Extract the mealTypeId
+            const day = mealItem.closest('.my-4').querySelector('h5').textContent.split(' ')[1]; // Extract the day number
+            document.querySelectorAll(`#mealCarousel-${mealTypeId}-day-${day} .meal-item`).forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Highlight the clicked meal
+            mealItem.classList.add('selected');
         });
     });
 });
+
 </script>
 
-@endsection
-
-@section('styles')
-<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
 <style>
-.italiana-font { font-family: 'Italiana', serif; }
-.carousel-indicator { background-color: black; color: white; border-radius: 50%; width: 30px; height: 30px; text-align: center; line-height: 30px; margin: 0 5px; cursor: pointer; }
-.carousel-indicator.active { background-color: green; }
-html, body { height: 100%; margin: 0; padding: 0; }
-.custom-background { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-.font-weight-bold { font-weight: bold; }
-.card { box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; }
-.meal-image { max-height: 150px; object-fit: cover; cursor: pointer; transition: all 0.3s ease; }
-.meal-image:hover {
-    transform: scale(1.05); /* Slight zoom effect */
-    opacity: 0.8; /* Slightly fade the image */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /* Circular shape */
+    border: 2px solid #ccd5ae; /* Blue border */
+    background-color: transparent; /* Make background transparent */
+    position: absolute; /* Position it off-screen */
+    visibility: hidden; /* Hide radio button */
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
-.modal-body img { max-width: 100%; height: auto; display: block; margin: 0 auto; border-radius: 10px; }
-.modal-body h3 { text-align: center; margin-top: 20px; }
-.modal-body p { text-align: center; margin: 10px 0; }
-.carousel-inner { display: flex; justify-content: center; }
-.carousel-control-prev, .carousel-control-next { width: 5%; }
+
+.meal-item.selected {
+    border: 3px solid #d4a373; /* Customize border color */
+    box-shadow: 0 0 15px rgba(212, 163, 115, 0.7); /* Optional box-shadow */
+}
+
+.team-item {
+    position: relative;
+}
+
+.team-item input[type="radio"]:checked + .team-content {
+    border: 3px solid #d4a373;
+    box-shadow: 0 0 15px rgba(212, 163, 115, 0.7);
+}
+
+/* Add pointer cursor for clickable meal items */
+.meal-item {
+    cursor: pointer;
+}
+
+/* Change the cursor to pointer for radio button */
+input[type="radio"] {
+    cursor: pointer;
+}
+
 </style>
 @endsection
+
+
+
+    
+

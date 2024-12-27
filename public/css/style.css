@@ -146,8 +146,8 @@ h4, h5, h6, .h4, .h5, .h6 {
 }
 
 .dropdown .dropdown-menu a:hover {
-    background: var(--bs-primary);
-    color: var(--bs-white);
+    background: #d4a373;
+    color: black;
 }
 
 #searchModal .modal-content {
