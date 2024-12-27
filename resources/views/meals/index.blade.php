@@ -15,7 +15,7 @@
     <div class="container-xl">
         <div class="table-responsive">
             <div class="table-wrapper">
-            <div class="table-title">
+                <div class="table-title">
     <div class="d-flex justify-content-between align-items-center">
         <!-- Meal Details Heading -->
         <h2>Meal <b>Details</b></h2>
@@ -36,13 +36,13 @@
 
         <!-- Filter Button -->
         <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">
-            Filters
+            <b>Filters</b>
         </button>
     </div>
 
     <!-- Create Meal Button -->
     <div class="button-div mt-3">
-        <a href="{{ route('meals.create') }}" class="btn btn-success d-flex align-items-center justify-content-center" title="Create Meal">
+        <a href="{{ route('meals.create') }}" class="btn custom-btn d-flex align-items-center justify-content-center" title="Create Meal">
             <i class="material-icons mr-2">&#xE145;</i> <span>Create New Meal</span>
         </a>
     </div>

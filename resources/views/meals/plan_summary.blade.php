@@ -2,13 +2,18 @@
 
 @section('content')
 
-<div class="custom-background py-5" style="background-color: #bddb8f; min-height: 100vh;">
+    <head>
+    <link href="{{ asset('css/meals.css') }}" rel="stylesheet">
 
-    <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
-    
-    <table class="table table-bordered mt-4" style="border-color: #bddb8f;">
-            <thead class="thead-light" style="background-color: #bddb8f; color: white;">
+    </head>
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+            <h2>Your <b>Plan</b></h2>
+    <table  class="table table-striped table-hover table-bordered" >
+            <thead class="thead-light" >
                 <tr>
+                    <th>#</th>
                     <th>Day</th>
                     <th>Date</th>
                
@@ -30,7 +35,7 @@
                         @php
                             $mealType = \App\Models\MealType::find($mealTypeId); // Fetch the meal type by ID
                         @endphp
-                        <th>{{ $mealType ? $mealType->name : 'Unknown Meal Type' }}</th>
+                        <th style="width: {{ 70 / count($mealTypes) }}%;">{{ $mealType ? $mealType->name : 'Unknown Meal Type' }}</th>
                     @endforeach
                 </tr>
             </thead>
@@ -38,6 +43,7 @@
                 @foreach ($planData as $plan)
                     <tr>
                         <td>{{ $plan['day'] }}</td>
+                        <td>{{ date('D', strtotime($plan['date'])) }}</td>
                         <td>{{ $plan['date'] }}</td>
 
                         @foreach ($mealTypes as $mealTypeId)
@@ -57,14 +63,13 @@
                 @endforeach
             </tbody>
         </table>
-
-       
+        
         <form action="{{ route('confirmOrder') }}" method="POST" class="mt-4">
             @csrf
     
-            <div class="form-group">
-                <label for="delivery_time" class="font-weight-bold">Choose Delivery Time:</label>
-                <select name="delivery_time" id="delivery_time" class="form-control" required>
+            <div class="delivery-time">
+                <label>Choose Delivery Time:</label>
+                <select name="delivery_time" id="delivery_time" class="form-control" style="background-color: #fefae0;color:black;" required>>
                     <option value="07:00">07:00 AM</option>
                     <option value="08:00">08:00 AM</option>
                     <option value="09:00">09:00 AM</option>
@@ -87,83 +92,20 @@
                 @endforeach
             @endforeach
 
-        
-            <div class="text-center mt-3">
-                <button type="submit" class="btn btn-success btn-lg">Confirm Order</button>
+            </div>
             </div>
 
-    </div>
-</div>
+            </div>
+
+
+       
+        
+            <div class="text-center mt-3">
+                <button type="submit" class="btn custom-btn">Proceed To Payment</button>
+            </div>
+
+   
 
 @endsection
 
-@section('styles')
 
-<link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
-
-<style>
-
-.italiana-font {
-    font-family: 'Italiana', serif;
-}
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-.custom-background {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #bddb8f; 
-}
-
-.white-container {
-    background-color: white;
-    border-radius: 10px;
-    padding: 40px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.table-bordered {
-    border: 2px solid #bddb8f; 
-}
-
-.table thead th {
-    background-color: #bddb8f;
-    color: white; 
-    font-weight: bold;
-}
-
-.meal-table-image {
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-}
-
-.table tbody td {
-    vertical-align: middle;
-}
-
-h1 {
-    color: black;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.btn-success {
-    background-color: #4caf50;
-    border-color: #4caf50;
-}
-
-.btn-success:hover {
-    background-color: #45a049;
-}
-
-</style>
-
-@endsection

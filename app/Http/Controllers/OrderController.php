@@ -89,7 +89,7 @@ class OrderController extends Controller
         }
     
 
-        return redirect()->route('orderConfirmation', ['id' => $order->id]);
+        return redirect()->route('payment.create', ['order_id' => $order->id]);
     }
 
     

@@ -14,7 +14,7 @@
 <body>
 
   
-  <div class="container">
+  <div class="profile-container">
     <div class="title"> Profile</div>
     <form action="{{ route('profile.update') }}" method="POST">
       @csrf
@@ -61,7 +61,7 @@
 
         <div class="input-box">
             <span>Address Details</span>
-            <textarea placeholder="Enter additional details" name="address_details" rows="2">{{ old('address_details', $user->address_details) }}</textarea>
+            <input placeholder="Enter additional details" name="address_details"value="{{ old('address_details', $user->address_details) }}">
             <span class="text-danger">@error('address_details'){{ $message }} @enderror</span>
         </div>
 

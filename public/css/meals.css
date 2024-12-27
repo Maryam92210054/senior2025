@@ -120,29 +120,34 @@ table.table td i {
     font-size: 95%;
 }    
 /* Change button color */
-.btn-success,.filter-button {
-    background: #CCD5AE;
-    text-align: center; /* Centers text horizontally */
-
-  color: rgb(0, 0, 0);
-  border: none;
-  padding: 15px 30px; /* Increase padding for the button */
-  font-size: 18px; /* Increase font size for the button */
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/* Style for custom buttons */
+.custom-btn, .filter-button {
+    background-color: #CCD5AE; /* Set your desired background color */
+    color: rgb(0, 0, 0); /* Set text color */
+    border: none;
+    padding: 8px 16px; /* Decreased padding to reduce height */
+    font-size: 14px; /* Decreased font size */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
 }
 
-.btn-success:hover {
-    
-    background: #d4a373;
-    color: rgb(0, 0, 0);
 
+/* Hover state */
+.custom-btn:hover {
+    background-color: #d4a373; /* Set hover background color */
+    color: rgb(0, 0, 0); /* Set hover text color */
 }
 .filter-button:hover {
-    background: #d4a373;
-
+    background-color: #d4a373; /* Set hover background color */
+    color: rgb(0, 0, 0); /* Set hover text color */
 }
+
+/* Active state */
+
+
+/* Focus state */
 
 /* Change the font size of the button text */
 .btn span {
@@ -195,7 +200,7 @@ table.table td i {
 
 }
 
-/* Smaller Modal */
+/* Smaller Modal */butt
 .modal-dialog {
     max-width: 400px;  /* Set a smaller width */
 }
@@ -230,3 +235,24 @@ table.table td i {
     pointer-events: auto; /* Ensure pointer events are enabled */
 }
 
+.delivery-time{
+    color:black;
+}
+.delivery-time select{
+    height: 40px;
+    padding: 5px 10px;
+    background: #fefae0;
+
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    color:black;
+}
+.delivery-time label{
+    font-size: 20px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px;
+      color:#000000
+}

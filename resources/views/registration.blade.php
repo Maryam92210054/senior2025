@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <div class="container">
+  <div class="register-container">
     <div class="title">Registration</div>
     <form action="{{ route('registration.post') }}" method="POST">
       @csrf
@@ -55,7 +55,7 @@
         </div>
         <div class="input-box">
           <span>Address Details</span>
-          <textarea placeholder="Enter additional details" name="address_details" rows="2">{{ old('address_details') }}</textarea>
+          <input placeholder="Enter additional details" name="address_details" value="{{ old('address_details') }}">
           <span class="text-danger">@error('address_details'){{ $message }} @enderror</span>
         </div>
       </div>

@@ -68,13 +68,14 @@
     .login-container .button input {
       background: #ccd5ae;
       color: rgb(0, 0, 0);
-      border: none;
       padding: 12px 30px;
       font-size: 16px;
       border-radius: 5px;
       cursor: pointer;
       width: 100%;
       transition: background-color 0.3s ease;
+      border: 1px solid #000000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .login-container .button input:hover {
@@ -88,13 +89,13 @@
     }
 
     .login-container .signup-link a {
-      color: #ccd5ae;
+      color: #d4a373;
       font-weight: 500px;
       text-decoration: none;
     }
 
     .login-container .signup-link a:hover {
-      color: #d4a373;
+      color: #ccd5ae;
       font-weight: 500;
 
     }

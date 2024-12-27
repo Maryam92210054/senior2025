@@ -25,7 +25,7 @@
                         <!-- Filters Button aligned right -->
                         <div class="col-sm-4 text-end"">
                             <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">
-                                Filters
+                            <b>Filters</b>
                             </button>
                         </div>
                     </div>

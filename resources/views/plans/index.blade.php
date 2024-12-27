@@ -22,7 +22,7 @@
                         </div>
                         <div class="col-sm-4 text-right">
                             <!-- Create Plan Button -->
-                            <a href="{{route('plans.create')}}" class="btn btn-success d-flex align-items-center justify-content-center" title="Create Plan">
+                            <a href="{{route('plans.create')}}" class="btn custom-btn d-flex align-items-center justify-content-center" title="Create Plan">
                                 <i class="material-icons mr-2">&#xE145;</i> <span>Create New Plan</span>
                             </a>
                         </div>
