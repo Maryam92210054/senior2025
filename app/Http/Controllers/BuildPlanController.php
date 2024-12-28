@@ -83,7 +83,6 @@ class BuildPlanController extends Controller
             ->where('goal_id', Auth::user()->goal_id)
             ->where('availability', 1);
             
-        
 
         // If the user has restrictions, filter meals accordingly
         if ($userRestrictions) {

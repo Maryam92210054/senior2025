@@ -66,7 +66,9 @@ class ViewPlanController extends Controller
                                 if ($mealType && in_array($mealType->name, $mealTypes->pluck('name')->toArray())) {
                                     $mealsByType[$mealType->name][] = [
                                         'name' => $meal->name,
-                                        'image' => $meal->meal_image
+                                        'image' => $meal->meal_image,
+                                        'description' => $meal->description,
+                                        'health_info' => $meal->health_info
                                     ];
                                 }
                             }

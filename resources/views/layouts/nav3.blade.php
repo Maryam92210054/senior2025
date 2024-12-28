@@ -52,7 +52,7 @@
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Plans</a>
                                 <div class="dropdown-menu bg-light">
                                         <a href="{{ route('plans.index') }}" class="nav-item nav-link "> Plans</a>
-                                <a href="{{ route('plan-types.index') }}" class="nav-item nav-link "> Plan Types</a>
+                                        <a href="{{ route('plan-types.index') }}" class="nav-item nav-link "> Plan Types</a>
                                 </div>
                             </div>
                           <a href="{{ route('orders.index') }}" class="nav-item nav-link "> Orders</a>

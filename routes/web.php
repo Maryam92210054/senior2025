@@ -49,7 +49,6 @@ Route::middleware(['auth', 'role:1'])->group(function () {
         $meal = \App\Models\Meal::select('meals.*', 'goals.name as goal_name')
             ->join('goals', 'meals.goal_id', '=', 'goals.id')
             ->findOrFail($id);
-    
         return response()->json($meal);
     });
     Route::get('/order-details/{orderId}', [ViewPlanController::class, 'getOrderDetails']);

@@ -1,11 +1,15 @@
 @extends('layouts.nav2')
 
 @section('content')
-
+<head>
+    <link href="{{ asset('css/viewMeals.css') }}" rel="stylesheet">
+</head>
 <div class="container mt-4">
-    <h1 class="text-center mt-5 wow bounceInUp" data-wow-delay="0.1s" style="font-family: 'Italiana', serif; color: #c2cc96; font-weight: bold;">
-        Explore Meal Options and Health Goals: Find the Best Fit for Your Lifestyle
-    </h1>
+<div class="container-fluid ">
+            <div class="container text-center animated bounceInDown">
+                <h1 class="display-1 mb-4" style="color:#333">Menu</h1>
+            </div>
+        </div>
 
     <!-- Meal Type Tabs -->
     <ul class="nav nav-tabs mt-4 wow bounceInUp" data-wow-delay="0.2s" id="mealTypeTabs" role="tablist">
@@ -24,9 +28,11 @@
                 @foreach($goals as $goal)
                     <div class="goal-section my-4 wow bounceInUp" data-wow-delay="0.4s">
                         <!-- Highlight specific goals -->
-                        <h3 class="goal-title text-center py-3 highlighted-goal-{{ Str::slug($goal->name) }}">
+                        <h2 class="goal-title text-center py-3 highlighted-goal-{{ Str::slug($goal->name) }}">
                             {{ $goal->name }}
-                        </h3>
+                            
+                        </h2>
+                        <h3  class="goal-title text-center py-3 highlighted-goal-{{ Str::slug($goal->name) }}">{{ $goal->description }}</h3>
 
                         <!-- Carousel for meals -->
                         @php
@@ -45,10 +51,10 @@
                                                     <div class="col-md-4">
                                                         <div class="card shadow-sm">
                                                             <img src="{{ asset('mealsImages/' . $meal->meal_image) }}" class="card-img-top" alt="{{ $meal->name }}" style="height: 200px; object-fit: cover;">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">{{ $meal->name }}</h5>
-                                                                <p class="card-text">{{ Str::limit($meal->description, 80) }}</p>
+                                                            <div class="card-body" style="height: 100px; display: flex; flex-direction: column; justify-content: space-between;">
+                                                                <h5 class="card-title" style="margin-bottom: 10px;">{{ $meal->name }}</h5>
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                 @endforeach
@@ -74,83 +80,6 @@
         @endforeach
     </div>
 </div>
-
-<!-- Scroll-to-Top Button -->
-<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top" class="btn btn-success wow bounceInUp" data-wow-delay="0.6s">Top</button>
-
-<style>
-    body {
-        background-color: #fefae0;
-        color: #333;
-        font-family: Arial, sans-serif;
-    }
-
-    h1 {
-        font-size: 40px;
-        font-weight: bold;
-        color: #ccd5ae; /* Updated H1 color */
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    /* Highlighted Goals */
-    .highlighted-goal-low-calorie,
-    .highlighted-goal-high-protein,
-    .highlighted-goal-overall-health {
-        background-color: #d4a373; /* Highlight color */
-        color: white;
-        border-radius: 5px;
-        font-weight: bold;
-        padding: 10px;
-    }
-
-    /* Card Styling */
-    .card {
-        background-color: #ccd5ae !important;
-        border: 2px solid #ccd5ae;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        color: black;
-    }
-
-    .card-body {
-        background-color: #c2cc96 !important;
-    }
-
-    .card-img-top {
-        border-bottom: 2px solid #c2cc96;
-    }
-
-    /* Navbar Styling */
-    .navbar {
-        background: #ccd5ae;
-    }
-
-    .navbar .navbar-nav .nav-link {
-        padding: 10px 12px;
-        font-size: 17px;
-        color: #333;
-        transition: .5s;
-    }
-
-    .navbar .navbar-nav .nav-link:hover,
-    .navbar .navbar-nav .nav-link.active {
-        color: #d4a373;
-    }
-
-    /* Scroll-to-Top Button */
-    #scrollToTopBtn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        display: none;
-        z-index: 1000;
-    }
-
-    #scrollToTopBtn:hover {
-        background-color: #d4a373;
-    }
-</style>
 
 <script>
     // Scroll to Top Button Functionality
