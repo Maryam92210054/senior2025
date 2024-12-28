@@ -10,12 +10,6 @@ use App\Models\Order;
 
 class PaymentController extends Controller
 {
-    /**
-     * Show the payment creation form.
-     *
-     * @param int $orderId
-     * @return \Illuminate\View\View
-     */
     public function create($orderId)
     {
         // Fetch the order details
@@ -51,10 +45,6 @@ class PaymentController extends Controller
         // Calculate the final amount based on eco-friendly packaging selection
         $calculatedAmount = $request->amount;
     
-        if ($request->has('eco_friendly')) {
-            $calculatedAmount += 5; // Add $5 for eco-friendly packaging
-        }
-    
         // Create a new payment entry
         $payment = Payment::create([
             'amount' => $calculatedAmount,
@@ -71,24 +61,6 @@ class PaymentController extends Controller
         // Redirect to a success page
         return redirect()->route('meals.success')->with('success', 'Payment completed successfully!');
     }
-    public function updateAmount(Request $request)
-{
-    $request->validate([
-        'eco_friendly' => 'required|in:yes,no',
-        'base_amount' => 'required|numeric',
-    ]);
-
-    $newAmount = $request->base_amount;
-
-    if ($request->eco_friendly === 'yes') {
-        $newAmount += 5; // Add $5 for eco-friendly packaging
-    }
-
-    return response()->json([
-        'success' => true,
-        'newAmount' => $newAmount,
-    ]);
-}
 
 
     }

@@ -53,8 +53,6 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     });
     Route::get('/order-details/{orderId}', [ViewPlanController::class, 'getOrderDetails']);
     Route::get('/order-history', [ViewPlanController::class, 'viewOrderHistory'])->name('order-history');
-    Route::post('/payment/update-amount', [PaymentController::class, 'updateAmount'])->name('payment.updateAmount');
-    Route::post('/payment/update-amount', [PaymentController::class, 'updateAmount'])->name('payment.updateAmount');
 
 
 });

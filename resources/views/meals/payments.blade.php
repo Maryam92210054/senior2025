@@ -75,30 +75,27 @@
 
 @endsection
 
-@section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const ecoFriendlyCheckbox = document.getElementById('eco_friendly');
         const amountField = document.getElementById('amount');
         const totalAmountDisplay = document.getElementById('total-amount');
-        const orderId = '{{ $orderId }}';
+
+        // Original calculated amount
+        const baseAmount = parseFloat('{{ $calculatedAmount }}');
 
         // Attach an event listener to the eco-friendly checkbox
         ecoFriendlyCheckbox.addEventListener('change', function () {
-            // Send an AJAX request to update the amount
-            const isChecked = ecoFriendlyCheckbox.checked;
+            let updatedAmount = baseAmount;
 
-            fetch(`/update-amount?order_id=${orderId}&eco_friendly=${isChecked}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Update the amount in the input field and display the total
-                    amountField.value = data.new_amount.toFixed(2);
-                    totalAmountDisplay.textContent = data.new_amount.toFixed(2);
-                })
-                .catch(error => {
-                    console.error('Error updating the amount:', error);
-                });
+            // Add $5 if the checkbox is checked
+            if (ecoFriendlyCheckbox.checked) {
+                updatedAmount += 5;
+            }
+
+            // Update the input field and display the total
+            amountField.value = updatedAmount.toFixed(2);
+            totalAmountDisplay.textContent = updatedAmount.toFixed(2);
         });
     });
 </script>
-@endsection
