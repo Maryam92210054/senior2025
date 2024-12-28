@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div class="custom-background py-5" style="background-color: #bddb8f; min-height: 100vh;">
-    <div class="container white-container p-5" style="background-color: white; border-radius: 10px;">
+<div class="custom-background py-5" style="background-color: #fefae0; min-height: 100vh;">
+    <div class="container white-container p-5" style="background-color: #ccd5ae; border-radius: 10px;">
 
         <!-- Payment Method Sections (Half-half navbar) -->
         <div class="d-flex mb-4">
@@ -26,22 +26,26 @@
 
         <form method="POST" action="{{ route('payment.store', ['order_id' => $orderId]) }}">
             @csrf
-            <!-- Payment Amount (Display the calculated amount with $) -->
+
+            <!-- Payment Amount -->
             <div class="form-group">
                 <label for="amount">Payment Amount</label>
                 <input type="text" name="amount" id="amount" class="form-control" value="{{ $calculatedAmount }}" readonly>
             </div>
+
+            <!-- Eco-friendly Packaging Option -->
             <div class="form-group">
                 <label for="eco_friendly">Eco-friendly Packaging ($5 extra)</label>
                 <input type="checkbox" id="eco_friendly" name="eco_friendly" value="5">
             </div>
+
             <!-- Display Today's Payment Date -->
             <div class="form-group">
                 <label for="payment_date">Payment Date</label>
                 <input type="text" id="payment_date" class="form-control" value="{{ $todayDate }}" readonly>
             </div>
 
-            <!-- Account Code Input (Static, not stored) -->
+            <!-- Account Code Input -->
             <div class="form-group">
                 <label for="account_code">Account Code</label>
                 <input type="password" name="account_code" id="account_code" class="form-control" placeholder="Enter your account code for payment" required>
@@ -50,20 +54,20 @@
                 </small>
             </div>
 
-            <!-- Eco-friendly Packaging Checkbox -->
-            
-
             <!-- Hidden Order ID -->
             <input type="hidden" name="order_id" value="{{ $orderId }}">
 
-            <!-- Display selected payment method -->
-            <div id="selected-method" class="text-center mt-3">
-                <!-- Selected payment method will appear here -->
+            <!-- Display Total Amount -->
+            <div id="total-amount-display" class="text-center mt-3" style="font-weight: bold; font-size: 18px;">
+                Total Amount: $<span id="total-amount">{{ $calculatedAmount }}</span><br>+5$ if eco-friendly packaging is chosen.
             </div>
 
             <!-- Submit Button -->
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-success">Submit Payment</button>
+                <button type="submit" 
+                        style="background-color: #d4a373; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                    Submit Payment
+                </button>
             </div>
         </form>
     </div>
@@ -71,61 +75,30 @@
 
 @endsection
 
-@section('styles')
-<style>
-    .italiana-font { font-family: 'Italiana', serif; }
-    .custom-background { background-color: #bddb8f; min-height: 100vh; }
-    .white-container { background-color: white; padding: 30px; border-radius: 10px; }
-
-    /* Navbar-like style for OMT and Whish */
-    #omt-section { background-color: #ffc107; color: black; cursor: pointer; }
-    #whish-section { background-color: #dc3545; color: white; cursor: pointer; }
-
-    /* Make the sections span half width each */
-    .d-flex > div {
-        flex: 1;
-        padding: 20px;
-        text-align: center;
-    }
-
-    .d-flex .text-center {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-    }
-</style>
-@endsection
-
 @section('scripts')
 <script>
-    // Track selected payment method from the dropdown
-    document.getElementById('payment_method').addEventListener('change', function() {
-        let selectedPaymentMethod = this.value;
-        document.getElementById('selected-method').innerText = "You have selected: " + selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1);
-    });
+    document.addEventListener('DOMContentLoaded', function () {
+        const ecoFriendlyCheckbox = document.getElementById('eco_friendly');
+        const amountField = document.getElementById('amount');
+        const totalAmountDisplay = document.getElementById('total-amount');
+        const orderId = '{{ $orderId }}';
 
-    // Event listener for OMT section click
-    document.getElementById('omt-section').addEventListener('click', function() {
-        document.getElementById('selected-method').innerText = "You have selected: OMT";
-    });
+        // Attach an event listener to the eco-friendly checkbox
+        ecoFriendlyCheckbox.addEventListener('change', function () {
+            // Send an AJAX request to update the amount
+            const isChecked = ecoFriendlyCheckbox.checked;
 
-    // Event listener for Whish section click
-    document.getElementById('whish-section').addEventListener('click', function() {
-        document.getElementById('selected-method').innerText = "You have selected: Whish";
-    });
-
-    // Adjust the payment amount if the eco-friendly packaging is selected
-    document.getElementById('eco_friendly').addEventListener('change', function() {
-        let baseAmount = parseFloat('{{ $calculatedAmount }}');
-        let ecoFriendlyPrice = 5;
-
-        if (this.checked) {
-            baseAmount += ecoFriendlyPrice;
-        } else {
-            baseAmount -= ecoFriendlyPrice;
-        }
-
-        document.getElementById('amount').value = baseAmount.toFixed(2);
+            fetch(`/update-amount?order_id=${orderId}&eco_friendly=${isChecked}`)
+                .then(response => response.json())
+                .then(data => {
+                    // Update the amount in the input field and display the total
+                    amountField.value = data.new_amount.toFixed(2);
+                    totalAmountDisplay.textContent = data.new_amount.toFixed(2);
+                })
+                .catch(error => {
+                    console.error('Error updating the amount:', error);
+                });
+        });
     });
 </script>
 @endsection

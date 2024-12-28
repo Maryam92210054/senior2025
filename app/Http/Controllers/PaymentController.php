@@ -62,16 +62,35 @@ class PaymentController extends Controller
             'order_id' => $request->order_id,
         ]);
     
-        // Update the order status to 'placed'
+        // Update the order with the payment ID
         $order = Order::findOrFail($request->order_id);
         $order->status = 'placed';
-    
+        $order->payment_id = $payment->id; // Assign the payment_id
         $order->save();
     
         // Redirect to a success page
         return redirect()->route('meals.success')->with('success', 'Payment completed successfully!');
     }
-    
+    public function updateAmount(Request $request)
+{
+    $request->validate([
+        'eco_friendly' => 'required|in:yes,no',
+        'base_amount' => 'required|numeric',
+    ]);
+
+    $newAmount = $request->base_amount;
+
+    if ($request->eco_friendly === 'yes') {
+        $newAmount += 5; // Add $5 for eco-friendly packaging
+    }
+
+    return response()->json([
+        'success' => true,
+        'newAmount' => $newAmount,
+    ]);
+}
+
+
     }
    
 
