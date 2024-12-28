@@ -1,6 +1,11 @@
 @extends('layouts.nav2')
 
 @section('content')
+<head>
+
+
+
+</head>
 
 <div class="custom-background py-5" style="background-color: #fefae0; min-height: 100vh;">
     <div class="container white-container p-5" style="background-color: #fefae0; border-radius: 10px;">
@@ -42,6 +47,7 @@
 
                                             <div class="team-content text-center py-3 rounded-bottom flex-grow-1">
                                                 <h4>{{ $meal->name }}</h4>
+                                                <input class="form-check-input mt-3" type="radio" name="meals[{{ $day }}][{{ $mealTypeId }}]" id="meal_{{ $meal->id }}_day_{{ $day }}" value="{{ $meal->id }}" required>
                                             </div>
                                         </div>
                                     </div>
@@ -193,7 +199,14 @@ document.addEventListener('DOMContentLoaded', function () {
     // JavaScript to highlight the selected meal when the radio button is clicked
     document.querySelectorAll('.meal-item').forEach(mealItem => {
         mealItem.addEventListener('click', function () {
-                       const mealTypeId = mealItem.closest('.carousel').id.split('-')[1]; // Extract the mealTypeId
+            // Find the radio button associated with the clicked meal
+            const radioButton = mealItem.querySelector('input[type="radio"]');
+
+            // Manually trigger the change event to select the meal
+            radioButton.checked = true;
+
+            // Deselect all meals in the carousel
+            const mealTypeId = mealItem.closest('.carousel').id.split('-')[1]; // Extract the mealTypeId
             const day = mealItem.closest('.my-4').querySelector('h5').textContent.split(' ')[1]; // Extract the day number
             document.querySelectorAll(`#mealCarousel-${mealTypeId}-day-${day} .meal-item`).forEach(item => {
                 item.classList.remove('selected');
