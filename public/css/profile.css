@@ -7,7 +7,7 @@
   }
 
   body {
-    background: #ccd5ae;
+    background: #fefae0;
     color: #333;
   }
 
@@ -15,7 +15,7 @@
   .profile-container {
     width:60%;
     margin: 50px auto;
-    background-color: #fefae0;
+    background-color: #e9edc9;
     padding: 25px;
     border: 1px solid #000000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

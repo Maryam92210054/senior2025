@@ -3,133 +3,169 @@
 @section('content')
 
 <div class="container mt-4">
-    <h1 class="text-center mt-5" style="font-family: 'Italiana', serif; color: #bddb8f; font-weight: bold;">Explore Meal Options and Health Goals: Find the Best Fit for Your Lifestyle</h1>
+    <h1 class="text-center mt-5 wow bounceInUp" data-wow-delay="0.1s" style="font-family: 'Italiana', serif; color: #c2cc96; font-weight: bold;">
+        Explore Meal Options and Health Goals: Find the Best Fit for Your Lifestyle
+    </h1>
 
-    @foreach($goals as $goal)
-        <div class="goal-section my-5">
-            <h2 class="goal-title text-center py-3">{{ $goal->name }}</h2> 
+    <!-- Meal Type Tabs -->
+    <ul class="nav nav-tabs mt-4 wow bounceInUp" data-wow-delay="0.2s" id="mealTypeTabs" role="tablist">
+        @foreach($mealTypes as $index => $mealType)
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ $index == 0 ? 'active' : '' }}" id="mealType-tab-{{ $mealType->id }}" data-toggle="tab" href="#mealType-{{ $mealType->id }}" role="tab" aria-controls="mealType-{{ $mealType->id }}" aria-selected="{{ $index == 0 ? 'true' : 'false' }}">
+                    {{ $mealType->name }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
 
-            <!-- Goal Description -->
-            <p class="goal-description text-center mb-4" style="font-size: 18px; color: #555;">
-                {{ $goal->description }}
-            </p>
-            
-            <div id="mealCarousel-{{ $goal->id }}" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    @foreach($goal->meals->chunk(3) as $index => $mealChunk) 
-                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                            <div class="row">
-                                @foreach($mealChunk as $meal)
-                                    <div class="col-md-4 mb-4">
-                                        <div class="card shadow-sm">
-                                            <img src="{{ asset('mealsImages/' . $meal->meal_image) }}" class="card-img-top" alt="{{ $meal->name }}" style="height: 200px; object-fit: cover;">
-                                            <div class="card-body">
-                                                <h5 class="card-title">{{ $meal->name }}</h5>
+    <div class="tab-content mt-4 wow bounceInUp" data-wow-delay="0.3s" id="mealTypeTabsContent">
+        @foreach($mealTypes as $index => $mealType)
+            <div class="tab-pane fade {{ $index == 0 ? 'show active' : '' }}" id="mealType-{{ $mealType->id }}" role="tabpanel" aria-labelledby="mealType-tab-{{ $mealType->id }}">
+                @foreach($goals as $goal)
+                    <div class="goal-section my-4 wow bounceInUp" data-wow-delay="0.4s">
+                        <!-- Highlight specific goals -->
+                        <h3 class="goal-title text-center py-3 highlighted-goal-{{ Str::slug($goal->name) }}">
+                            {{ $goal->name }}
+                        </h3>
+
+                        <!-- Carousel for meals -->
+                        @php
+                            $filteredMeals = $mealType->meals->where('goal_id', $goal->id);
+                        @endphp
+
+                        @if($filteredMeals->isEmpty())
+                            <p class="text-center w-100 text-muted">No meals available for this goal under this meal type.</p>
+                        @else
+                            <div id="carousel-{{ $mealType->id }}-{{ $goal->id }}" class="carousel slide wow bounceInUp" data-wow-delay="0.5s" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    @foreach($filteredMeals->chunk(3) as $index => $mealChunk)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <div class="row">
+                                                @foreach($mealChunk as $meal)
+                                                    <div class="col-md-4">
+                                                        <div class="card shadow-sm">
+                                                            <img src="{{ asset('mealsImages/' . $meal->meal_image) }}" class="card-img-top" alt="{{ $meal->name }}" style="height: 200px; object-fit: cover;">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title">{{ $meal->name }}</h5>
+                                                                <p class="card-text">{{ Str::limit($meal->description, 80) }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
+
+                                <!-- Carousel controls -->
+                                <a class="carousel-control-prev" href="#carousel-{{ $mealType->id }}-{{ $goal->id }}" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carousel-{{ $mealType->id }}-{{ $goal->id }}" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-                
-                <a class="carousel-control-prev" href="#mealCarousel-{{ $goal->id }}" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#mealCarousel-{{ $goal->id }}" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+                        @endif
+                    </div>
+                @endforeach
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    </div>
 </div>
 
-<div class="full-width-banner text-center my-5">
-    <h1 class="big-heading" style="font-family: 'Italiana', serif; color: #bddb8f;"> " FRESH. ORGANIC. SATISFYING "</h1>
-</div>
+<!-- Scroll-to-Top Button -->
+<button onclick="scrollToTop()" id="scrollToTopBtn" title="Go to top" class="btn btn-success wow bounceInUp" data-wow-delay="0.6s">Top</button>
 
 <style>
-    .full-width-banner {
-        background-color: white; 
-        width: 100%; 
-        padding: 50px 0; 
-        margin: 0 auto;
-    }
-
-    .big-heading {
-        font-size: 48px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        font-family:Italiana;
-    }
-
     body {
-        background-color: #bddb8f;
+        background-color: #fefae0;
+        color: #333;
+        font-family: Arial, sans-serif;
     }
 
-    .container {
-        background-color: #f8f9fa;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); 
-    }
-
-    .goal-title {
-        font-size: 28px;
+    h1 {
+        font-size: 40px;
         font-weight: bold;
-        background-color: #bddb8f; 
-        border: 2px solid #dee2e6; 
-        border-radius: 8px;
-        padding: 10px 0;
-        margin-bottom: 40px;
-        color: #343a40; 
-    }
-
-    .goal-description {
-        font-size: 18px;
-        color: #555;
+        color: #ccd5ae; /* Updated H1 color */
+        text-align: center;
         margin-bottom: 30px;
-        font-style: italic;
     }
 
-    .section-divider {
-        border-top: 4px solid #007bff; 
-        width: 100px;
-        margin: 0 auto;
-        opacity: 0.7;
+    /* Highlighted Goals */
+    .highlighted-goal-low-calorie,
+    .highlighted-goal-high-protein,
+    .highlighted-goal-overall-health {
+        background-color: #d4a373; /* Highlight color */
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        padding: 10px;
     }
 
-    .goal-section {
-        padding: 50px 0;
-        border-bottom: 2px solid #ddd; 
+    /* Card Styling */
+    .card {
+        background-color: #ccd5ae !important;
+        border: 2px solid #ccd5ae;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        color: black;
     }
 
-    .carousel-control-prev-icon,
-    .carousel-control-next-icon {
-        background-color: rgba(0, 0, 0, 0.5); 
-        border-radius: 50%; 
-        padding: 15px;
-        width: 40px;
-        height: 40px;
+    .card-body {
+        background-color: #c2cc96 !important;
     }
 
-    .carousel-control-prev-icon:hover,
-    .carousel-control-next-icon:hover {
-        background-color: rgba(0, 0, 0, 0.8); 
+    .card-img-top {
+        border-bottom: 2px solid #c2cc96;
     }
 
-    .carousel-control-prev,
-    .carousel-control-next {
-        width: 5%; 
+    /* Navbar Styling */
+    .navbar {
+        background: #ccd5ae;
     }
 
-    .carousel-control-prev-icon::before,
-    .carousel-control-next-icon::before {
-        font-size: 20px; 
+    .navbar .navbar-nav .nav-link {
+        padding: 10px 12px;
+        font-size: 17px;
+        color: #333;
+        transition: .5s;
+    }
+
+    .navbar .navbar-nav .nav-link:hover,
+    .navbar .navbar-nav .nav-link.active {
+        color: #d4a373;
+    }
+
+    /* Scroll-to-Top Button */
+    #scrollToTopBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        z-index: 1000;
+    }
+
+    #scrollToTopBtn:hover {
+        background-color: #d4a373;
     }
 </style>
+
+<script>
+    // Scroll to Top Button Functionality
+    window.onscroll = function () {
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollToTopBtn.style.display = "block";
+        } else {
+            scrollToTopBtn.style.display = "none";
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+</script>
 
 @endsection

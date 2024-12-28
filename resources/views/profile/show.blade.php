@@ -55,7 +55,8 @@
         <option value="Qoubaiyat" {{ old('address', $user->address) == 'Qoubaiyat' ? 'selected' : '' }}>Qoubaiyat</option>
         <option value="Tal Abbas al-Gharbi" {{ old('address', $user->address) == 'Tal Abbas al-Gharbi' ? 'selected' : '' }}>Tal Abbas al-Gharbi</option>
         <option value="Tal Abbas al-Sharqi" {{ old('address', $user->address) == 'Tal Abbas al-Sharqi' ? 'selected' : '' }}>Tal Abbas al-Sharqi</option>
-    </select>
+        <option value="Beit Al Hajj" {{ old('address', $user->address) == 'Tal Abbas al-Sharqi' ? 'selected' : '' }}>Beit Al Hajj</option>
+      </select>
     <span class="text-danger">@error('address'){{ $message }} @enderror</span>
 </div>
 

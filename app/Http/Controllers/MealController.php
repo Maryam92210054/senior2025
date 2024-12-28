@@ -11,11 +11,16 @@ class MealController extends Controller
 {
     public function meals()
     {
+        // Load goals and meal types with their associated meals
         $goals = Goal::with(['meals' => function ($query) {
-            $query->where('availability', 1); 
-        }])->get(); 
-        
-        return view('viewMeals', compact('goals'));
+            $query->where('availability', 1); // Filter available meals
+        }])->get();
+
+        $mealTypes = MealType::with(['meals' => function ($query) {
+            $query->where('availability', 1); // Filter available meals
+        }])->get();
+
+        return view('viewMeals', compact('goals', 'mealTypes'));
     }
     public function index(Request $request)
     {
