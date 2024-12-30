@@ -15,26 +15,38 @@ class ViewPlanController extends Controller
     public function viewPlan()
     {
         $userId = Auth::id();
+        $today = Carbon::now();
+        $startOfWeek = $today->copy()->startOfWeek(); // Start of this week
+        $endOfWeek = $today->copy()->endOfWeek();     // End of this week
     
-        // Fetch all plans for the user ordered by the latest date
+        // Fetch all plans for the user ordered by the earliest date in each plan
         $plans = Order::where('user_id', $userId)
             ->with('orderDays')
             ->get()
-            ->sortByDesc(function ($order) {
-                return $order->orderDays->max('date'); // Sort by the latest date in each plan
+            ->sortBy(function ($order) {
+                return $order->orderDays->min('date'); // Sort by the earliest date in each plan
             })
             ->values();
     
         $currentPlan = null;
         $newPlan = null;
     
-        if ($plans->count() > 0) {
-            // The latest plan is the "new" plan
-            $newPlan = $plans->first();
+        foreach ($plans as $plan) {
+            // Get all dates for the plan's orderDays
+            $planDates = $plan->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
+            \Log::info('Plan Dates:', $planDates->toArray());
     
-            // The plan directly before the latest is the "current" plan
-            if ($plans->count() > 1) {
-                $currentPlan = $plans->get(1);
+            // Check if any date in the plan falls within the current week
+            if ($planDates->first(fn($date) => $date->between($startOfWeek, $endOfWeek))) {
+                \Log::info('Current Plan Found:', ['plan_id' => $plan->id]);
+                $currentPlan = $plan; // Plan belongs to this week
+            } elseif (!$newPlan && $planDates->min() > $today) {
+                \Log::info('New Plan Found:', ['plan_id' => $plan->id]);
+                $newPlan = $plan; // The next available plan
+            }
+    
+            if ($currentPlan && $newPlan) {
+                break; // Exit the loop once both plans are found
             }
         }
     
@@ -43,6 +55,8 @@ class ViewPlanController extends Controller
     
         return view('meals.viewPlan', compact('currentPlanMealsData', 'newPlanMealsData'));
     }
+    
+
     
     private function getPlanDetails($order)
     {
