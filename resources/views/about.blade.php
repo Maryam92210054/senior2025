@@ -48,27 +48,29 @@
         <div class="row g-4 align-items-center">
             <div class="col-lg-7">
                <div class="row g-4">
-                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.3s">
-                        <div class="faqt-item bg-primary rounded p-4 text-center">
-                            <i class="fas fa-users fa-4x mb-4 text-white"></i>
-                            <h1 class="display-4 fw-bold" data-toggle="counter-up">689</h1>
-                            <p class="text-dark text-uppercase fw-bold mb-0">Happy Customers</p>
+               <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.7s">
+               <div class="faqt-item  rounded p-4 text-center" style="background:#d4a373">
+               <i class="fas fa-calendar-week fa-4x mb-4 text-white"></i>
+                        <h1 class="display-4 fw-bold" data-toggle="counter-up">3-7</h1>
+                            <p class="text-dark text-uppercase fw-bold mb-0">Day weekly Plan</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.5s">
-                        <div class="faqt-item bg-primary rounded p-4 text-center">
+               <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.5s">
+                        <div class="faqt-item  rounded p-4 text-center" style="background:#d4a373">
                             <i class="fas fa-users-cog fa-4x mb-4 text-white"></i>
-                            <h1 class="display-4 fw-bold" data-toggle="counter-up">107</h1>
+                            <h1 class="display-4 fw-bold" data-toggle="counter-up">10+</h1>
                             <p class="text-dark text-uppercase fw-bold mb-0">Expert Chefs</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.7s">
-                        <div class="faqt-item bg-primary rounded p-4 text-center">
-                            <i class="fas fa-check fa-4x mb-4 text-white"></i>
-                            <h1 class="display-4 fw-bold" data-toggle="counter-up">253</h1>
-                            <p class="text-dark text-uppercase fw-bold mb-0">Events Complete</p>
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.3s" >
+                        <div class="faqt-item  rounded p-4 text-center" style="background:#d4a373">
+                        <i class="fas fa-utensils fa-4x mb-4 text-white"></i>
+                            <h1 class="display-4 fw-bold" data-toggle="counter-up">100+</h1>
+                            <p class="text-dark text-uppercase fw-bold mb-0">Meal Options</p>
                         </div>
                     </div>
+                    
+                   
                 </div>
             </div>
            
@@ -101,67 +103,48 @@
     <div class="container">
         <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
             <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Our Team</small>
-            <h1 class="display-5 mb-5">We have experienced chef Team</h1>
+            <h1 class="display-5 mb-5">We have experienced Team</h1>
         </div>
         <div class="row g-4">
             <div class="col-lg-3 col-md-6 wow bounceInUp" data-wow-delay="0.1s">
                 <div class="team-item rounded">
-                    <img class="img-fluid rounded-top " src="img/team-1.jpg" alt="">
-                    <div class="team-content text-center py-3 bg-dark rounded-bottom">
-                        <h4 class="text-primary">Henry</h4>
-                        <p class="text-white mb-0">Decoration Chef</p>
+                    <img class="img-fluid rounded-top " src="img/chefs.jfif" alt="">
+                    <div class="team-content text-center py-3  rounded-bottom">
+                        <h4 class="text-primary">Chefs</h4>
+                        <p class="text-dark mb-0">With years of experience, they ensure every dish is a masterpiece that satisfies your taste buds and meets your dietary goals</p>
                     </div>
-                    <div class="team-icon d-flex flex-column justify-content-center m-4">
-                        <a class="share btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fas fa-share-alt"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow bounceInUp" data-wow-delay="0.3s">
                 <div class="team-item rounded">
-                    <img class="img-fluid rounded-top " src="img/team-2.jpg" alt="">
-                    <div class="team-content text-center py-3 bg-dark rounded-bottom">
-                        <h4 class="text-primary">Jemes Born</h4>
-                        <p class="text-white mb-0">Executive Chef</p>
+                    <img class="img-fluid rounded-top " src="img/nutritionists.jfif" alt="">
+                    <div class="team-content text-center py-3  rounded-bottom">
+                        <h4 class="text-primary">Nutritionists</h4>
+                        <p class="text-dark mb-0">Our Certified nutririonists ensure that each meal is balanced, nutritious, and aligned with your dietary needs</p>
                     </div>
-                    <div class="team-icon d-flex flex-column justify-content-center m-4">
-                        <a class="share btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fas fa-share-alt"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
+                   
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow bounceInUp" data-wow-delay="0.5s">
                 <div class="team-item rounded">
-                    <img class="img-fluid rounded-top " src="img/team-3.jpg" alt="">
-                    <div class="team-content text-center py-3 bg-dark rounded-bottom">
-                        <h4 class="text-primary">Martin Hill</h4>
-                        <p class="text-white mb-0">Kitchen Porter</p>
+                    <img class="img-fluid rounded-top " src="img/delivery.jfif" alt="">
+                    <div class="team-content text-center py-3  rounded-bottom">
+                        <h4 class="text-primary">Delivery Team</h4>
+                        <p class="text-dark mb-0">Our dedicated delivery professionals ensure your meals arrive daily, fresh and on time with precision and care.</p>
                     </div>
-                    <div class="team-icon d-flex flex-column justify-content-center m-4">
-                        <a class="share btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fas fa-share-alt"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
+                  
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow bounceInUp" data-wow-delay="0.7s">
                 <div class="team-item rounded">
-                    <img class="img-fluid rounded-top " src="img/team-4.jpg" alt="">
-                    <div class="team-content text-center py-3 bg-dark rounded-bottom">
-                        <h4 class="text-primary">Adam Smith</h4>
-                        <p class="text-white mb-0">Head Chef</p>
+                    <img class="img-fluid rounded-top " src="img/support.jfif" alt="">
+
+                    <div class="team-content text-center py-3  rounded-bottom">
+                        <h4 class="text-primary">Customer Support</h4>
+                        <p class="text-dark mb-0">Our friendly customer support team is here to help with any questions or special requests. We’ve got you covered</p>
                     </div>
-                    <div class="team-icon d-flex flex-column justify-content-center m-4">
-                        <a class="share btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fas fa-share-alt"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="share-link btn btn-primary btn-md-square rounded-circle mb-2" href=""><i class="fab fa-instagram"></i></a>
-                    </div>
+                
                 </div>
             </div>
         </div>

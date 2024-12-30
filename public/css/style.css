@@ -533,3 +533,8 @@ h4, h5, h6, .h4, .h5, .h6 {
     background-color: #c2cc96; /* Even darker shade when clicked */
     transform: scale(1); /* Reset the size on click */
 }
+.team-item img {
+    height: 300px; /* Set your desired height */
+    width:300px;
+    object-fit: cover; /* Ensure the image scales properly without distortion */
+}
