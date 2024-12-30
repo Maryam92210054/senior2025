@@ -18,6 +18,11 @@
   <form action="{{route('plan-types.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="input-box">
+      <span>Plan Type Name</span>
+      <input type="text" placeholder="Enter plan type name" name="name"  required>
+    </div>
+
+    <div class="input-box">
       <span>Plan Type Description</span>
       <textarea placeholder="Enter plan description" name="description" required></textarea>
     </div>

@@ -1,3 +1,4 @@
+
 @extends('layouts.nav2')
 
 @section('content')

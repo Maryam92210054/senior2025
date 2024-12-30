@@ -95,14 +95,12 @@
                             <div class="form-group mb-3">
                                 <label for="delivery_time">Delivery Time:</label>
                                 <select name="delivery_time" id="delivery_time" class="form-control">
-                                    <option value="">Select Delivery Time</option>
-                                    <option value="08:00">08:00 AM</option>
-                                    <option value="09:00">09:00 AM</option>
-                                    <option value="10:00">10:00 AM</option>
-                                    <option value="12:00">12:00 PM</option>
-                                    <option value="14:00">02:00 PM</option>
-                                    <option value="16:00">04:00 PM</option>
-                                    <option value="18:00">06:00 PM</option>
+                                    <option value="07:00:00">07:00 AM - 08:00 AM</option>
+                                    <option value="08:00:00">08:00 AM - 09:00 AM</option>
+                                    <option value="09:00:00">09:00 AM - 10:00 AM</option>
+                                    <option value="10:00:00">10:00 AM - 11:00 AM</option>
+                                    <option value="11:00:00">11:00 AM - 12:00 PM</option>
+                                    <option value="12:00:00">12:00 PM - 01:00 PM</option>
                                 </select>
                             </div>
 

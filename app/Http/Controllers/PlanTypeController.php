@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PlanType;
-use App\Models\PlanTypeMeal;
 use App\Models\MealType;
-
 
 class PlanTypeController extends Controller
 {
@@ -27,6 +25,7 @@ class PlanTypeController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'name' => 'required|string|max:255',
             'description' => 'required|string',
             'meal_types' => 'required',
             'meal_types.*' => 'exists:meal_types,id',
@@ -36,6 +35,7 @@ class PlanTypeController extends Controller
         // Create a new Plan instance
         $plan_type = new PlanType();
         $plan_type->description = $validated['description'];
+        $plan_type->name = $validated['name'];
         
         $plan_type->save();
         $plan_type->mealTypes()->attach($validated['meal_types']);
@@ -49,23 +49,25 @@ class PlanTypeController extends Controller
         return view('plan-types.edit', compact('plan_type', 'meal_types'));
     }
 
-    public function update(Request $request, $mealId)
+    public function update(Request $request, $id)
     {
         
         $validated = $request->validate([
-            
+            'name' => 'required|string|max:255',
             'description' => 'required|string',
             'meal_types' => 'required',
             'meal_types.*' => 'exists:meal_types,id',
         ]);
 
-        $plan_type = new PlanType();
+        $plan_type = PlanType::find($id);
         $plan_type->description = $validated['description'];
+        $plan_type->name = $validated['name'];
+
         
         $plan_type->save();
         $plan_type->mealTypes()->attach($validated['meal_types']);
       
-        return redirect()->route('plan-types.index', $mealId)->with('success', 'Meal updated successfully!');
+        return redirect()->route('plan-types.index')->with('success', 'Meal updated successfully!');
     }
 
 

@@ -70,14 +70,12 @@
             <div class="delivery-time">
                 <label>Choose Delivery Time:</label>
                 <select name="delivery_time" id="delivery_time" class="form-control" style="background-color: #fefae0;color:black;" required>>
-                    <option value="07:00">07:00 AM</option>
-                    <option value="08:00">08:00 AM</option>
-                    <option value="09:00">09:00 AM</option>
-                    <option value="10:00">10:00 AM</option>
-                    <option value="11:00">11:00 AM</option>
-                    <option value="12:00">12:00 PM</option>
-                    <option value="13:00">01:00 PM</option>
-                    
+                    <option value="07:00:00">07:00 AM - 08:00 AM</option>
+                    <option value="08:00:00">08:00 AM - 09:00 AM</option>
+                    <option value="09:00:00">09:00 AM - 10:00 AM</option>
+                    <option value="10:00:00">10:00 AM - 11:00 AM</option>
+                    <option value="11:00:00">11:00 AM - 12:00 PM</option>
+                    <option value="12:00:00">12:00 PM - 01:00 PM</option>
                 </select>
             </div>
                 

@@ -33,6 +33,7 @@
                         <tr>
                             <th>#</th>
                             <th>Description</th>
+                            <th>Name</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@
                             <tr>
                                 <td style="width:10%">{{ $planType->id }}</td>
                                 <td>{{ $planType->description }} </td>
+                                <td>{{ $planType->name }} </td>
                                 <td><a href="{{route('plan-types.edit',$planType->id)}}" class="edit" title="Edit" data-toggle="tooltip">
                                         <i class="material-icons">&#xE254;</i>
                                     </a>

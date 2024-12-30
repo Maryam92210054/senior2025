@@ -15,34 +15,56 @@ class ViewPlanController extends Controller
     public function viewPlan()
     {
         $userId = Auth::id();
+        $today = Carbon::now();
+        
+        // Define the start and end dates of this week and the previous week
+        $startOfThisWeek = $today->copy()->startOfWeek(); // Start of current week
+        $endOfThisWeek = $today->copy()->endOfWeek();     // End of current week
+        $startOfPreviousWeek = $today->copy()->subWeek()->startOfWeek(); // Start of previous week
+        $endOfPreviousWeek = $today->copy()->subWeek()->endOfWeek(); // End of previous week
     
-        // Fetch all plans for the user ordered by the latest date
+        // Fetch all plans for the user, ordered by their created_at in descending order
         $plans = Order::where('user_id', $userId)
             ->with('orderDays')
             ->get()
-            ->sortByDesc(function ($order) {
-                return $order->orderDays->max('date'); // Sort by the latest date in each plan
-            })
-            ->values();
+            ->sortByDesc('created_at'); // Sort by latest created_at first
     
         $currentPlan = null;
         $newPlan = null;
     
-        if ($plans->count() > 0) {
-            // The latest plan is the "new" plan
-            $newPlan = $plans->first();
+        foreach ($plans as $plan) {
+            // Get the creation date of the plan
+            $planCreatedAt = Carbon::parse($plan->created_at);
+            \Log::info('Plan Created At:', ['created_at' => $planCreatedAt]);
     
-            // The plan directly before the latest is the "current" plan
-            if ($plans->count() > 1) {
-                $currentPlan = $plans->get(1);
+            // Check if the plan was created in the previous week
+            if (!$currentPlan && $planCreatedAt->between($startOfPreviousWeek, $endOfPreviousWeek)) {
+                \Log::info('Current Plan Found:', ['plan_id' => $plan->id]);
+                $currentPlan = $plan; // The most recent plan created in the previous week
+            }
+    
+            // Check if the plan was created in the current week
+            if (!$newPlan && $planCreatedAt->between($startOfThisWeek, $endOfThisWeek)) {
+                \Log::info('New Plan Found:', ['plan_id' => $plan->id]);
+                $newPlan = $plan; // The most recent plan created in the current week
+            }
+    
+            // Exit the loop once both plans are found
+            if ($currentPlan && $newPlan) {
+                break;
             }
         }
     
-        $currentPlanMealsData = $this->getPlanDetails($currentPlan);
-        $newPlanMealsData = $this->getPlanDetails($newPlan);
+        // Retrieve meal details for both plans if they exist
+        $currentPlanMealsData = $currentPlan ? $this->getPlanDetails($currentPlan) : null;
+        $newPlanMealsData = $newPlan ? $this->getPlanDetails($newPlan) : null;
     
+        // Return the view with the meal data of both plans
         return view('meals.viewPlan', compact('currentPlanMealsData', 'newPlanMealsData'));
     }
+    
+    
+
     
     private function getPlanDetails($order)
     {
@@ -51,7 +73,7 @@ class ViewPlanController extends Controller
         }
     
         $plan = Plan::find($order->plan_id);
-        $mealTypes = $plan?->planType->mealTypes ?? [];
+        $mealTypes = $plan->planType->mealTypes ?? [];
     
         $orderDays = $order->orderDays;
     
@@ -86,17 +108,21 @@ class ViewPlanController extends Controller
     $userId = Auth::id();
     $planType = $request->input('plan_type'); // Get the type of plan to cancel
 
+    // Define the current week range
+    $today = Carbon::now();
+    $startOfWeek = $today->copy()->startOfWeek();
+    $endOfWeek = $today->copy()->endOfWeek();
+
     if ($planType === 'current') {
-        // Cancel the current plan
+        // Identify the "current" plan based on dates falling within the current week
         $currentPlan = Order::where('user_id', $userId)
-            ->with('orderDays')  // Load the related orderDays to filter by date
+            ->with('orderDays')  // Load related orderDays to check dates
             ->get()
-            ->sortByDesc(function ($order) {
-                return $order->orderDays->max('date'); // Sort by the latest date
+            ->filter(function ($order) use ($startOfWeek, $endOfWeek) {
+                $orderDates = $order->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
+                return $orderDates->contains(fn($date) => $date->between($startOfWeek, $endOfWeek));
             })
-            ->values()
-            ->skip(1) // Skip the latest plan (which is the "new" plan)
-            ->first(); // Get the "current" plan, if it exists
+            ->first(); // Get the first matching plan
 
         if (!$currentPlan) {
             return redirect()->back()->with('error', 'No current plan to cancel.');
@@ -105,14 +131,16 @@ class ViewPlanController extends Controller
         $currentPlan->delete();
         return redirect()->back()->with('success', 'Current plan has been successfully canceled.');
     } elseif ($planType === 'new') {
-        // Cancel the new plan
+        // Identify the "new" plan based on the next available date
         $newPlan = Order::where('user_id', $userId)
-            ->with('orderDays')  // Load the related orderDays to filter by date
+            ->with('orderDays')  // Load related orderDays to check dates
             ->get()
-            ->sortByDesc(function ($order) {
-                return $order->orderDays->max('date'); // Sort by the latest date
+            ->filter(function ($order) use ($today) {
+                $orderDates = $order->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
+                return $orderDates->min() > $today; // Check if the earliest date is in the future
             })
-            ->first(); // Get the latest plan, which is the "new" plan
+            ->sortBy(fn($order) => $order->orderDays->min('date')) // Sort by the earliest date
+            ->first(); // Get the first matching plan
 
         if (!$newPlan) {
             return redirect()->back()->with('error', 'No new plan to cancel.');
@@ -124,6 +152,7 @@ class ViewPlanController extends Controller
 
     return redirect()->back()->with('error', 'Invalid plan type.');
 }
+
 
 
     

@@ -19,6 +19,11 @@
   <form action="{{route('plan-types.update',$plan_type->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
+    <div class="input-box">
+      <span>Plan Type Name</span>
+      <input type="text" placeholder="Enter plan type name" name="name" value="{{$plan_type->name}}" required>
+    </div>
+
 
     <div class="input-box">
       <span>Description</span>
