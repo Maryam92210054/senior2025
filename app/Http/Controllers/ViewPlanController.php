@@ -100,17 +100,21 @@ class ViewPlanController extends Controller
     $userId = Auth::id();
     $planType = $request->input('plan_type'); // Get the type of plan to cancel
 
+    // Define the current week range
+    $today = Carbon::now();
+    $startOfWeek = $today->copy()->startOfWeek();
+    $endOfWeek = $today->copy()->endOfWeek();
+
     if ($planType === 'current') {
-        // Cancel the current plan
+        // Identify the "current" plan based on dates falling within the current week
         $currentPlan = Order::where('user_id', $userId)
-            ->with('orderDays')  // Load the related orderDays to filter by date
+            ->with('orderDays')  // Load related orderDays to check dates
             ->get()
-            ->sortByDesc(function ($order) {
-                return $order->orderDays->max('date'); // Sort by the latest date
+            ->filter(function ($order) use ($startOfWeek, $endOfWeek) {
+                $orderDates = $order->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
+                return $orderDates->contains(fn($date) => $date->between($startOfWeek, $endOfWeek));
             })
-            ->values()
-            ->skip(1) // Skip the latest plan (which is the "new" plan)
-            ->first(); // Get the "current" plan, if it exists
+            ->first(); // Get the first matching plan
 
         if (!$currentPlan) {
             return redirect()->back()->with('error', 'No current plan to cancel.');
@@ -119,14 +123,16 @@ class ViewPlanController extends Controller
         $currentPlan->delete();
         return redirect()->back()->with('success', 'Current plan has been successfully canceled.');
     } elseif ($planType === 'new') {
-        // Cancel the new plan
+        // Identify the "new" plan based on the next available date
         $newPlan = Order::where('user_id', $userId)
-            ->with('orderDays')  // Load the related orderDays to filter by date
+            ->with('orderDays')  // Load related orderDays to check dates
             ->get()
-            ->sortByDesc(function ($order) {
-                return $order->orderDays->max('date'); // Sort by the latest date
+            ->filter(function ($order) use ($today) {
+                $orderDates = $order->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
+                return $orderDates->min() > $today; // Check if the earliest date is in the future
             })
-            ->first(); // Get the latest plan, which is the "new" plan
+            ->sortBy(fn($order) => $order->orderDays->min('date')) // Sort by the earliest date
+            ->first(); // Get the first matching plan
 
         if (!$newPlan) {
             return redirect()->back()->with('error', 'No new plan to cancel.');
@@ -138,6 +144,7 @@ class ViewPlanController extends Controller
 
     return redirect()->back()->with('error', 'Invalid plan type.');
 }
+
 
 
     
