@@ -6,7 +6,6 @@ use App\Models\Order;
 use App\Models\OrderDay;
 use App\Models\OrderDayMeal;
 use App\Models\Plan;
-use App\Models\PlanType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -15,154 +14,164 @@ class ViewPlanController extends Controller
 {
     public function viewPlan()
     {
-        $userId = Auth::id(); 
-
-        
-        $startOfWeek = Carbon::now()->startOfWeek();
-        $endOfNextWeek = Carbon::now()->endOfWeek()->addWeek();
-
-        
-        $lastOrder = Order::where('user_id', $userId)
-                          ->whereHas('orderDays', function ($query) use ($startOfWeek, $endOfNextWeek) {
-                              $query->whereBetween('date', [$startOfWeek, $endOfNextWeek]);
-                          })
-                          ->latest('created_at')
-                          ->first();
-
-        
-        $orderDayMealsData = [];
-        $mealTypes = [];
-        $orderHistory = [];
-
-        if ($lastOrder) {
-           
-            $plan = Plan::find($lastOrder->plan_id);
-
-            if ($plan) {
-                
-                $planTypeId = $plan->plan_type_id;
-                $planType = PlanType::find($planTypeId);
-
-                if ($planType) {
-                   
-                    $mealTypes = $planType->mealTypes;
-
-                  
-                    $orderDays = OrderDay::where('order_id', $lastOrder->id)->get();
-
-                   
-                    foreach ($orderDays as $orderDay) {
-                        $orderDayMeals = OrderDayMeal::where('order_day_id', $orderDay->id)
-                                                     ->with('meal') 
-                                                     ->get();
-
-                       
-                        $mealsByType = [];
-
-                        foreach ($orderDayMeals as $orderDayMeal) {
-                            $meal = $orderDayMeal->meal;
-                            if ($meal) {
-                                $mealType = $meal->mealType;
-                                if ($mealType && in_array($mealType->name, $mealTypes->pluck('name')->toArray())) {
-                                    $mealsByType[$mealType->name][] = [
-                                        'name' => $meal->name,
-                                        'image' => $meal->meal_image,
-                                        'description' => $meal->description,
-                                        'health_info' => $meal->health_info
-                                    ];
-                                }
-                            }
-                        }
-
-                       
-                        $orderDayMealsData[] = [
-                            'day_number' => $orderDay->day_number,
-                            'date' => $orderDay->date,
-                            'meals_by_type' => $mealsByType,
-                        ];
-                    }
-                }
+        $userId = Auth::id();
+    
+        // Fetch all plans for the user ordered by the latest date
+        $plans = Order::where('user_id', $userId)
+            ->with('orderDays')
+            ->get()
+            ->sortByDesc(function ($order) {
+                return $order->orderDays->max('date'); // Sort by the latest date in each plan
+            })
+            ->values();
+    
+        $currentPlan = null;
+        $newPlan = null;
+    
+        if ($plans->count() > 0) {
+            // The latest plan is the "new" plan
+            $newPlan = $plans->first();
+    
+            // The plan directly before the latest is the "current" plan
+            if ($plans->count() > 1) {
+                $currentPlan = $plans->get(1);
             }
         }
- 
-       
-        $orderHistory = Order::where('user_id', $userId)
-                             ->whereDoesntHave('orderDays', function ($query) use ($startOfWeek) {
-                                 $query->where('date', '>=', $startOfWeek);
-                             })
-                             ->get();
-
-        
-        return view('meals.viewPlan', compact('orderDayMealsData', 'mealTypes', 'orderHistory'));
+    
+        $currentPlanMealsData = $this->getPlanDetails($currentPlan);
+        $newPlanMealsData = $this->getPlanDetails($newPlan);
+    
+        return view('meals.viewPlan', compact('currentPlanMealsData', 'newPlanMealsData'));
     }
-
-    public function cancelOrder(Request $request)
+    
+    private function getPlanDetails($order)
     {
-        $userId = Auth::id(); 
-
-       
-        $lastOrder = Order::where('user_id', $userId)->latest('created_at')->first();
-
-        if (!$lastOrder) {
-            return redirect()->back()->with('error', 'No order to cancel.');
-        }
-
-        
-        $lastOrder->delete();
-
-        return redirect()->back()->with('success', 'Order has been successfully cancelled.');
-    }
-    public function getOrderDetails($orderId)
-{
-    try {
-        // Fetch order by ID with related data
-        $order = Order::with(['orderDays.orderDayMeals.meal'])->find($orderId);
-
         if (!$order) {
-            return response()->json(['error' => 'Order not found'], 404);
+            return [];
         }
-
-        $days = [];
-
-        // Iterate through each orderDay and its meals
-        foreach ($order->orderDays as $orderDay) {
-            $meals = [];
-
+    
+        $plan = Plan::find($order->plan_id);
+        $mealTypes = $plan?->planType->mealTypes ?? [];
+    
+        $orderDays = $order->orderDays;
+    
+        $orderDayMealsData = [];
+        foreach ($orderDays as $orderDay) {
+            $mealsByType = [];
             foreach ($orderDay->orderDayMeals as $orderDayMeal) {
-                if ($orderDayMeal->meal) {
-                    $meals[] = [
-                        'name' => $orderDayMeal->meal->name,
-                        'image' => $orderDayMeal->meal->meal_image,
+                $meal = $orderDayMeal->meal;
+                if ($meal) {
+                    $mealType = $meal->mealType;
+                    $mealsByType[$mealType->name][] = [
+                        'name' => $meal->name,
+                        'image' => $meal->meal_image,
+                        'description' => $meal->description,
+                        'health_info' => $meal->health_info
                     ];
                 }
             }
-
-            $days[] = [
+    
+            $orderDayMealsData[] = [
                 'day_number' => $orderDay->day_number,
                 'date' => $orderDay->date,
-                'meals' => $meals,
+                'meals_by_type' => $mealsByType,
             ];
         }
-
-        return response()->json(['days' => $days]);
-    } catch (\Exception $e) {
-        \Log::error('Error fetching order details: ' . $e->getMessage());
-        return response()->json(['error' => 'An unexpected error occurred'], 500);
+    
+        return ['mealTypes' => $mealTypes, 'orderDayMealsData' => $orderDayMealsData];
     }
-}
-
-public function viewOrderHistory()
+    
+    public function cancelOrder(Request $request)
 {
     $userId = Auth::id();
+    $planType = $request->input('plan_type'); // Get the type of plan to cancel
 
-    // Fetch order history sorted by latest created_at
-    $orderHistory = Order::where('user_id', $userId)
-                         ->orderBy('created_at', 'desc') // Order by latest
-                         ->get();
+    if ($planType === 'current') {
+        // Cancel the current plan
+        $currentPlan = Order::where('user_id', $userId)
+            ->with('orderDays')  // Load the related orderDays to filter by date
+            ->get()
+            ->sortByDesc(function ($order) {
+                return $order->orderDays->max('date'); // Sort by the latest date
+            })
+            ->values()
+            ->skip(1) // Skip the latest plan (which is the "new" plan)
+            ->first(); // Get the "current" plan, if it exists
 
-    return view('meals.orderHistory', compact('orderHistory'));
+        if (!$currentPlan) {
+            return redirect()->back()->with('error', 'No current plan to cancel.');
+        }
+
+        $currentPlan->delete();
+        return redirect()->back()->with('success', 'Current plan has been successfully canceled.');
+    } elseif ($planType === 'new') {
+        // Cancel the new plan
+        $newPlan = Order::where('user_id', $userId)
+            ->with('orderDays')  // Load the related orderDays to filter by date
+            ->get()
+            ->sortByDesc(function ($order) {
+                return $order->orderDays->max('date'); // Sort by the latest date
+            })
+            ->first(); // Get the latest plan, which is the "new" plan
+
+        if (!$newPlan) {
+            return redirect()->back()->with('error', 'No new plan to cancel.');
+        }
+
+        $newPlan->delete();
+        return redirect()->back()->with('success', 'New plan has been successfully canceled.');
+    }
+
+    return redirect()->back()->with('error', 'Invalid plan type.');
 }
 
+
+    
+    public function getOrderDetails($orderId)
+    {
+        try {
+            $order = Order::with(['orderDays.orderDayMeals.meal'])->find($orderId);
+    
+            if (!$order) {
+                return response()->json(['error' => 'Order not found'], 404);
+            }
+    
+            $days = [];
+    
+            foreach ($order->orderDays as $orderDay) {
+                $meals = [];
+    
+                foreach ($orderDay->orderDayMeals as $orderDayMeal) {
+                    if ($orderDayMeal->meal) {
+                        $meals[] = [
+                            'name' => $orderDayMeal->meal->name,
+                            'image' => $orderDayMeal->meal->meal_image,
+                        ];
+                    }
+                }
+    
+                $days[] = [
+                    'day_number' => $orderDay->day_number,
+                    'date' => $orderDay->date,
+                    'meals' => $meals,
+                ];
+            }
+    
+            return response()->json(['days' => $days]);
+        } catch (\Exception $e) {
+            \Log::error('Error fetching order details: ' . $e->getMessage());
+            return response()->json(['error' => 'An unexpected error occurred'], 500);
+        }
+    }
+    
+    public function viewOrderHistory()
+    {
+        $userId = Auth::id();
+    
+        $orderHistory = Order::where('user_id', $userId)
+                             ->orderBy('created_at', 'desc')
+                             ->get();
+    
+        return view('meals.orderHistory', compact('orderHistory'));
+    }
 }
-
-

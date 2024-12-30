@@ -59,8 +59,7 @@
 
             <!-- Display Total Amount -->
             <div id="total-amount-display" class="text-center mt-3" style="font-weight: bold; font-size: 18px;">
-                Total Amount: $<span id="total-amount">{{ $calculatedAmount }}</span><br>+5$ if eco-friendly packaging is chosen.
-            </div>
+                Total Amount: $<span id="total-amount">{{ $calculatedAmount }}</span><br>
 
             <!-- Submit Button -->
             <div class="text-center mt-4">
