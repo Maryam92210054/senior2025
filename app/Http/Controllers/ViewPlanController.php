@@ -13,48 +13,56 @@ use Carbon\Carbon;
 class ViewPlanController extends Controller
 {
     public function viewPlan()
-    {
-        $userId = Auth::id();
-        $today = Carbon::now();
-        $startOfWeek = $today->copy()->startOfWeek(); // Start of this week
-        $endOfWeek = $today->copy()->endOfWeek();     // End of this week
+{
+    $userId = Auth::id();
+    $today = Carbon::now();
     
-        // Fetch all plans for the user ordered by the earliest date in each plan
-        $plans = Order::where('user_id', $userId)
-            ->with('orderDays')
-            ->get()
-            ->sortBy(function ($order) {
-                return $order->orderDays->min('date'); // Sort by the earliest date in each plan
-            })
-            ->values();
-    
-        $currentPlan = null;
-        $newPlan = null;
-    
-        foreach ($plans as $plan) {
-            // Get all dates for the plan's orderDays
-            $planDates = $plan->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
-            \Log::info('Plan Dates:', $planDates->toArray());
-    
-            // Check if any date in the plan falls within the current week
-            if ($planDates->first(fn($date) => $date->between($startOfWeek, $endOfWeek))) {
-                \Log::info('Current Plan Found:', ['plan_id' => $plan->id]);
-                $currentPlan = $plan; // Plan belongs to this week
-            } elseif (!$newPlan && $planDates->min() > $today) {
-                \Log::info('New Plan Found:', ['plan_id' => $plan->id]);
-                $newPlan = $plan; // The next available plan
-            }
-    
-            if ($currentPlan && $newPlan) {
-                break; // Exit the loop once both plans are found
-            }
+    // Define the start and end dates of this week and the previous week
+    $startOfThisWeek = $today->copy()->startOfWeek(); // Start of current week
+    $endOfThisWeek = $today->copy()->endOfWeek();     // End of current week
+    $startOfPreviousWeek = $today->copy()->subWeek()->startOfWeek(); // Start of previous week
+    $endOfPreviousWeek = $today->copy()->subWeek()->endOfWeek(); // End of previous week
+
+    // Fetch all plans for the user, ordered by their created_at in descending order
+    $plans = Order::where('user_id', $userId)
+        ->with('orderDays')
+        ->get()
+        ->sortByDesc('created_at'); // Sort by latest created_at first
+
+    $currentPlan = null;
+    $newPlan = null;
+
+    foreach ($plans as $plan) {
+        // Get the creation date of the plan
+        $planCreatedAt = Carbon::parse($plan->created_at);
+        \Log::info('Plan Created At:', ['created_at' => $planCreatedAt]);
+
+        // Check if the plan was created in the previous week
+        if (!$currentPlan && $planCreatedAt->between($startOfPreviousWeek, $endOfPreviousWeek)) {
+            \Log::info('Current Plan Found:', ['plan_id' => $plan->id]);
+            $currentPlan = $plan; // The most recent plan created in the previous week
         }
-    
-        $currentPlanMealsData = $this->getPlanDetails($currentPlan);
-        $newPlanMealsData = $this->getPlanDetails($newPlan);
-    
-        return view('meals.viewPlan', compact('currentPlanMealsData', 'newPlanMealsData'));
+
+        // Check if the plan was created in the current week
+        if (!$newPlan && $planCreatedAt->between($startOfThisWeek, $endOfThisWeek)) {
+            \Log::info('New Plan Found:', ['plan_id' => $plan->id]);
+            $newPlan = $plan; // The most recent plan created in the current week
+        }
+
+        // Exit the loop once both plans are found
+        if ($currentPlan && $newPlan) {
+            break;
+        }
     }
+
+    // Retrieve meal details for both plans if they exist
+    $currentPlanMealsData = $currentPlan ? $this->getPlanDetails($currentPlan) : null;
+    $newPlanMealsData = $newPlan ? $this->getPlanDetails($newPlan) : null;
+
+    // Return the view with the meal data of both plans
+    return view('meals.viewPlan', compact('currentPlanMealsData', 'newPlanMealsData'));
+}
+
     
 
     
@@ -65,7 +73,7 @@ class ViewPlanController extends Controller
         }
     
         $plan = Plan::find($order->plan_id);
-        $mealTypes = $plan?->planType->mealTypes ?? [];
+        $mealTypes = $plan->planType->mealTypes ?? [];
     
         $orderDays = $order->orderDays;
     
