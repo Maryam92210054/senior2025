@@ -16,11 +16,13 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
-                <img src="img/about.jpg" class="img-fluid rounded" alt="">
+                <img src="mealsImages/hi.png" class="img-fluid rounded" alt="">
             </div>
             <div class="col-lg-7 wow bounceInUp" data-wow-delay="0.3s">
-                <h1 class="display-5 mb-4">Introduction</h1>
-                <p class="mb-4">Welcome to WeekCraft, your personalized meal planning service designed for busy individuals who care about healthy, delicious food! We provide convenient, customized meal plans that cater to your dietary needs, whether you're looking to lose weight, build muscle, or maintain a healthy lifestyle. With our service, you can say goodbye to stress and unhealthy fast food – we deliver nutritious meals right to your door.</p>
+                <h1 class="display-5 mb-4">Welcome to WeekCraft</h1>
+                <p class="mb-4">At WeekCraft, we empower you to take control of your meals and craft your week exactly the way you want it. Our name reflects our mission: giving you the tools to design a fully customizable meal plan tailored to your unique goals and preferences.
+                    Whether you’re aiming to lose weight, build muscle, or maintain a healthy lifestyle, WeekCraft makes it easy to personalize every detail. You choose the meals, set your dietary preferences, and schedule your plan—all with the flexibility to fit your busy life.
+                    With WeekCraft,the power is in your hands to create a week that's healthy, delicious, and uniquely</p>
                 <div class="row g-4 text-dark mb-5">
                     <div class="col-sm-6">
                         <i class="fas fa-share text-primary me-2"></i>Healthy, Delicious Meal Options
@@ -46,56 +48,42 @@
 <div class="container-fluid faqt py-6">
     <div class="container">
         <div class="row g-4 align-items-center">
+            <!-- Facts Section -->
             <div class="col-lg-7">
-               <div class="row g-4">
-               <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.7s">
-               <div class="faqt-item  rounded p-4 text-center" style="background:#d4a373">
-               <i class="fas fa-calendar-week fa-4x mb-4 text-white"></i>
-                        <h1 class="display-4 fw-bold" data-toggle="counter-up">3-7</h1>
-                            <p class="text-dark text-uppercase fw-bold mb-0">Day weekly Plan</p>
+                <div class="row g-4">
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.7s">
+                        <div class="faqt-item rounded p-4 text-center" style="background:#d4a373">
+                            <i class="fas fa-calendar-week fa-4x mb-4 text-white"></i>
+                            <h1 class="display-4 fw-bold" data-toggle="counter-up">3-7</h1>
+                            <p class="text-dark text-uppercase fw-bold mb-0">Day Weekly Plan</p>
                         </div>
                     </div>
-               <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.5s">
-                        <div class="faqt-item  rounded p-4 text-center" style="background:#d4a373">
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.5s">
+                        <div class="faqt-item rounded p-4 text-center" style="background:#d4a373">
                             <i class="fas fa-users-cog fa-4x mb-4 text-white"></i>
                             <h1 class="display-4 fw-bold" data-toggle="counter-up">10+</h1>
                             <p class="text-dark text-uppercase fw-bold mb-0">Expert Chefs</p>
                         </div>
                     </div>
-                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.3s" >
-                        <div class="faqt-item  rounded p-4 text-center" style="background:#d4a373">
-                        <i class="fas fa-utensils fa-4x mb-4 text-white"></i>
+                    <div class="col-sm-4 wow bounceInUp" data-wow-delay="0.3s">
+                        <div class="faqt-item rounded p-4 text-center" style="background:#d4a373">
+                            <i class="fas fa-utensils fa-4x mb-4 text-white"></i>
                             <h1 class="display-4 fw-bold" data-toggle="counter-up">100+</h1>
                             <p class="text-dark text-uppercase fw-bold mb-0">Meal Options</p>
                         </div>
                     </div>
-                    
-                   
                 </div>
             </div>
-           
+            <!-- Picture Section -->
+            <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
+    <img src="mealsImages/about.jfif" class="img-fluid rounded" style="height: 400px; width: 400px; object-fit: cover;" alt="">
+</div>
+
         </div>
     </div>
 </div>
-<!-- Modal Video -->
-<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content rounded-0">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Youtube Video</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <!-- 16:9 aspect ratio -->
-                <div class="ratio ratio-16x9">
-                    <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always"
-                        allow="autoplay"></iframe>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Fact End -->
+<!-- Fact End-->
+
 
 
 <!-- Team Start -->
@@ -112,8 +100,7 @@
                     <div class="team-content text-center py-3  rounded-bottom">
                         <h4 class="text-primary">Chefs</h4>
                         <p class="text-dark mb-0">With years of experience, they ensure every dish is a masterpiece that satisfies your taste buds and meets your dietary goals</p>
-                    </div>
-                    
+                    </div>                   
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 wow bounceInUp" data-wow-delay="0.3s">
@@ -195,15 +182,10 @@
          style="width: 191px; height: auto; max-width: 100%;">
 </div>
 
-
             </div>
         </div>
     </div>
 </div>
 <!-- Footer End -->
-
-
-
-
 
 @endsection

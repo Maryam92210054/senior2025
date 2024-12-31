@@ -1,5 +1,5 @@
 @extends('layouts.nav1')
-@section('title', 'Login')
+@section('title', 'home')
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +47,7 @@
 
 
         <!-- Hero Start -->
-        <div class="container-fluid bg-light py-6 my-6 mt-0">
+        <div class="container-fluid  py-6 my-6 mt-0">
             <div class="container">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-7 col-md-12">
@@ -57,7 +57,7 @@
                         <a href="{{ route('about') }}" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated bounceInLeft">About Us</a>
                     </div>
                     <div class="col-lg-5 col-md-12">
-                        <img src="mealsImages/bg.png" class="img-fluid rounded animated zoomIn" alt="">
+                        <img src="mealsImages/home.jfif" class="img-fluid rounded animated zoomIn" alt="">
                     </div>
                 </div>
             </div>
@@ -89,19 +89,6 @@
                 </div>
             </div>
 
-            <!-- Step 2: Log In -->
-            <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.3s">
-                <div class="bg-light rounded service-item">
-                    <div class="service-content d-flex align-items-center justify-content-center p-4">
-                        <div class="service-content-icon text-center">
-                            <i class="fas fa-sign-in-alt fa-7x text-primary mb-4"></i>
-                            <h4 class="mb-3">Log In</h4>
-                            <p class="mb-4">Log in to access your dashboard and start choosing your plan.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Step 3: View Meals -->
             <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.5s">
                 <div class="bg-light rounded service-item">
@@ -127,6 +114,20 @@
                     </div>
                 </div>
             </div>
+       
+            <!-- Step 5: Specify Restrictions -->
+        <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.9s">
+            <div class="bg-light rounded service-item">
+                <div class="service-content d-flex align-items-center justify-content-center p-4">
+                    <div class="service-content-icon text-center">
+                        <i class="fas fa-allergies fa-7x text-primary mb-4"></i>
+                        <h4 class="mb-3">Restrictions</h4>
+                        <p class="mb-4">Customize your plan to account for allergies, intolerances, or dietary preferences.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <!-- Step 5: Choose How Many Days -->
             <div class="col-lg-3 col-md-6 col-sm-12 wow bounceInUp" data-wow-delay="0.1s">
@@ -135,7 +136,7 @@
                         <div class="service-content-icon text-center">
                             <i class="fas fa-calendar-alt fa-7x text-primary mb-4"></i>
                             <h4 class="mb-3">Choose Days</h4>
-                            <p class="mb-4">Select how many days you want your meal plan to cover.</p>
+                            <p class="mb-4">Select how many days per week you want your meal plan to cover.</p>
                         </div>
                     </div>
                 </div>
@@ -174,7 +175,7 @@
                         <div class="service-content-icon text-center">
                             <i class="fas fa-box fa-7x text-primary mb-4"></i>
                             <h4 class="mb-3">Receive Plan</h4>
-                            <p class="mb-4">Sit back, relax, and enjoy your healthy meals delivered to you.</p>
+                            <p class="mb-4">Sit back, relax, and enjoy your healthy meals delivered daily to you.</p>
                         </div>
                     </div>
                 </div>
