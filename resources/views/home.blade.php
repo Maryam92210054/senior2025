@@ -469,54 +469,57 @@
 <!-- Location End -->
 
 
-        <!-- Footer Start -->
-        <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-item">
-                            <h1 class="text-primary">Week<span class="text-dark">Craft</span></h1>
-                            <p class="lh-lg mb-4">A website where you freely craft your loved meals.</p>
-                            <div class="footer-icon d-flex">
-                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-item">
-                            <h4 class="mb-4">Special Facilities</h4>
-                            <div class="d-flex flex-column align-items-start">
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Whole-Grain Pancakes with Almond Butter</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Watermelon, Sumac & Feta Salad</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Vermicelli Noodle & Beef Salad</a>
-                                <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Tuna Pasta Salad</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-item">
-                            <h4 class="mb-4">Contact Us</h4>
-                            <div class="d-flex flex-column align-items-start">
-                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i> Akkar,Lebanon</p>
-                                <p><i class="fa fa-phone-alt text-primary me-2"></i> (+961)26073155 </p>
-                                <p><i class="fas fa-envelope text-primary me-2"></i> WeekCraft@gmail.com</p>
-                                <p><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="footer-item">
-                          
-                            </div>
-                        </div>
+     <!-- Footer Start -->
+<div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-item">
+                    <h1 class="text-primary">Week<span class="text-dark">Craft</span></h1>
+                    <p class="lh-lg mb-4">A website where you freely craft your loved meals.</p>
+                    <div class="footer-icon d-flex">
+                        <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="btn btn-primary btn-sm-square me-2 rounded-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="btn btn-primary btn-sm-square rounded-circle"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-item">
+                    <h4 class="mb-4">Special Facilities</h4>
+                    <div class="d-flex flex-column align-items-start">
+                        <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Whole-Grain Pancakes with Almond Butter</a>
+                        <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Watermelon, Sumac & Feta Salad</a>
+                        <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Vermicelli Noodle & Beef Salad</a>
+                        <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Tuna Pasta Salad</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="footer-item">
+                    <h4 class="mb-4">Contact Us</h4>
+                    <div class="d-flex flex-column align-items-start">
+                        <p><i class="fa fa-map-marker-alt text-primary me-2"></i> Akkar, Lebanon</p>
+                        <p><i class="fa fa-phone-alt text-primary me-2"></i> (+961)26073155 </p>
+                        <p><i class="fas fa-envelope text-primary me-2"></i> WeekCraft@gmail.com</p>
+                        <p><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+            <div class="footer-item text-center">
+    <img src="mealsImages/hi.png" alt="WeekCraft Logo" class="img-fluid" 
+         style="width: 191px; height: auto; max-width: 100%;">
+</div>
+
+
+            </div>
         </div>
-        <!-- Footer End -->
+    </div>
+</div>
+<!-- Footer End -->
+
 
 
 
