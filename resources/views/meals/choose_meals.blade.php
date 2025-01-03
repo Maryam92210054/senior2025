@@ -185,7 +185,7 @@ document.querySelectorAll('.zoom-in-icon').forEach(icon => {
                 document.getElementById('meal-image').src = `/mealsImages/${data.meal_image}`;
                 document.getElementById('meal-name').textContent = data.name;
                 document.getElementById('meal-description').textContent = `Description: ${data.description}`;
-                document.getElementById('meal-health-info').textContent = `Health Info: ${data.health_info}`;
+                document.getElementById('meal-health-info').textContent = `Nutritional Facts: ${data.health_info}`;
                 document.getElementById('meal-goal-name').textContent = `Goal: ${data.goal_name}`;
                 $('#mealDetailsModal').modal('show');
             })

@@ -1,4 +1,3 @@
-
 @extends('layouts.nav2')
 
 @section('content')
@@ -11,13 +10,13 @@
         }
 
         .plan-title {
-            font-size: 2rem; /* Bigger font size */
+            font-size: 2rem;
             font-weight: bold;
-            color: #9c6644; /* Dark brown color for text */
-            background-color: white; /* White background for the title */
-            padding: 15px 30px; /* Larger padding for more space around text */
+            color: #9c6644;
+            background-color: white;
+            padding: 15px 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for emphasis */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             display: inline-block;
             position: relative;
         }
@@ -29,19 +28,36 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #d4a373; /* Light brown highlighter */
+            background-color: #d4a373;
             z-index: -1;
-            border-radius: 10px; /* Match border radius of the title */
-            padding: 5px; /* Increase padding to make highlighter bigger */
+            border-radius: 10px;
+            padding: 5px;
         }
 
         .plan-divider {
-            border-top: 3px solid #d4a373; /* Light brown line separator */
+            border-top: 3px solid #d4a373;
             margin: 30px 0;
         }
 
         .cancel-buttons {
             margin-top: 20px;
+        }
+
+        /* Zoom icon styling */
+        .zoom-icon {
+            font-size: 24px;
+            color: #007bff;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        /* Modal styling */
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
     </style>
 </head>
@@ -83,9 +99,31 @@
 
                             <div class="team-content text-center py-3 rounded-bottom flex-grow-1">
                                 <h4>{{ $meal['name'] }}</h4>
+                                <!-- Zoom Icon -->
+                                <span class="fas fa-search-plus zoom-in-icon position-absolute top-0 start-0 m-2" 
+                                style="font-size: 24px; color: black; cursor: pointer;"data-toggle="modal" data-target="#mealModal{{ $meal['id'] }}"></span>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="mealModal{{ $meal['id'] }}" tabindex="-1" role="dialog" aria-labelledby="mealModalLabel{{ $meal['id'] }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="mealModalLabel{{ $meal['id'] }}">{{ $meal['name'] }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Description:</strong> {{ $meal['description'] }}</p>
+                                    <p><strong>Nutritional Facts:</strong> {{ $meal['health_info'] }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     @endforeach
                     @else
                     <p class="text-center">No meals available</p>
@@ -97,13 +135,13 @@
         </div>
         @endif
 
-        <div class="plan-divider"></div> <!-- Divider between current and new plans -->
+        <div class="plan-divider"></div>
 
         {{-- New Plan --}}
         @if (!empty($newPlanMealsData))
         <div class="plan-section mb-5">
             <div class="text-center">
-                <h2 class="plan-title">New Plan</h2>
+                <h2 class="plan-title">Next Week's Plan</h2>
             </div><br>
 
             <div class="row justify-content-center g-4">
@@ -130,9 +168,31 @@
 
                             <div class="team-content text-center py-3 rounded-bottom flex-grow-1">
                                 <h4>{{ $meal['name'] }}</h4>
+                                <!-- Zoom Icon -->
+                                <span class="fas fa-search-plus zoom-in-icon position-absolute top-0 start-0 m-2" 
+                                style="font-size: 24px; color: black; cursor: pointer;"data-toggle="modal" data-target="#mealModal{{ $meal['id'] }}"></span>
+                            </div>                           
+                        </div>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="mealModal{{ $meal['id'] }}" tabindex="-1" role="dialog" aria-labelledby="mealModalLabel{{ $meal['id'] }}" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="mealModalLabel{{ $meal['id'] }}">{{ $meal['name'] }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Description:</strong> {{ $meal['description'] }}</p>
+                                    <p><strong>Health Info:</strong> {{ $meal['health_info'] }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                     @endforeach
                     @else
                     <p class="text-center">No meals available</p>
@@ -145,28 +205,7 @@
         @endif
 
         <!-- Cancel Buttons -->
-        <div class="text-center cancel-buttons">
-            @if (!empty($currentPlanMealsData))
-            <form action="{{ route('cancel-order') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel your current plan?');" style="display:inline;">
-                @csrf
-                <input type="hidden" name="plan_type" value="current">
-                <button type="submit" class="btn btn-danger">Cancel Current Plan</button>
-            </form>
-            @endif
-
-            @if (!empty($newPlanMealsData))
-            <form action="{{ route('cancel-order') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel your new plan?');" style="display:inline;">
-                @csrf
-                <input type="hidden" name="plan_type" value="new">
-                <button type="submit" class="btn btn-danger">Cancel New Plan</button>
-            </form>
-            @endif
-        </div>
-
-        <!-- Order History Button -->
-        <div class="text-center mt-4">
-            <a href="{{ route('order-history') }}" class="btn btn-primary">View Order History</a>
-        </div>
+        
     </div>
 </div>
 @endsection

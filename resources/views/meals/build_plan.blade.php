@@ -9,6 +9,8 @@
         <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
             <h2 class=" display-5 mb-5 d-inline-block fw-bold text-dark bg-light border border-primary rounded-pill px-4 py-1 mb-3">{{ $goal->name }} Plans</h2>
             <h1 class="display-5 mb-5">Select the plan that best fits your goals and preferences.</h1>
+            <h3 class="display-5 mb-5">Prices include delivery charges</h3>
+
         </div>
         <div class="row justify-content-center g-4">
             @forelse($plans as $plan)
@@ -17,7 +19,8 @@
                         <div class="team-item rounded h-100 d-flex flex-column">
                             <img class="img-fluid rounded-top" src="img/plan.jpeg" alt="">
                             <div class="team-content text-center py-3  rounded-bottom flex-grow-1">
-                                <h4 >{{ $plan->planType->description }}</h4>
+                            <h4>{{ $plan->planType->name }}</h4>
+                                <h5 >{{ $plan->planType->description }}</h5>
                                 <p >Price Per Day: ${{ $plan->price }}</p>
                             </div>
                         </div>

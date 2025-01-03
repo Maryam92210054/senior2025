@@ -85,6 +85,7 @@ class ViewPlanController extends Controller
                 if ($meal) {
                     $mealType = $meal->mealType;
                     $mealsByType[$mealType->name][] = [
+                        'id'=> $meal->id,
                         'name' => $meal->name,
                         'image' => $meal->meal_image,
                         'description' => $meal->description,
