@@ -16,13 +16,13 @@
             </thead>
             <tbody>
                 @foreach ($userMeals as $day => $meals)
-                    @foreach ($meals as $meal)
-                        <tr>
-                            <td>Day {{ $day }}</td>
-                            <td>{{ $meal->mealType->name }}</td>
-                            <td>{{ $meal->meal->name }}</td>
-                        </tr>
-                    @endforeach
+                @foreach ($meals as $meal)
+                <tr>
+                    <td>Day {{ $day }}</td>
+                    <td>{{ $meal->mealType->name }}</td>
+                    <td>{{ $meal->meal->name }}</td>
+                </tr>
+                @endforeach
                 @endforeach
             </tbody>
         </table>

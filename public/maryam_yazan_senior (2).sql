@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2025 at 02:51 PM
+-- Generation Time: Jan 05, 2025 at 12:30 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -119,7 +119,7 @@ INSERT INTO `meals` (`id`, `name`, `description`, `health_info`, `meal_image`, `
 (33, 'Protein Waffles', 'Waffles made with protein-packed ingredients like protein powder, eggs, and oats, customized with fruits, nuts, and Greek yogurt.', 'Calories: 150 (per waffle), Protein: 12g, Fat: 5g, Carbs: 16g', 'Protein Waffles.jfif', 3, 1, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
 (34, 'Spinach, Bean, and Cheese Breakfast Quesadilla', 'A healthy and satisfying morning meal with tender spinach, hearty black beans, and melty cheese in a crispy tortilla.', 'Calories: 300, Protein: 15g, Fat: 12g, Carbs: 27g', 'Spinach, Bean, and Cheese Breakfast Quesadilla.jfif', 3, 1, '2024-12-22 09:05:56', '2024-12-25 16:10:11', 1),
 (35, 'High-Protein Baked Oatmeal', 'Packed with protein from vanilla protein powder and Greek yogurt, with rolled oats and fresh berries like blueberries and raspberries.', 'Calories: 250, Protein: 20g, Fat: 6g, Carbs: 34g', 'High-Protein Baked Oatmeal.jfif', 3, 1, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
-(36, 'Pesto Chicken Quinoa Bowls', 'The homemade pesto adds a delicious herby richness to the chicken and quinoa, while the fresh vegetables provide crunch and a burst of freshness.', 'Calories: 400, Protein: 35g, Carbs: 22g, Fat: 25g', 'Quinoa Breakfast Bowl.jfif', 3, 2, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
+(36, 'Pesto Chicken Quinoa Bowls', 'The homemade pesto adds a delicious herby richness to the chicken and quinoa, while the fresh vegetables provide crunch and a burst of freshness.', 'Calories: 400, Protein: 35g, Carbs: 22g, Fat: 25g', 'Pesto Chicken Quinoa Bowls.jfif', 3, 2, '2024-12-22 09:05:56', '2025-01-04 19:48:32', 1),
 (37, 'Roasted Salmon Rice Bowl', 'This is a vibrant and nutrient-rich dish that combines the omega-3s of salmon, the earthy sweetness of beets, and the crunch of roasted Brussels sprouts. Paired with fiber-rich brown rice', 'Calories: 450, Protein: 25g, Carbs: 30g, Fat: 35g', 'Roasted Salmon Rice Bowl.jfif', 3, 2, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
 (38, 'Spinach & Feta Turkey Meatballs with Quinoa', 'The turkey meatballs are juicy and savory, with a delicious combination of spinach and feta that adds freshness and creaminess.Paired with herbed quinoa.', 'Calories: 400, Protein: 35g, Fat: 18g, Carbs: 30g', 'Spinach & Feta Turkey Meatballs with Herbed Quinoa.jfif', 3, 2, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
 (39, 'Shrimp, Avocado & Feta Wrap', 'The Shrimp, Avocado & Feta Wrap is a light yet satisfying meal that combines succulent shrimp, creamy avocado, and tangy feta cheese wrapped in a soft tortilla.', 'Calories: 400, Protein: 30g, Fat: 25g, Carbs: 20g', 'Shrimp, Avocado & Feta Wrap.jfif', 3, 2, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
@@ -569,9 +569,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `delivery_time`, `status`, `plan_id`, `user_id`, `payment_id`, `created_at`, `updated_at`, `refund_processed`) VALUES
 (37, '16:34:00', 'pending', 2, 10, NULL, '2024-12-22 12:32:41', '2024-12-22 12:32:41', 'not_applicable'),
-(38, '16:59:00', 'pending', 1, 10, 4, '2024-12-22 12:55:37', '2024-12-22 12:55:45', 'not_applicable'),
-(39, '20:37:00', 'pending', 3, 10, 5, '2024-12-22 13:37:44', '2024-12-22 13:37:53', 'not_applicable'),
-(40, '18:54:00', 'pending', 1, 10, 6, '2024-12-22 14:51:26', '2024-12-22 14:51:35', 'not_applicable'),
+(38, '16:59:00', 'cancelled', 1, 10, 4, '2024-12-22 12:55:37', '2025-01-04 21:18:17', 'not_applicable'),
+(39, '20:37:00', 'placed', 3, 10, 5, '2024-12-22 13:37:44', '2025-01-04 21:18:25', 'not_applicable'),
+(40, '18:54:00', 'placed', 1, 10, 6, '2024-12-22 14:51:26', '2025-01-04 21:18:42', 'not_applicable'),
 (41, '15:00:00', 'pending', 1, 10, 7, '2024-12-23 11:57:39', '2024-12-23 12:00:05', 'not_applicable'),
 (42, '19:28:00', 'pending', 4, 10, 8, '2024-12-23 14:28:21', '2024-12-23 14:28:46', 'not_applicable'),
 (52, '09:00:00', 'placed', 1, 10, NULL, '2024-12-25 16:04:50', '2024-12-25 16:05:07', 'not_applicable'),
@@ -593,7 +593,7 @@ INSERT INTO `orders` (`id`, `delivery_time`, `status`, `plan_id`, `user_id`, `pa
 (68, '07:00:00', 'pending', 6, 10, NULL, '2024-12-27 09:28:58', '2024-12-27 09:28:58', 'not_applicable'),
 (69, '07:00:00', 'pending', 6, 10, NULL, '2024-12-27 09:31:46', '2024-12-27 09:31:46', 'not_applicable'),
 (70, '07:00:00', 'pending', 6, 10, NULL, '2024-12-27 09:32:23', '2024-12-27 09:32:23', 'not_applicable'),
-(71, '07:00:00', 'pending', 6, 10, NULL, '2024-12-27 09:34:41', '2024-12-27 09:34:41', 'not_applicable'),
+(71, '07:00:00', 'placed', 6, 10, NULL, '2024-12-27 09:34:41', '2025-01-04 21:18:10', 'not_applicable'),
 (72, '07:00:00', 'pending', 6, 10, NULL, '2024-12-27 09:36:12', '2024-12-27 09:36:12', 'not_applicable'),
 (73, '07:00:00', 'placed', 6, 10, NULL, '2024-12-27 09:37:48', '2024-12-27 09:37:57', 'not_applicable'),
 (74, '07:00:00', 'pending', 6, 10, NULL, '2024-12-27 09:39:29', '2024-12-27 09:39:29', 'not_applicable'),
@@ -615,7 +615,12 @@ INSERT INTO `orders` (`id`, `delivery_time`, `status`, `plan_id`, `user_id`, `pa
 (90, '07:00:00', 'placed', 2, 10, 38, '2025-01-02 06:06:00', '2025-01-02 06:06:41', 'not_applicable'),
 (91, '08:00:00', 'placed', 2, 10, 39, '2025-01-03 10:59:02', '2025-01-03 10:59:14', 'not_applicable'),
 (92, '09:00:00', 'cancelled', 2, 10, 40, '2025-01-03 18:37:29', '2025-01-03 20:36:54', 'pending'),
-(93, '10:00:00', 'cancelled_with_refund', 1, 32, 41, '2025-01-03 19:21:29', '2025-01-03 19:58:19', 'not_applicable');
+(93, '10:00:00', 'cancelled', 1, 32, 41, '2025-01-03 19:21:29', '2025-01-04 19:46:06', 'pending'),
+(94, '07:00:00', 'cancelled', 2, 10, 42, '2025-01-04 19:15:56', '2025-01-04 19:42:16', 'pending'),
+(95, '09:00:00', 'cancelled', 7, 32, 43, '2025-01-04 20:04:09', '2025-01-04 20:04:51', 'pending'),
+(96, '07:00:00', 'placed', 8, 32, NULL, '2025-01-04 20:07:24', '2025-01-04 21:17:56', 'completed'),
+(97, '09:00:00', 'cancelled', 8, 32, 44, '2025-01-04 20:09:26', '2025-01-04 20:12:55', 'pending'),
+(98, '08:00:00', 'placed', 7, 32, 45, '2025-01-04 20:15:20', '2025-01-04 20:15:28', 'not_applicable');
 
 -- --------------------------------------------------------
 
@@ -786,7 +791,22 @@ INSERT INTO `order_days` (`id`, `day_number`, `date`, `order_id`, `created_at`, 
 (203, 3, '2025-01-12', 92, '2025-01-03 18:37:29', '2025-01-03 18:37:29'),
 (204, 1, '2025-01-08', 93, '2025-01-03 19:21:29', '2025-01-03 19:21:29'),
 (205, 2, '2025-01-09', 93, '2025-01-03 19:21:30', '2025-01-03 19:21:30'),
-(206, 3, '2025-01-09', 93, '2025-01-03 19:21:30', '2025-01-03 19:21:30');
+(206, 3, '2025-01-09', 93, '2025-01-03 19:21:30', '2025-01-03 19:21:30'),
+(207, 1, '2025-01-08', 94, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(208, 2, '2025-01-10', 94, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(209, 3, '2025-01-11', 94, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(210, 1, '2025-01-07', 95, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(211, 2, '2025-01-08', 95, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(212, 3, '2025-01-09', 95, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(213, 1, '2025-01-08', 96, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(214, 2, '2025-01-09', 96, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(215, 3, '2025-01-10', 96, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(216, 1, '2025-01-07', 97, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(217, 2, '2025-01-09', 97, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(218, 3, '2025-01-10', 97, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(219, 1, '2025-01-09', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(220, 2, '2025-01-11', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(221, 3, '2025-01-12', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20');
 
 -- --------------------------------------------------------
 
@@ -1178,7 +1198,58 @@ INSERT INTO `order_day_meals` (`id`, `order_day_id`, `meal_id`, `created_at`, `u
 (498, 206, 52, '2025-01-03 19:21:30', '2025-01-03 19:21:30'),
 (499, 206, 61, '2025-01-03 19:21:30', '2025-01-03 19:21:30'),
 (500, 206, 104, '2025-01-03 19:21:30', '2025-01-03 19:21:30'),
-(501, 206, 110, '2025-01-03 19:21:30', '2025-01-03 19:21:30');
+(501, 206, 110, '2025-01-03 19:21:30', '2025-01-03 19:21:30'),
+(502, 207, 51, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(503, 207, 63, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(504, 207, 106, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(505, 208, 52, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(506, 208, 63, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(507, 208, 108, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(508, 209, 53, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(509, 209, 66, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(510, 209, 105, '2025-01-04 19:15:56', '2025-01-04 19:15:56'),
+(511, 210, 31, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(512, 210, 38, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(513, 210, 45, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(514, 210, 121, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(515, 211, 92, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(516, 211, 79, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(517, 211, 43, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(518, 211, 117, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(519, 212, 30, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(520, 212, 78, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(521, 212, 45, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(522, 212, 119, '2025-01-04 20:04:09', '2025-01-04 20:04:09'),
+(523, 213, 29, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(524, 213, 36, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(525, 213, 115, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(526, 214, 30, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(527, 214, 37, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(528, 214, 116, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(529, 215, 31, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(530, 215, 38, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(531, 215, 117, '2025-01-04 20:07:24', '2025-01-04 20:07:24'),
+(532, 216, 31, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(533, 216, 38, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(534, 216, 117, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(535, 217, 31, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(536, 217, 39, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(537, 217, 118, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(538, 218, 30, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(539, 218, 37, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(540, 218, 116, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
+(541, 219, 34, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(542, 219, 38, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(543, 219, 44, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(544, 219, 117, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(545, 220, 35, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(546, 220, 78, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(547, 220, 45, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(548, 220, 122, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(549, 221, 89, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(550, 221, 42, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(551, 221, 45, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(552, 221, 121, '2025-01-04 20:15:20', '2025-01-04 20:15:20');
 
 -- --------------------------------------------------------
 
@@ -1251,7 +1322,11 @@ INSERT INTO `payments` (`id`, `amount`, `payment_date`, `created_at`, `updated_a
 (38, '27.00', '2025-01-02 00:00:00', '2025-01-02 06:06:41', '2025-01-02 06:06:41'),
 (39, '44.00', '2025-01-03 00:00:00', '2025-01-03 10:59:14', '2025-01-03 10:59:14'),
 (40, '44.00', '2025-01-03 00:00:00', '2025-01-03 18:37:52', '2025-01-03 18:37:52'),
-(41, '62.00', '2025-01-03 00:00:00', '2025-01-03 19:21:36', '2025-01-03 19:21:36');
+(41, '62.00', '2025-01-03 00:00:00', '2025-01-03 19:21:36', '2025-01-03 19:21:36'),
+(42, '44.00', '2025-01-04 00:00:00', '2025-01-04 19:16:06', '2025-01-04 19:16:06'),
+(43, '86.00', '2025-01-04 00:00:00', '2025-01-04 20:04:19', '2025-01-04 20:04:19'),
+(44, '62.00', '2025-01-04 00:00:00', '2025-01-04 20:09:41', '2025-01-04 20:09:41'),
+(45, '81.00', '2025-01-04 00:00:00', '2025-01-04 20:15:28', '2025-01-04 20:15:28');
 
 -- --------------------------------------------------------
 
@@ -1313,6 +1388,7 @@ CREATE TABLE `plan_types` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1321,10 +1397,10 @@ CREATE TABLE `plan_types` (
 -- Dumping data for table `plan_types`
 --
 
-INSERT INTO `plan_types` (`id`, `description`, `name`, `created_at`, `updated_at`) VALUES
-(10, 'Breakfast + Lunch + Snack', 'Half Day AM', '2024-12-29 09:57:51', '2024-12-29 09:57:51'),
-(11, 'Lunch + Dinner + Snack', 'Half Day PM', '2024-12-29 09:58:27', '2024-12-29 09:58:27'),
-(12, 'Breakfast + Lunch + Dinner + Snack', 'Full Day', '2024-12-29 09:58:47', '2024-12-29 10:01:30');
+INSERT INTO `plan_types` (`id`, `description`, `name`, `image`, `created_at`, `updated_at`) VALUES
+(10, 'Breakfast + Lunch + Snack', 'Half Day AM', 'am.png', '2024-12-29 09:57:51', '2024-12-29 09:57:51'),
+(11, 'Lunch + Dinner + Snack', 'Half Day PM', 'pm.png', '2024-12-29 09:58:27', '2024-12-29 09:58:27'),
+(12, 'Breakfast + Lunch + Dinner + Snack', 'Full Day', 'full.png', '2024-12-29 09:58:47', '2024-12-29 10:01:30');
 
 -- --------------------------------------------------------
 
@@ -1431,7 +1507,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 (10, 'khaled Hayek', 'khaled@gmail.com', NULL, '$2y$10$0eoQfDKAALhNOt7908zO8OfEac9o2TTfMK.QBI.pycNJqEFM8ZfuO', NULL, '34/665432', 'Berqayel', 'Main Street, facing Akkar Plaza', 1, 1, 1, '2024-12-15 08:15:52', '2025-01-03 11:19:18'),
 (30, 'Maryam Mouslimany', 'maryam@gmail.com', NULL, '$2y$10$8Pzpb22peamR5UtXYwYFkuv.d3uGO.RK9jCKncDwf3ZoNLWQU5Dwa', NULL, '81/305964', 'Akkar al-Atika', 'nananananananananana', 1, 2, NULL, '2025-01-03 11:23:07', '2025-01-03 11:23:07'),
 (31, 'Yazan Ghayeb', 'yazan@gmail.com', NULL, '$2y$10$i/SpouAz8rIhdIfgX/D2QOI/YNQhitIlVUNemNeCyHU4tWKzoaiDW', NULL, '90/876543', 'Akkar al-Atika', 'nananananananananana', 1, 2, NULL, '2025-01-03 11:24:26', '2025-01-03 11:24:26'),
-(32, 'Ahmad Issa', 'ahmad@gmail.com', NULL, '$2y$10$jYoo3/RY9cviJsu45HpYrONsoLBEWegc7vOfS0Yoxhj3BVguGYwWS', NULL, '90/876543', 'Miniara', 'Min Road facing Miniara Bakeies', 1, 1, NULL, '2025-01-03 19:19:45', '2025-01-03 19:19:45');
+(32, 'Ahmad Issa', 'ahmad@gmail.com', NULL, '$2y$10$jYoo3/RY9cviJsu45HpYrONsoLBEWegc7vOfS0Yoxhj3BVguGYwWS', NULL, '90/876543', 'Miniara', 'Min Road facing Miniara Bakeies', 3, 1, NULL, '2025-01-03 19:19:45', '2025-01-04 19:46:42');
 
 --
 -- Indexes for dumped tables
@@ -1624,25 +1700,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- AUTO_INCREMENT for table `order_days`
 --
 ALTER TABLE `order_days`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
 
 --
 -- AUTO_INCREMENT for table `order_day_meals`
 --
 ALTER TABLE `order_day_meals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

@@ -3,6 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +16,9 @@
 
 <body>
     <div class="container">
-       
+
         <div class="meal-profile">
-  
+
             <div class="meal-details">
                 <p><strong>Description:</strong> {{ $plan->description}}</p>
                 <p><strong>Price per day: </strong> ${{ $plan->price}}</p>
@@ -27,23 +28,24 @@
                 <p><strong>Updated At:</strong> {{ $plan->updated_at->format('M d, Y H:i A') }}</p>
             </div>
 
-            
+
         </div>
 
         <!-- Action Buttons for Admin -->
         <div class="meal-actions">
-        <a href="{{ route('plans.edit', $plan->id) }}" class="btn btn-success btn-lg">
-            <i class="fas fa-edit"></i> Edit Plan
-        </a>
-        <a href="{{ route('plans.index') }}" class="btn btn-danger btn-lg">
-            <i class="fas fa-arrow-left"></i> Back to Plans
-        </a>
-        </div>   
+            <a href="{{ route('plans.edit', $plan->id) }}" class="btn btn-success btn-lg">
+                <i class="fas fa-edit"></i> Edit Plan
+            </a>
+            <a href="{{ route('plans.index') }}" class="btn btn-danger btn-lg">
+                <i class="fas fa-arrow-left"></i> Back to Plans
+            </a>
+        </div>
 
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0v8fvyVv1IM1uMLBsHVv5Pb7ZT16akIIKuD4qfYZX2jP2vRf" crossorigin="anonymous"></script>
 </body>
+
 </html>
 @endsection

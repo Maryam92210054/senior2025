@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 class PlanType extends Model
 {
+
+    protected $fillable = ['description','name','image'];
+
     public function plans()
     {
         return $this->hasMany(Plan::class);

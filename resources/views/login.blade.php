@@ -3,6 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
   <<link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
 </head>
+
 <body>
 
   <!-- Login Form -->
@@ -18,10 +20,10 @@
     <form action="{{route('login.post')}}" method="POST">
       @csrf
       @if(Session()->has('success'))
-        <div class="alert alert-success">{{ Session::get('success') }}</div>
+      <div class="alert alert-success">{{ Session::get('success') }}</div>
       @endif
       @if(Session()->has('fail'))
-        <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+      <div class="alert alert-danger">{{ Session::get('fail') }}</div>
       @endif
 
       <div class="input-box">
@@ -47,5 +49,6 @@
   </div>
 
 </body>
+
 </html>
 @endsection

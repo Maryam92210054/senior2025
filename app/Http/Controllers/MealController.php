@@ -25,40 +25,41 @@ class MealController extends Controller
     public function index(Request $request)
     {
         // Retrieve all meal types, goals, and restrictions for the filter form
-        $types = MealType::all();
-        $goals = Goal::all();
-        $restrictions = Restriction::all();
+    $types = MealType::all();
+    $goals = Goal::all();
+    $restrictions = Restriction::all();
 
-        // Initialize the meals query
-        $mealsQuery = Meal::query();
+    // Initialize the meals query
+    $mealsQuery = Meal::query();
 
-        // Apply search filter
-        if ($search = $request->input('search')) {
-            $mealsQuery->where('name', 'like', '%' . $search . '%');
-        }
+    // Apply search filter
+    if ($search = $request->input('search')) {
+        $mealsQuery->where('name', 'like', '%' . $search . '%');
+    }
 
-        // Apply meal type filter
-        if ($mealTypeId = $request->input('meal_type_id')) {
-            $mealsQuery->where('meal_type_id', $mealTypeId);
-        }
+    // Apply meal type filter
+    if ($mealTypeId = $request->input('meal_type_id')) {
+        $mealsQuery->where('meal_type_id', $mealTypeId);
+    }
 
-        // Apply goal filter
-        if ($goalId = $request->input('goal_id')) {
-            $mealsQuery->where('goal_id', $goalId);
-        }
+    // Apply goal filter
+    if ($goalId = $request->input('goal_id')) {
+        $mealsQuery->where('goal_id', $goalId);
+    }
 
-        // Apply dietary restrictions filter
-        if ($restrictionIds = $request->input('restrictions')) {
-            $mealsQuery->whereHas('restrictions', function ($query) use ($restrictionIds) {
-                $query->whereIn('restrictions.id', $restrictionIds);
-            });
-        }
+    // Apply dietary restrictions filter
+    if ($restrictionIds = $request->input('restrictions')) {
+        $mealsQuery->whereHas('restrictions', function ($query) use ($restrictionIds) {
+            $query->whereIn('restrictions.id', $restrictionIds);
+        });
+    }
 
-        // Paginate the filtered results
-        $meals = $mealsQuery->paginate(10);
+    // Paginate the filtered results and retain query parameters
+    $meals = $mealsQuery->paginate(10)->appends($request->except('page'));
 
-        // Pass data to the view
-        return view('meals.index', compact('meals', 'search', 'types', 'goals', 'restrictions'));
+    // Pass data to the view
+    return view('meals.index', compact('meals', 'search', 'types', 'goals', 'restrictions'));
+
     }
 
 

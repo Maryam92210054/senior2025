@@ -12,33 +12,40 @@
                 <div class="message-box _success">
                     <i class="fa fa-check-circle" aria-hidden="true"></i>
                     <h2> Your payment was successful </h2>
-                    <p> Thank you for your payment.<br> We received your purchase request, we'll be in touch shortly! </p>      
+                    <p> Thank you for your payment.<br> We received your purchase request, we'll be in touch shortly! </p>
                 </div>
-              
+
                 <div class="text-center mt-4">
                     <a href="{{ route('view.plan') }}" class="btn btn-success btn-lg">View Your Plan</a>
                 </div>
-            </div> 
-        </div> 
-    </div> 
+            </div>
+        </div>
+    </div>
 </div>
 
 <style>
-    ._failed{ border-bottom: solid 4px red !important; }
-    ._failed i{  color:red !important;  }
+    ._failed {
+        border-bottom: solid 4px red !important;
+    }
+
+    ._failed i {
+        color: red !important;
+    }
 
     ._success {
         box-shadow: 0 15px 25px #00000019;
         padding: 60px;
         text-align: center;
         margin: 0 auto;
-        border-bottom: solid 4px #D4A373; /* Updated green */
+        border-bottom: solid 4px #D4A373;
+        /* Updated green */
         background-color: #fff;
     }
 
     ._success i {
         font-size: 65px;
-        color: #D4A373; /* Updated green */
+        color: #D4A373;
+        /* Updated green */
     }
 
     ._success h2 {
@@ -63,8 +70,10 @@
     }
 
     .btn-success {
-        background-color: #D4A373; /* Updated green */
-        border-color: #D4A373; /* Updated green */
+        background-color: #D4A373;
+        /* Updated green */
+        border-color: #D4A373;
+        /* Updated green */
         padding: 10px 20px;
         font-size: 18px;
     }

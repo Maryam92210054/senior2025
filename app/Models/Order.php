@@ -10,7 +10,7 @@ class Order extends Model
     use HasFactory;
 
     protected $table = 'orders'; // This ensures it maps to the correct 'orders' table in the DB
-    protected $fillable = ['delivery_time', 'plan_id', 'user_id','status','refund_processed']; // Only allow these fields to be mass assigned
+    protected $fillable = ['delivery_time', 'plan_id', 'user_id', 'status', 'refund_processed']; // Only allow these fields to be mass assigned
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -23,7 +23,7 @@ class Order extends Model
     {
         return $this->hasMany(OrderDay::class);
     }
-    
+
 
     public function payment()
     {

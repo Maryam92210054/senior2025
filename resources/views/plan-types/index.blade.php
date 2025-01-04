@@ -3,6 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="{{ asset('css/meals.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div class="container-xl">
         <div class="table-responsive">
@@ -39,22 +41,23 @@
                     </thead>
                     <tbody>
                         @foreach($planTypes as $planType)
-                            <tr>
-                                <td style="width:10%">{{ $planType->id }}</td>
-                                <td>{{ $planType->description }} </td>
-                                <td>{{ $planType->name }} </td>
-                                <td><a href="{{route('plan-types.edit',$planType->id)}}" class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="material-icons">&#xE254;</i>
-                                    </a>
-                                </td>
-                        @endforeach
+                        <tr>
+                            <td style="width:10%">{{ $planType->id }}</td>
+                            <td>{{ $planType->description }} </td>
+                            <td>{{ $planType->name }} </td>
+                            <td><a href="{{route('plan-types.edit',$planType->id)}}" class="edit" title="Edit" data-toggle="tooltip">
+                                    <i class="material-icons">&#xE254;</i>
+                                </a>
+                            </td>
+                            @endforeach
 
                     </tbody>
                 </table>
-                
+
             </div>
         </div>
     </div>
 </body>
+
 </html>
 @endsection

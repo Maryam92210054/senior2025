@@ -16,7 +16,7 @@ class BuildPlanController extends Controller
 {
     public function index()
     {
-        if (Auth::user()) {
+        
             $user = Auth::user();
             $goal_id = $user->goal_id; 
             $goal = Goal::find($goal_id);
@@ -29,10 +29,8 @@ class BuildPlanController extends Controller
                         ->where('availability', 1) 
                          ->with('planType')
                          ->get();
-        } else {
-            $plans = Plan::with('planType')->get();
-            $userName = 'Guest';
-        }
+
+    
 
         return view('meals.build_plan', compact('plans', 'userName','goal'));
     }

@@ -10,10 +10,10 @@ class Goal extends Model
 
     use HasFactory;
 
-  
+
     protected $table = 'goals';
 
-   
+
     protected $fillable = ['name'];
 
     public function meals()
@@ -21,4 +21,3 @@ class Goal extends Model
         return $this->hasMany(Meal::class, 'goal_id');
     }
 }
-

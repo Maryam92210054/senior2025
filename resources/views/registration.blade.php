@@ -3,6 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
   <!-- Google Font -->
   <link href="{{ asset('css/registration.css') }}" rel="stylesheet">
 </head>
+
 <body>
 
   <div class="register-container">
@@ -17,10 +19,10 @@
     <form action="{{ route('registration.post') }}" method="POST">
       @csrf
       @if(Session()->has('success'))
-        <div class="alert alert-success">{{ Session::get('success') }}</div>
+      <div class="alert alert-success">{{ Session::get('success') }}</div>
       @endif
       @if(Session()->has('fail'))
-        <div class="alert alert-danger">{{ Session::get('fail') }}</div>
+      <div class="alert alert-danger">{{ Session::get('fail') }}</div>
       @endif
 
       <div class="input-row">
@@ -77,9 +79,9 @@
         <span>Select your Diet Goal</span>
         <select name="goal_id">
           @foreach ($goals as $goal)
-            <option value="{{ $goal->id }}" {{ old('goal_id', $selectedGoalId ?? null) == $goal->id ? 'selected' : '' }}>
-              {{ $goal->name }}
-            </option>
+          <option value="{{ $goal->id }}" {{ old('goal_id', $selectedGoalId ?? null) == $goal->id ? 'selected' : '' }}>
+            {{ $goal->name }}
+          </option>
           @endforeach
         </select>
         <span class="text-danger">@error('goal_id'){{ $message }} @enderror</span>
@@ -90,7 +92,7 @@
         <select name="restriction_id">
           <option value="" selected>None</option>
           @foreach ($restrictions as $restriction)
-            <option value="{{ $restriction->id }}">{{ $restriction->name }}</option>
+          <option value="{{ $restriction->id }}">{{ $restriction->name }}</option>
           @endforeach
         </select>
         <span class="text-danger">@error('restriction_id'){{ $message }} @enderror</span>
@@ -110,5 +112,6 @@
   </div>
 
 </body>
+
 </html>
 @endsection

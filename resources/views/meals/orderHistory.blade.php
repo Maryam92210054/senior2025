@@ -8,36 +8,36 @@
         <h1 class="text-center wow bounceInUp" data-wow-delay="0.2s" style="color: white; background-color: #ccd5ae; padding: 10px; border-radius: 5px;">Order History</h1>
 
         @if ($orderHistory->isEmpty())
-            <p class="text-center mt-4 wow bounceInUp" data-wow-delay="0.3s" style="color: #d4a373;">No previous orders found.</p>
+        <p class="text-center mt-4 wow bounceInUp" data-wow-delay="0.3s" style="color: #d4a373;">No previous orders found.</p>
         @else
-            <table class="table table-bordered mt-4 wow bounceInUp" data-wow-delay="0.4s" style="border-color: #d4a373;">
-                <thead class="thead-light" style="background-color: #d4a373; color: white;">
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Order Date</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($orderHistory as $historyOrder)
-                        <tr>
-                            <td>{{ $historyOrder->id }}</td>
-                            <td>{{ $historyOrder->created_at->format('d M Y') }}</td>
-                            <td>
-                                <button class="btn btn-primary wow bounceInUp" data-wow-delay="0.5s" style="background-color: #d4a373; border-color: #d4a373;" onclick="viewOrderDetails({{ $historyOrder->id }})">View</button>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            
-            <!-- Order Details Section -->
-            <div id="orderDetailsContainer" class="mt-5 wow bounceInUp" data-wow-delay="0.6s" style="display: none;">
-                <h3 class="text-center wow bounceInUp" data-wow-delay="0.7s" style="color: white; background-color: #ccd5ae; padding: 10px; border-radius: 5px;">Order Details</h3>
-                <div id="orderDetailsBody" class="row">
-                    <!-- Cards will be populated dynamically using JavaScript -->
-                </div>
+        <table class="table table-bordered mt-4 wow bounceInUp" data-wow-delay="0.4s" style="border-color: #d4a373;">
+            <thead class="thead-light" style="background-color: #d4a373; color: white;">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($orderHistory as $historyOrder)
+                <tr>
+                    <td>{{ $historyOrder->id }}</td>
+                    <td>{{ $historyOrder->created_at->format('d M Y') }}</td>
+                    <td>
+                        <button class="btn btn-primary wow bounceInUp" data-wow-delay="0.5s" style="background-color: #d4a373; border-color: #d4a373;" onclick="viewOrderDetails({{ $historyOrder->id }})">View</button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <!-- Order Details Section -->
+        <div id="orderDetailsContainer" class="mt-5 wow bounceInUp" data-wow-delay="0.6s" style="display: none;">
+            <h3 class="text-center wow bounceInUp" data-wow-delay="0.7s" style="color: white; background-color: #ccd5ae; padding: 10px; border-radius: 5px;">Order Details</h3>
+            <div id="orderDetailsBody" class="row">
+                <!-- Cards will be populated dynamically using JavaScript -->
             </div>
+        </div>
         @endif
 
     </div>
@@ -46,7 +46,9 @@
 <script>
     function viewOrderDetails(orderId) {
         document.getElementById('orderDetailsContainer').style.display = 'block';
-        document.getElementById('orderDetailsContainer').scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('orderDetailsContainer').scrollIntoView({
+            behavior: 'smooth'
+        });
 
         fetch(`/order-details/${orderId}`)
             .then(response => response.json())
@@ -87,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>`;
-                        
+
                         // Append card to orderDetailsBody
                         orderDetailsBody.innerHTML += card;
                     });

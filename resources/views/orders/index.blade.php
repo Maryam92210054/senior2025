@@ -3,20 +3,22 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Manage Orders</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="{{ asset('css/meals.css') }}" rel="stylesheet">
- 
+
 </head>
+
 <body>
     <div class="container-xl">
-          <!-- Orders Table -->
+        <!-- Orders Table -->
         <div class="table-responsive">
             <div class="table-wrapper">
-                
+
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-8">
@@ -24,7 +26,7 @@
                         </div>
                         <!-- Filters Button aligned right -->
                         <div class="col-sm-4 text-end"">
-                            <button type="button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">
+                            <button type=" button" class="filter-button" data-bs-toggle="modal" data-bs-target="#filterModal">
                             <b>Filters</b>
                             </button>
                         </div>
@@ -46,28 +48,31 @@
                     </thead>
                     <tbody>
                         @foreach($orders as $order)
-                            <tr>
-                                <td>{{ $order->id }}</td>
-                                <td>{{ $order->status }} </td>
-                                <td>{{ $order->refund_processed }} </td>
-                                <td>{{ $order->user->name }}</td> 
-                                <td>{{ $order->user->address }}</td> 
-                                <td>{{ $order->user->address_details }}</td> 
-                                <td>{{ $order->user->phone }}</td> 
-                                <td>{{ $order->delivery_time }} </td>
-                                <td>
-                                    <a href="{{ route('orders.display', $order->id) }}" class="view" title="View" data-toggle="tooltip">
-                                        <i class="material-icons">&#xE417;</i>
-                                    </a>
-                                 </td>
-                            </tr>
+                        <tr>
+                            <td>{{ $order->id }}</td>
+                            <td>{{ $order->status }} </td>
+                            <td>{{ $order->refund_processed }} </td>
+                            <td>{{ $order->user->name }}</td>
+                            <td>{{ $order->user->address }}</td>
+                            <td>{{ $order->user->address_details }}</td>
+                            <td>{{ $order->user->phone }}</td>
+                            <td>{{ $order->delivery_time }} </td>
+                            <td>
+                                <a href="{{ route('orders.display', $order->id) }}" class="view" title="View" data-toggle="tooltip">
+                                    <i class="material-icons">&#xE417;</i>
+                                </a>
+                                <a href="{{ route('orders.edit', $order->id) }}" class="edit" title="Edit" data-toggle="tooltip">
+                                    <i class="material-icons">&#xE254;</i>
+                                </a>
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-                <!-- Filter Modal -->
-                <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
+        <!-- Filter Modal -->
+        <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -113,7 +118,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-apply-filters " >Apply Filters</button>
+                                <button type="submit" class="btn btn-apply-filters ">Apply Filters</button>
                             </div>
                         </form>
                     </div>
@@ -126,5 +131,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
 @endsection

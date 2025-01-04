@@ -61,13 +61,13 @@
             <div id="total-amount-display" class="text-center mt-3" style="font-weight: bold; font-size: 18px;">
                 Total Amount: $<span id="total-amount">{{ $calculatedAmount }}</span><br>
 
-            <!-- Submit Button -->
-            <div class="text-center mt-4">
-                <button type="submit" 
+                <!-- Submit Button -->
+                <div class="text-center mt-4">
+                    <button type="submit"
                         style="background-color: #d4a373; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
-                    Submit Payment
-                </button>
-            </div>
+                        Submit Payment
+                    </button>
+                </div>
         </form>
     </div>
 </div>
@@ -75,7 +75,7 @@
 @endsection
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
         const ecoFriendlyCheckbox = document.getElementById('eco_friendly');
         const amountField = document.getElementById('amount');
         const totalAmountDisplay = document.getElementById('total-amount');
@@ -84,7 +84,7 @@
         const baseAmount = parseFloat('{{ $calculatedAmount }}');
 
         // Attach an event listener to the eco-friendly checkbox
-        ecoFriendlyCheckbox.addEventListener('change', function () {
+        ecoFriendlyCheckbox.addEventListener('change', function() {
             let updatedAmount = baseAmount;
 
             // Add $5 if the checkbox is checked

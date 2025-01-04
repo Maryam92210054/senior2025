@@ -3,6 +3,7 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link href="{{ asset('css/meals.css') }}" rel="stylesheet">
 </head>
+
 <body>
     <div class="container-xl">
         <div class="table-responsive">
@@ -41,39 +43,39 @@
                     </thead>
                     <tbody>
                         @foreach($plans as $plan)
-                            <tr>
-                                <td>{{ $plan->id }}</td>
-                                <td>{{ Str::limit($plan->description, 50, '...') }}</td>
-                                <td>{{ $plan->price }} </td>
+                        <tr>
+                            <td>{{ $plan->id }}</td>
+                            <td>{{ Str::limit($plan->description, 50, '...') }}</td>
+                            <td>{{ $plan->price }} </td>
 
-                                <td>{{ $plan->goal ? $plan->goal->name : 'notfound' }}</td>
-                                <td>{{ $plan->planType ? $plan->planType->description : 'notfound' }}</td>
-                                <td>
-                                    <a href="{{route('plans.show',$plan->id)}}" class="view" title="View" data-toggle="tooltip">
-                                        <i class="material-icons">&#xE417;</i>
-                                    </a>
-                                    <a href="{{route('plans.edit',$plan->id)}}" class="edit" title="Edit" data-toggle="tooltip">
-                                        <i class="material-icons">&#xE254;</i>
-                                    </a>
-                                    @if ($plan->availability === 1)
-                                        <i class="material-icons text-success toggle-availability"
-                                           title="Available"
-                                           data-id="{{ $plan->id }}"
-                                           data-availability="1">&#xE5CA;</i> 
-                                    @else
-                                        <i class="material-icons text-danger toggle-availability"
-                                           title="Unavailable"
-                                           data-id="{{ $plan->id }}"
-                                           data-availability="0">&#xE14C;</i> 
-                                    @endif
-                                </td>
-                            </tr>
+                            <td>{{ $plan->goal ? $plan->goal->name : 'notfound' }}</td>
+                            <td>{{ $plan->planType ? $plan->planType->description : 'notfound' }}</td>
+                            <td>
+                                <a href="{{route('plans.show',$plan->id)}}" class="view" title="View" data-toggle="tooltip">
+                                    <i class="material-icons">&#xE417;</i>
+                                </a>
+                                <a href="{{route('plans.edit',$plan->id)}}" class="edit" title="Edit" data-toggle="tooltip">
+                                    <i class="material-icons">&#xE254;</i>
+                                </a>
+                                @if ($plan->availability === 1)
+                                <i class="material-icons text-success toggle-availability"
+                                    title="Available"
+                                    data-id="{{ $plan->id }}"
+                                    data-availability="1">&#xE5CA;</i>
+                                @else
+                                <i class="material-icons text-danger toggle-availability"
+                                    title="Unavailable"
+                                    data-id="{{ $plan->id }}"
+                                    data-availability="0">&#xE14C;</i>
+                                @endif
+                            </td>
+                        </tr>
                         @endforeach
                     </tbody>
                 </table>
                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                 <script>
-                    $(document).on('click', '.toggle-availability', function () {
+                    $(document).on('click', '.toggle-availability', function() {
                         const planId = $(this).data('id');
                         const currentAvailability = $(this).data('availability');
 
@@ -86,7 +88,7 @@
                             data: {
                                 availability: currentAvailability
                             },
-                            success: function (response) {
+                            success: function(response) {
                                 console.log('Response:', response); // Debugging availability
                                 if (response.availability) {
                                     $(`[data-id="${planId}"]`)
@@ -104,16 +106,17 @@
                                         .attr('title', 'Unavailable');
                                 }
                             },
-                            error: function () {
+                            error: function() {
                                 alert('An error occurred while updating availability.');
                             }
                         });
                     });
                 </script>
-                
+
             </div>
         </div>
     </div>
 </body>
+
 </html>
 @endsection
