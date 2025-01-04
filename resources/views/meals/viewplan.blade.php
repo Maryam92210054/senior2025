@@ -125,8 +125,7 @@
                     </div>
 
                     @endforeach
-                    @else
-                    <p class="text-center">No meals available</p>
+                   
                     @endisset
                     @endforeach
                 </div>
@@ -134,6 +133,15 @@
             </div>
         </div>
         @endif
+        <div class="text-center cancel-buttons">
+            @if (!empty($currentPlanMealsData))
+            <form action="{{ route('cancel-order') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel your current plan?');" style="display:inline;">
+                @csrf
+                <input type="hidden" name="order_id" value="{{$currentPlanMealsData['order_id']}}">
+                <button type="submit" class="btn btn-danger">Cancel Current Plan</button>
+            </form>
+            @endif
+    </div>
 
         <div class="plan-divider"></div>
 
@@ -194,8 +202,7 @@
                     </div>
 
                     @endforeach
-                    @else
-                    <p class="text-center">No meals available</p>
+                    
                     @endisset
                     @endforeach
                 </div>
@@ -204,7 +211,23 @@
         </div>
         @endif
 
-        <!-- Cancel Buttons -->
+       <!-- Cancel Buttons -->
+    
+        
+    <div class="text-center cancel-buttons">
+            @if (!empty($newPlanMealsData))
+            <form action="{{ route('cancel-order') }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel your new plan? Please note that cancellations made within 48 hours of the plan start date are eligible for a refund. Cancellations made after this period will not be refunded');" style="display:inline;">
+                @csrf
+                <input type="hidden" name="order_id" value="{{$newPlanMealsData['order_id']}}">
+                <button type="submit" class="btn btn-danger">Cancel New Plan</button>
+            </form>
+            @endif
+        </div>
+
+        <!-- Order History Button -->
+        <div class="text-center mt-4">
+            <a href="{{ route('order-history') }}" class="btn btn-primary">View Order History</a>
+        </div>
         
     </div>
 </div>

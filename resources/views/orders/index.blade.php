@@ -35,6 +35,7 @@
                         <tr>
                             <th>#</th>
                             <th>Status</th>
+                            <th>Refund</th>
                             <th>Customer</th>
                             <th>City</th>
                             <th>Address Details</th>
@@ -48,6 +49,7 @@
                             <tr>
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->status }} </td>
+                                <td>{{ $order->refund_processed }} </td>
                                 <td>{{ $order->user->name }}</td> 
                                 <td>{{ $order->user->address }}</td> 
                                 <td>{{ $order->user->address_details }}</td> 

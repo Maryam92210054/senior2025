@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
-use App\Models\OrderDay;
-use App\Models\OrderDayMeal;
 use App\Models\Plan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -63,15 +61,11 @@ class ViewPlanController extends Controller
     return view('meals.viewPlan', compact('currentPlanMealsData', 'newPlanMealsData'));
 }
 
-    
-
-    
     private function getPlanDetails($order)
     {
         if (!$order) {
             return [];
         }
-    
         $plan = Plan::find($order->plan_id);
         $mealTypes = $plan->planType->mealTypes ?? [];
     
@@ -101,62 +95,47 @@ class ViewPlanController extends Controller
             ];
         }
     
-        return ['mealTypes' => $mealTypes, 'orderDayMealsData' => $orderDayMealsData];
+        return ['order_id' => $order->id,'mealTypes' => $mealTypes, 'orderDayMealsData' => $orderDayMealsData];
     }
     
     public function cancelOrder(Request $request)
-{
-    $userId = Auth::id();
-    $planType = $request->input('plan_type'); // Get the type of plan to cancel
+    {
+        $orderId = $request->input('order_id');
 
-    // Define the current week range
-    $today = Carbon::now();
-    $startOfWeek = $today->copy()->startOfWeek();
-    $endOfWeek = $today->copy()->endOfWeek();
-
-    if ($planType === 'current') {
-        // Identify the "current" plan based on dates falling within the current week
-        $currentPlan = Order::where('user_id', $userId)
-            ->with('orderDays')  // Load related orderDays to check dates
-            ->get()
-            ->filter(function ($order) use ($startOfWeek, $endOfWeek) {
-                $orderDates = $order->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
-                return $orderDates->contains(fn($date) => $date->between($startOfWeek, $endOfWeek));
-            })
-            ->first(); // Get the first matching plan
-
-        if (!$currentPlan) {
-            return redirect()->back()->with('error', 'No current plan to cancel.');
+        // Retrieve the order details
+        $order = Order::find($orderId);
+    
+        if (!$order) {
+            return redirect()->back()->with('error', 'Order not found.');
         }
-
-        $currentPlan->delete();
-        return redirect()->back()->with('success', 'Current plan has been successfully canceled.');
-    } elseif ($planType === 'new') {
-        // Identify the "new" plan based on the next available date
-        $newPlan = Order::where('user_id', $userId)
-            ->with('orderDays')  // Load related orderDays to check dates
-            ->get()
-            ->filter(function ($order) use ($today) {
-                $orderDates = $order->orderDays->pluck('date')->map(fn($date) => Carbon::parse($date));
-                return $orderDates->min() > $today; // Check if the earliest date is in the future
-            })
-            ->sortBy(fn($order) => $order->orderDays->min('date')) // Sort by the earliest date
-            ->first(); // Get the first matching plan
-
-        if (!$newPlan) {
-            return redirect()->back()->with('error', 'No new plan to cancel.');
+    
+        // Retrieve the first order day
+        $firstOrderDay = $order->orderDays()->orderBy('date', 'asc')->first();
+    
+        if (!$firstOrderDay) {
+            return redirect()->back()->with('error', 'Order day details not found.');
         }
-
-        $newPlan->delete();
-        return redirect()->back()->with('success', 'New plan has been successfully canceled.');
+    
+        // Calculate the time difference
+        $firstOrderDate = Carbon::parse($firstOrderDay->date);
+        $currentDate = Carbon::now();
+    
+        if ($currentDate->diffInHours($firstOrderDate, false) >= 48) {
+            // Set status to cancelled with refund
+            $order->status = 'cancelled';
+            $order->refund_processed='pending';
+            
+        } else {
+            // Set status to cancelled no refund
+            $order->status = 'cancelled';
+        }
+    
+        $order->save();
+    
+        return redirect()->back()->with('success', 'Order has been cancelled.');
     }
 
-    return redirect()->back()->with('error', 'Invalid plan type.');
-}
 
-
-
-    
     public function getOrderDetails($orderId)
     {
         try {
