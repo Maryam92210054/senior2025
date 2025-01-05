@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2025 at 12:30 AM
+-- Generation Time: Jan 05, 2025 at 09:38 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -84,9 +84,9 @@ CREATE TABLE `meals` (
 --
 
 INSERT INTO `meals` (`id`, `name`, `description`, `health_info`, `meal_image`, `goal_id`, `meal_type_id`, `created_at`, `updated_at`, `availability`) VALUES
-(1, 'Overnight Oats with Chia and Berries', 'A creamy, rolled oats with almond milk, chia seeds, and mixed berries, Sweetened with honey.', 'Calories: 250, Protein: 8g, Carbs: 40g, Fat: 7g', 'Overnight Oats with Chia and Berries.jfif', 2, 1, '2024-12-22 09:05:56', '2024-12-28 16:23:54', 1),
-(2, 'Baked Eggs with Spinach, Tomatoes, and Ricotta', 'The dish features gently baked eggs nestled in a flavorful mix of sautéed spinach, cherry tomatoes, and creamy ricotta cheese.', 'Calories: 180, Protein: 12g, Fat: 11g, Carbs: 5g', 'Baked Eggs with Spinach, Tomatoes, and Ricotta.jfif', 2, 1, '2024-12-22 09:05:56', '2024-12-26 06:02:37', 1),
-(3, 'Quinoa Breakfast Bowl', 'A plant-based protein-rich bowl made with of cooked quinoa, creamy almond milk, a dollop of almond butter, and sliced banana,', 'Calories: 300, Protein: 10g, Carbs: 42g, Fat: 9g', 'Quinoa Breakfast Bowl.jfif', 2, 1, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
+(1, 'Overnight Oats with Chia and Berries', 'A creamy, rolled oats with almond milk, chia seeds, and mixed berries, Sweetened with honey.', 'Calories: 250, Protein: 8g, Carbs: 40g, Fat: 7g', 'Overnight Oats with Chia and Berries.jfif', 2, 1, '2024-12-22 09:05:56', '2025-01-05 18:13:15', 1),
+(2, 'Baked Eggs with Spinach, Tomatoes, and Ricotta', 'The dish features gently baked eggs nestled in a flavorful mix of sautéed spinach, cherry tomatoes, and creamy ricotta cheese.', 'Calories: 180, Protein: 12g, Fat: 11g, Carbs: 5g', 'Baked Eggs with Spinach, Tomatoes, and Ricotta.jfif', 2, 1, '2024-12-22 09:05:56', '2025-01-05 18:24:50', 1),
+(3, 'Quinoa Breakfast Bowl', 'A plant-based protein-rich bowl made with cooked quinoa, creamy almond milk, a dollop of almond butter, and sliced banana,', 'Calories: 300, Protein: 10g, Carbs: 42g, Fat: 9g', 'Sweet Quinoa Breakfast Oatmeal.jfif', 2, 1, '2024-12-22 09:05:56', '2025-01-05 17:29:47', 1),
 (4, 'Whole-Grain Pancakes with Almond Butter', 'A healthier twist on classic pancakes, made with whole-grain pancake mix, skimmed milk, almond butter, and maple syrup, served with fresh banana and strawberry .', 'Calories: 300, Protein: 8g, Carbs: 45g, Fat: 9g', 'Whole-Grain Pancakes with Almond Butter.jfif', 2, 1, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
 (5, 'Granola and Fruits Bowl', 'A nutrient-packed granola bowl, made with Greek yogurt, chia seeds , honey , and topped with banana and blueberries.', 'Calories: 35, Protein: 12g, Carbs: 40g, Fat: 15g', 'Granola and Fruits Bowl.jfif', 2, 1, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
 (6, 'Poached eggs with broccoli & whole-grain flatbread', 'Protein-packed eggs served with antioxidant-rich broccoli and cherry tomatoes, accompanied by whole-grain flatbread.', 'Calories: 283, Protein: 22g, Carbs: 30g, Fat: 17g', 'Poached eggs with broccoli & whole-grain flatbread.jfif', 2, 1, '2024-12-22 09:05:56', '2024-12-22 09:05:56', 1),
@@ -195,7 +195,7 @@ INSERT INTO `meals` (`id`, `name`, `description`, `health_info`, `meal_image`, `
 (109, 'Fruit Salad with Chia Seeds', 'Mixed fruits (berries, apple, orange), chia seeds', 'Calories: 140 kcal | Protein: 3g | Carbs: 30g | Fat: 3g', 'Winter Fruit Salad.jfif', 1, 4, '2024-12-29 11:14:48', '2024-12-29 11:14:48', 1),
 (110, 'Banana Oat Energy Balls', 'Mashed banana, rolled oats, almond butter.', 'Calories: 180 kcal | Protein: 4g | Carbs: 26g | Fat: 6g', 'Energiebällchen (Energy Balls Rezept) - Elavegan.jfif', 1, 4, '2024-12-29 11:15:48', '2024-12-29 11:15:48', 1),
 (111, 'Kale Chips', 'Kale leaves, olive oil, nutritional yeast, salt.', 'Calories: 110 kcal | Protein: 5g | Carbs: 8g | Fat: 7g', 'Crispy Baked Kale Chips.jfif', 1, 4, '2024-12-29 11:16:40', '2024-12-29 11:16:40', 1),
-(112, 'Calories: 150 kcal | Protein: 2g | Carbs: 25g | Fat: 5g', 'Medjool dates, almond butter, shredded coconut.', 'Calories: 150 kcal | Protein: 2g | Carbs: 25g | Fat: 5g', 'Stuffed dates with peanut butter - Lazy Cat Kitchen.jfif', 1, 1, '2024-12-29 11:17:30', '2024-12-29 11:17:30', 1),
+(112, 'Calories: 150 kcal | Protein: 2g | Carbs: 25g | Fat: 5g', 'Medjool dates, almond butter, shredded coconut.', 'Calories: 150 kcal | Protein: 2g | Carbs: 25g | Fat: 5g', 'Stuffed dates with peanut butter - Lazy Cat Kitchen.jfif', 1, 1, '2024-12-29 11:17:30', '2025-01-05 17:30:56', 0),
 (113, 'Stuffed Dates', 'Medjool dates, almond butter, shredded coconut', 'Calories: 150 kcal | Protein: 2g | Carbs: 25g | Fat: 5g', 'Stuffed dates with peanut butter - Lazy Cat Kitchen.jfif', 1, 4, '2024-12-29 11:18:57', '2024-12-29 11:18:57', 1),
 (114, 'Sweet Potato Chips', 'Thinly sliced sweet potatoes, olive oil, salt.', '160 kcal | Protein: 2g | Carbs: 28g | Fat: 5g', 'Homemade Sweet Potato Chips.jfif', 1, 4, '2024-12-29 11:20:18', '2024-12-29 11:29:04', 1),
 (115, 'Chia Protein Pudding with Almond Butter Swirl', 'Chia seeds, almond milk, almond butter, vanilla extract, and stevia', 'Calories: 120 | Fat: 7g | Carbs: 10g | Protein: 7g', 'High-Protein, Banana Chia Seed Pudding With Almond Milk.jfif', 3, 4, '2025-01-03 09:23:28', '2025-01-03 09:23:28', 1),
@@ -479,7 +479,8 @@ INSERT INTO `meal_restrictions` (`id`, `meal_id`, `restriction_id`, `created_at`
 (230, 129, 3, NULL, NULL),
 (231, 130, 1, NULL, NULL),
 (232, 130, 2, NULL, NULL),
-(233, 130, 3, NULL, NULL);
+(233, 130, 3, NULL, NULL),
+(234, 3, 3, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -620,7 +621,10 @@ INSERT INTO `orders` (`id`, `delivery_time`, `status`, `plan_id`, `user_id`, `pa
 (95, '09:00:00', 'cancelled', 7, 32, 43, '2025-01-04 20:04:09', '2025-01-04 20:04:51', 'pending'),
 (96, '07:00:00', 'placed', 8, 32, NULL, '2025-01-04 20:07:24', '2025-01-04 21:17:56', 'completed'),
 (97, '09:00:00', 'cancelled', 8, 32, 44, '2025-01-04 20:09:26', '2025-01-04 20:12:55', 'pending'),
-(98, '08:00:00', 'placed', 7, 32, 45, '2025-01-04 20:15:20', '2025-01-04 20:15:28', 'not_applicable');
+(98, '08:00:00', 'placed', 7, 32, 45, '2025-01-04 20:15:20', '2025-01-04 20:15:28', 'not_applicable'),
+(99, '07:00:00', 'pending', 5, 10, NULL, '2025-01-05 15:11:57', '2025-01-05 15:11:57', 'not_applicable'),
+(100, '09:00:00', 'cancelled', 5, 10, 46, '2025-01-05 15:12:05', '2025-01-05 18:14:47', 'pending'),
+(102, '08:00:00', 'placed', 5, 10, 48, '2025-01-05 18:23:06', '2025-01-05 18:26:29', 'pending');
 
 -- --------------------------------------------------------
 
@@ -806,7 +810,16 @@ INSERT INTO `order_days` (`id`, `day_number`, `date`, `order_id`, `created_at`, 
 (218, 3, '2025-01-10', 97, '2025-01-04 20:09:26', '2025-01-04 20:09:26'),
 (219, 1, '2025-01-09', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
 (220, 2, '2025-01-11', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
-(221, 3, '2025-01-12', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20');
+(221, 3, '2025-01-12', 98, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(222, 1, '2025-01-07', 99, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(223, 2, '2025-01-08', 99, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(224, 3, '2025-01-09', 99, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(225, 1, '2025-01-07', 100, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(226, 2, '2025-01-08', 100, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(227, 3, '2025-01-09', 100, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(231, 1, '2025-01-08', 102, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(232, 2, '2025-01-09', 102, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(233, 3, '2025-01-10', 102, '2025-01-05 18:23:06', '2025-01-05 18:23:06');
 
 -- --------------------------------------------------------
 
@@ -1249,7 +1262,34 @@ INSERT INTO `order_day_meals` (`id`, `order_day_id`, `meal_id`, `created_at`, `u
 (549, 221, 89, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
 (550, 221, 42, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
 (551, 221, 45, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
-(552, 221, 121, '2025-01-04 20:15:20', '2025-01-04 20:15:20');
+(552, 221, 121, '2025-01-04 20:15:20', '2025-01-04 20:15:20'),
+(553, 222, 6, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(554, 222, 82, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(555, 222, 123, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(556, 223, 10, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(557, 223, 85, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(558, 223, 126, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(559, 224, 1, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(560, 224, 19, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(561, 224, 124, '2025-01-05 15:11:57', '2025-01-05 15:11:57'),
+(562, 225, 6, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(563, 225, 82, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(564, 225, 123, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(565, 226, 10, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(566, 226, 85, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(567, 226, 126, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(568, 227, 1, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(569, 227, 19, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(570, 227, 124, '2025-01-05 15:12:05', '2025-01-05 15:12:05'),
+(580, 231, 1, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(581, 231, 84, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(582, 231, 124, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(583, 232, 4, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(584, 232, 85, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(585, 232, 123, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(586, 233, 3, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(587, 233, 19, '2025-01-05 18:23:06', '2025-01-05 18:23:06'),
+(588, 233, 128, '2025-01-05 18:23:06', '2025-01-05 18:23:06');
 
 -- --------------------------------------------------------
 
@@ -1326,7 +1366,10 @@ INSERT INTO `payments` (`id`, `amount`, `payment_date`, `created_at`, `updated_a
 (42, '44.00', '2025-01-04 00:00:00', '2025-01-04 19:16:06', '2025-01-04 19:16:06'),
 (43, '86.00', '2025-01-04 00:00:00', '2025-01-04 20:04:19', '2025-01-04 20:04:19'),
 (44, '62.00', '2025-01-04 00:00:00', '2025-01-04 20:09:41', '2025-01-04 20:09:41'),
-(45, '81.00', '2025-01-04 00:00:00', '2025-01-04 20:15:28', '2025-01-04 20:15:28');
+(45, '81.00', '2025-01-04 00:00:00', '2025-01-04 20:15:28', '2025-01-04 20:15:28'),
+(46, '56.00', '2025-01-05 00:00:00', '2025-01-05 15:12:52', '2025-01-05 15:12:52'),
+(47, '56.00', '2025-01-05 00:00:00', '2025-01-05 18:12:24', '2025-01-05 18:12:24'),
+(48, '56.00', '2025-01-05 00:00:00', '2025-01-05 18:23:15', '2025-01-05 18:23:15');
 
 -- --------------------------------------------------------
 
@@ -1368,7 +1411,7 @@ CREATE TABLE `plans` (
 --
 
 INSERT INTO `plans` (`id`, `description`, `price`, `goal_id`, `plan_type_id`, `created_at`, `updated_at`, `availability`) VALUES
-(1, 'An Overall Health plan featuring 3 meals per day (Breakfast+Lunch+Dinner)', '19.00', 1, 12, '2024-12-01 13:56:41', '2025-01-03 10:50:31', 1),
+(1, 'An Overall Health plan featuring 3 meals per day (Breakfast+Lunch+Dinner)', '19.00', 1, 12, '2024-12-01 13:56:41', '2025-01-05 18:14:19', 1),
 (2, 'An Overall Health plan featuring 2 meals per day (Breakfast+Lunch)', '13.00', 1, 10, '2024-12-01 13:56:41', '2025-01-03 10:48:39', 1),
 (3, 'An Overall Health plan featuring 2 main meals per day (Lunch+Dinner)', '14.00', 1, 11, '2024-12-01 13:56:41', '2025-01-03 10:49:38', 1),
 (4, 'A Low Calorie plan featuring 3 meals per day (Breakfast+Lunch+Dinner)', '24.00', 2, 12, '2024-12-01 13:56:41', '2025-01-03 10:50:42', 1),
@@ -1504,7 +1547,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `phone`, `address`, `address_details`, `goal_id`, `role_id`, `restriction_id`, `created_at`, `updated_at`) VALUES
-(10, 'khaled Hayek', 'khaled@gmail.com', NULL, '$2y$10$0eoQfDKAALhNOt7908zO8OfEac9o2TTfMK.QBI.pycNJqEFM8ZfuO', NULL, '34/665432', 'Berqayel', 'Main Street, facing Akkar Plaza', 1, 1, 1, '2024-12-15 08:15:52', '2025-01-03 11:19:18'),
+(10, 'khaled Hayek', 'khaled@gmail.com', NULL, '$2y$10$0eoQfDKAALhNOt7908zO8OfEac9o2TTfMK.QBI.pycNJqEFM8ZfuO', NULL, '34/665432', 'Berqayel', 'Main Street, facing Akkar Plaza', 2, 1, 3, '2024-12-15 08:15:52', '2025-01-05 18:24:16'),
 (30, 'Maryam Mouslimany', 'maryam@gmail.com', NULL, '$2y$10$8Pzpb22peamR5UtXYwYFkuv.d3uGO.RK9jCKncDwf3ZoNLWQU5Dwa', NULL, '81/305964', 'Akkar al-Atika', 'nananananananananana', 1, 2, NULL, '2025-01-03 11:23:07', '2025-01-03 11:23:07'),
 (31, 'Yazan Ghayeb', 'yazan@gmail.com', NULL, '$2y$10$i/SpouAz8rIhdIfgX/D2QOI/YNQhitIlVUNemNeCyHU4tWKzoaiDW', NULL, '90/876543', 'Akkar al-Atika', 'nananananananananana', 1, 2, NULL, '2025-01-03 11:24:26', '2025-01-03 11:24:26'),
 (32, 'Ahmad Issa', 'ahmad@gmail.com', NULL, '$2y$10$jYoo3/RY9cviJsu45HpYrONsoLBEWegc7vOfS0Yoxhj3BVguGYwWS', NULL, '90/876543', 'Miniara', 'Min Road facing Miniara Bakeies', 3, 1, NULL, '2025-01-03 19:19:45', '2025-01-04 19:46:42');
@@ -1670,7 +1713,7 @@ ALTER TABLE `goals`
 -- AUTO_INCREMENT for table `meals`
 --
 ALTER TABLE `meals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT for table `meals_of_days`
@@ -1682,7 +1725,7 @@ ALTER TABLE `meals_of_days`
 -- AUTO_INCREMENT for table `meal_restrictions`
 --
 ALTER TABLE `meal_restrictions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=236;
 
 --
 -- AUTO_INCREMENT for table `meal_types`
@@ -1700,25 +1743,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
 -- AUTO_INCREMENT for table `order_days`
 --
 ALTER TABLE `order_days`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=222;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
 
 --
 -- AUTO_INCREMENT for table `order_day_meals`
 --
 ALTER TABLE `order_day_meals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=553;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=589;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1760,7 +1803,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables

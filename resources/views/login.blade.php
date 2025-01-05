@@ -1,18 +1,15 @@
 @extends('layouts.nav1')
 @section('title', 'Login')
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
   <<link href="{{ asset('css/login.css') }}" rel="stylesheet">
 
 </head>
 
-<body>
+
 
   <!-- Login Form -->
   <div class="login-container">
@@ -48,7 +45,5 @@
     </form>
   </div>
 
-</body>
 
-</html>
 @endsection

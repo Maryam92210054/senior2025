@@ -38,6 +38,7 @@
                             <th>#</th>
                             <th>Status</th>
                             <th>Refund</th>
+                            <th>Amount</th>
                             <th>Customer</th>
                             <th>City</th>
                             <th>Address Details</th>
@@ -52,6 +53,12 @@
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->status }} </td>
                             <td>{{ $order->refund_processed }} </td>
+                            <td>@if($order->payment)
+                                {{ $order->payment->amount }}$
+                                @else
+                                Not Paid
+                                @endif
+                            </td>
                             <td>{{ $order->user->name }}</td>
                             <td>{{ $order->user->address }}</td>
                             <td>{{ $order->user->address_details }}</td>

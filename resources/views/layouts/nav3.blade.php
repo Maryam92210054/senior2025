@@ -36,32 +36,34 @@
         <div class="container">
             <nav class="navbar navbar-light navbar-expand-lg py-4">
                 <a href="index.html" class="navbar-brand">
-                    <h1 class="text-primary fw-bold mb-0">Cater<span class="text-dark">Serv</span> </h1>
-                </a>
-                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars text-primary"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav mx-auto">
-                        <a href="{{ route('meals.index') }}" class="nav-item nav-link ">Meals</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Plans</a>
-                            <div class="dropdown-menu bg-light">
-                                <a href="{{ route('plans.index') }}" class="nav-item nav-link "> Plans</a>
-                                <a href="{{ route('plan-types.index') }}" class="nav-item nav-link "> Plan Types</a>
+                    <h1 class="text-primary fw-bold mb-0">
+                        <span style="color:black;">Week</span>
+                        <span style="color: #D4A373;">Craft</span>
+                    </h1>
+                    <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars text-primary"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav mx-auto">
+                            <a href="{{ route('meals.index') }}" class="nav-item nav-link ">Meals</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Plans</a>
+                                <div class="dropdown-menu bg-light">
+                                    <a href="{{ route('plans.index') }}" class="nav-item nav-link "> Plans</a>
+                                    <a href="{{ route('plan-types.index') }}" class="nav-item nav-link "> Plan Types</a>
+                                </div>
                             </div>
-                        </div>
-                        <a href="{{ route('orders.index') }}" class="nav-item nav-link "> Orders</a>
+                            <a href="{{ route('orders.index') }}" class="nav-item nav-link "> Orders</a>
 
-                        @auth
-                        <a href="{{ route('logout') }}" class="nav-item nav-link"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                        @endauth
+                            @auth
+                            <a href="{{ route('logout') }}" class="nav-item nav-link"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            @endauth
+                        </div>
                     </div>
-                </div>
             </nav>
         </div>
     </div>

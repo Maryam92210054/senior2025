@@ -155,17 +155,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-item">
-                        <h4 class="mb-4">Special Facilities</h4>
-                        <div class="d-flex flex-column align-items-start">
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Whole-Grain Pancakes with Almond Butter</a>
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Watermelon, Sumac & Feta Salad</a>
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Vermicelli Noodle & Beef Salad</a>
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Tuna Pasta Salad</a>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
                         <h4 class="mb-4">Contact Us</h4>
