@@ -51,7 +51,7 @@
                     <a href="{{ route('about') }}" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 animated bounceInLeft">About Us</a>
                 </div>
                 <div class="col-lg-5 col-md-12">
-                    <img src="mealsImages/home.jfif" class="img-fluid rounded animated zoomIn" alt="">
+                    <img src="mealsImages/home.png" class="img-fluid rounded animated zoomIn" alt="">
                 </div>
             </div>
         </div>
@@ -207,17 +207,15 @@
             </div>
         </div>
     </div>
-    <!-- Location End -->
-
-
     <!-- Footer Start -->
-    <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+    <div class="container-fluid footer py-3 my-3 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-between align-items-center">
+                <!-- First Item -->
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
                         <h1 class="text-primary">Week<span class="text-dark">Craft</span></h1>
-                        <p class="lh-lg mb-4">A website where you freely craft your loved meals.</p>
+                        <p class="lh-base mb-3">A website where you freely craft your loved meals.</p>
                         <div class="footer-icon d-flex">
                             <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
@@ -226,25 +224,26 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
+
+                <!-- Centered Contact Us -->
+                <div class="col-lg-5 col-md-6 mx-auto text-center">
                     <div class="footer-item">
-                        <h4 class="mb-4">Special Facilities</h4>
-                        <div class="d-flex flex-column align-items-start">
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Whole-Grain Pancakes with Almond Butter</a>
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Watermelon, Sumac & Feta Salad</a>
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Vermicelli Noodle & Beef Salad</a>
-                            <a class="text-body mb-3" href=""><i class="fa fa-check text-primary me-2"></i>Tuna Pasta Salad</a>
+                        <h4 class="mb-3">Contact Us</h4>
+                        <div class="d-flex flex-wrap justify-content-around text-start">
+                            <p class="flex-fill px-3"><i class="fa fa-map-marker-alt text-primary me-2"></i> Akkar, Lebanon</p>
+                            <p class="flex-fill px-3"><i class="fa fa-phone-alt text-primary me-2"></i> (+961)26073155 </p>
+                            <p class="flex-fill px-3"><i class="fas fa-envelope text-primary me-2"></i> WeekCraft@gmail.com</p>
+                            <p class="flex-fill px-3"><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
                         </div>
                     </div>
                 </div>
-             
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-item text-center">
+
+                <!-- Last Item -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="footer-item">
                         <img src="mealsImages/hi.png" alt="WeekCraft Logo" class="img-fluid"
-                            style="width: 191px; height: auto; max-width: 100%;">
+                            style="width: 120px; height: auto;">
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -252,12 +251,8 @@
     <!-- Footer End -->
 
 
-
-
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-md-square btn-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

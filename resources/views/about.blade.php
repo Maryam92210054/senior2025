@@ -140,13 +140,14 @@
     </div>
     <!-- Team End -->
     <!-- Footer Start -->
-    <div class="container-fluid footer py-6 my-6 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
+    <div class="container-fluid footer py-3 my-3 mb-0 bg-light wow bounceInUp" data-wow-delay="0.1s">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-between align-items-center">
+                <!-- First Item -->
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-item">
                         <h1 class="text-primary">Week<span class="text-dark">Craft</span></h1>
-                        <p class="lh-lg mb-4">A website where you freely craft your loved meals.</p>
+                        <p class="lh-base mb-3">A website where you freely craft your loved meals.</p>
                         <div class="footer-icon d-flex">
                             <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-facebook-f"></i></a>
                             <a class="btn btn-primary btn-sm-square me-2 rounded-circle" href=""><i class="fab fa-twitter"></i></a>
@@ -155,28 +156,29 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-lg-3 col-md-6">
+
+                <!-- Centered Contact Us -->
+                <div class="col-lg-5 col-md-6 mx-auto text-center">
                     <div class="footer-item">
-                        <h4 class="mb-4">Contact Us</h4>
-                        <div class="d-flex flex-column align-items-start">
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i> Akkar, Lebanon</p>
-                            <p><i class="fa fa-phone-alt text-primary me-2"></i> (+961)26073155 </p>
-                            <p><i class="fas fa-envelope text-primary me-2"></i> WeekCraft@gmail.com</p>
-                            <p><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
+                        <h4 class="mb-3">Contact Us</h4>
+                        <div class="d-flex flex-wrap justify-content-around text-start">
+                            <p class="flex-fill px-3"><i class="fa fa-map-marker-alt text-primary me-2"></i> Akkar, Lebanon</p>
+                            <p class="flex-fill px-3"><i class="fa fa-phone-alt text-primary me-2"></i> (+961)26073155 </p>
+                            <p class="flex-fill px-3"><i class="fas fa-envelope text-primary me-2"></i> WeekCraft@gmail.com</p>
+                            <p class="flex-fill px-3"><i class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-item text-center">
-                        <img src="mealsImages/hi.png" alt="WeekCraft Logo" class="img-fluid"
-                            style="width: 191px; height: auto; max-width: 100%;">
-                    </div>
 
+                <!-- Last Item -->
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="footer-item">
+                        <img src="mealsImages/hi.png" alt="WeekCraft Logo" class="img-fluid"
+                            style="width: 120px; height: auto;">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End -->
-
     @endsection
