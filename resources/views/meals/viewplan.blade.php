@@ -157,12 +157,9 @@
         </div>
         @endif
 
-        <!-- Cancel Buttons -->
-
 
         <div class="text-center cancel-buttons">
             @if (!empty($newPlanMealsData))
-            <!-- Add this modal HTML somewhere in your page -->
             <div id="cancelConfirmationModal" class="modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">

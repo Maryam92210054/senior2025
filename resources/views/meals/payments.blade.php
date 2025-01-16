@@ -5,7 +5,6 @@
 <div class="custom-background py-5" style="background-color: #fefae0; min-height: 100vh;">
     <div class="container white-container p-5" style="background-color: #ccd5ae; border-radius: 10px;">
 
-        <!-- Payment Method Sections (Half-half navbar) -->
         <div class="d-flex mb-4">
             <div id="omt-section" class="flex-fill p-3 text-center" style="background-color: #ffc107; color: black; cursor: pointer;">
                 OMT
@@ -15,7 +14,6 @@
             </div>
         </div>
 
-        <!-- Payment Method Dropdown -->
         <div class="form-group">
             <label for="payment_method">Select Payment Method</label>
             <select id="payment_method" name="payment_method" class="form-control" required>
@@ -27,7 +25,6 @@
         <form method="POST" action="{{ route('payment.store', ['order_id' => $orderId]) }}">
             @csrf
 
-            <!-- Payment Amount -->
             <div class="form-group">
                 <label for="amount">Payment Amount</label>
                 <input type="text" name="amount" id="amount" class="form-control" value="{{ $calculatedAmount }}" readonly>

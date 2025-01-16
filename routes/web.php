@@ -41,8 +41,8 @@ Route::middleware(['auth', 'role:1'])->group(function () {
     Route::get('/choose-days/{plan}', [BuildPlanController::class, 'chooseDays'])->name('chooseDays');
     Route::get('/store-days/{plan}/{nb}', [BuildPlanController::class, 'storeDays'])->name('storeDays');
     Route::get('/choose-meals/{planId}/{days}', [BuildPlanController::class, 'chooseMeals'])->name('chooseMeals');
+    Route::post('/confirm-order', [OrderController::class, 'store'])->name('confirmOrder');
     Route::get('/order-confirmation/{id}', [OrderController::class, 'show'])->name('orderConfirmation');
-    Route::post ('/confirm-order', [OrderController::class, 'store'])->name('confirmOrder');
     Route::post('/store-user-meal-plan', [BuildPlanController::class, 'storeUserMealPlan'])->name('storeUserMealPlan');
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');

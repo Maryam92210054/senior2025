@@ -37,11 +37,14 @@ class PaymentController extends Controller
                 'required',
                 'string',
                 'min:7',
+                'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).+$/',
             ],
             'amount' => 'required|numeric',
             'order_id' => 'required|exists:orders,id',
+        ], [
+            'account_code.regex' => 'The account code must be at least 7 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character.',
         ]);
-    
+        
         // Calculate the final amount based on eco-friendly packaging selection
         $calculatedAmount = $request->amount;
     
